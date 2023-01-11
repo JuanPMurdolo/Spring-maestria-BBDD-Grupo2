@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Spring-maestria-BBDD-Grupo2.iml" filepath="$PROJECT_DIR$/.idea/Spring-maestria-BBDD-Grupo2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tarjetas/tarjetas/tarjetas.iml" filepath="$PROJECT_DIR$/tarjetas/tarjetas/tarjetas.iml" />
     </modules>
   </component>
 </project>
