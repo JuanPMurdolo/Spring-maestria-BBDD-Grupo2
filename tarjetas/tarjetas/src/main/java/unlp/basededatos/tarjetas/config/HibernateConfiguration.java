@@ -29,7 +29,7 @@ public class HibernateConfiguration {
     public DataSource dataSource() {
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/tarjetas");
+        dataSource.setUrl("jdbc:mysql://127.0.0.1:33060/tarjetas");
         dataSource.setUsername("root");
         dataSource.setPassword("123456");
         return dataSource;
