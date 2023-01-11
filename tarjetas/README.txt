@@ -1,1 +1,0 @@
-Enlace a la base de datos MySQL => https://drive.google.com/file/d/1fNIzgvNCe6yX18Hz00AaFuEe2HdvxAlG/view?usp=share_link
