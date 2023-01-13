@@ -20,7 +20,7 @@ public class HibernateConfiguration {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
         sessionFactory.setPackagesToScan(
-                new String[] {"com.dbd.realstate.model"});
+                new String[] {"unlp.basededatos.tarjetas.model"});
         sessionFactory.setHibernateProperties(hibernateProperties());
         return sessionFactory;
     }
@@ -29,9 +29,9 @@ public class HibernateConfiguration {
     public DataSource dataSource() {
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://127.0.0.1:33060/tarjetas");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/tarjetas");
         dataSource.setUsername("root");
-        dataSource.setPassword("123456");
+        dataSource.setPassword("arturito");
         return dataSource;
     }
 
