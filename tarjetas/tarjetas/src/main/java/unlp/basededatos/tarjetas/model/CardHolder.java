@@ -52,6 +52,8 @@ public class CardHolder {
         this.entry = entry;
     }
 
+    public CardHolder(){}
+
     public String getCompleteName() {
         return completeName;
     }

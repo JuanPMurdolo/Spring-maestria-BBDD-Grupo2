@@ -9,8 +9,8 @@ public interface CardHolderService {
 
     public String create(String name, String mesage) throws TarjetasException;
 
-    public CardHolder getCard(Long id) throws TarjetasException;
+    public CardHolder getCardHolder(Long id) throws TarjetasException;
 
-    public CardHolder updateCard(CardHolder cardHolder,Long id) throws TarjetasException;
+    public CardHolder updateCardHolder(CardHolder cardHolder,Long id) throws TarjetasException;
 
 }
