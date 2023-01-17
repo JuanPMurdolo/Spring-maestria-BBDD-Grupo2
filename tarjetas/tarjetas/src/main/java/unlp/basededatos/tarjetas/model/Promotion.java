@@ -2,6 +2,7 @@ package unlp.basededatos.tarjetas.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "Promotion")
@@ -31,6 +32,17 @@ public abstract class Promotion {
 
     @Column(name = "comments")
     private String comments;
+
+    //Una promocion puede pertenecer a muchos bancos
+    //Y los bancos pueden tener 0 o muchas promociones
+    @ManyToMany(mappedBy = "banks")
+    @JoinTable(
+            name = "Bank_Promotions",
+            joinColumns = @JoinColumn(name = "bankID"),
+            inverseJoinColumns = @JoinColumn(name = "promotionID")
+    )
+    private List<Bank> banks;
+
 
     public Promotion(String code, String promotionTitle, String nameStore, String cuitStore, Date validityStartDate, Date validityEndDate, String comments) {
         this.code = code;
