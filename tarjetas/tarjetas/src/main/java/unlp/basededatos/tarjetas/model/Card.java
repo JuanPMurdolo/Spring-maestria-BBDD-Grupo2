@@ -32,6 +32,12 @@ public class Card {
     @ManyToOne(fetch = FetchType.EAGER, cascade = {})
 	@JoinColumn(name="CardID")
 	private Bank bank;
+
+    //Una tarjeta puede tener solo un owner(CardHolder)
+    //Muchos a uno
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {})
+    @JoinColumn(name="OwnerID")
+    private CardHolder owner;
     
     public Card(String number, String ccv, String cardholderNameInCard, Date since, Date expirationDate) {
         this.number = number;

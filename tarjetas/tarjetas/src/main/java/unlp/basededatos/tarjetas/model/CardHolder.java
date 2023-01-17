@@ -1,20 +1,41 @@
 package unlp.basededatos.tarjetas.model;
 
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
+@Entity
+@Table(name = "CardHolder")
 public class CardHolder {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name ="id_cardholder")
+    private Long id;
 
+
+    @Column(name = "completeName")
     private String completeName;
 
+    @Column(name = "dni")
     private String dni;
 
+    @Column(name = "cuil")
     private String cuil;
 
+    @Column(name = "address")
     private String address;
 
+    @Column(name = "telephone")
     private String telephone;
 
+    @Column(name = "entry")
     private Date entry;
+
+    //La relacion parece ser muchos a muchos
+    private Bank bank;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Card> cards;
 
     public CardHolder(String completeName, String dni, String cuil, String address, String telephone, Date entry) {
         this.completeName = completeName;
