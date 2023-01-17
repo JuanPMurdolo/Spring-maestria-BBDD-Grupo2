@@ -32,6 +32,12 @@ public class CardHolder {
     private Date entry;
 
     //La relacion parece ser muchos a muchos
+    @ManyToMany
+    @JoinTable(
+            name = "Bank_CardHolder",
+            joinColumns = @JoinColumn(name = "bankID"),
+            inverseJoinColumns = @JoinColumn(name = "clientID")
+    )
     private List<Bank> banks;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

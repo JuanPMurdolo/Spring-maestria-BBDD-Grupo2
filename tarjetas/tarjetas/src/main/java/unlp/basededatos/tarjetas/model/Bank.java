@@ -35,6 +35,7 @@ public class Bank {
     //Un Banco puede tener muchos clientes (CardHolders)
     //Pero los clientes pueden pertenecer a uno o mas bancos
     //la relacion parece muchos a muchos
+    @ManyToMany(mappedBy = "banks")
     private List<CardHolder> clients;
 	
     public Bank(String name, String cuit, String address, String telephone) {
