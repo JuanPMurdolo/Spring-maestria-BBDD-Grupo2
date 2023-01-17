@@ -25,6 +25,10 @@ public abstract class Purchase {
     @Column(name = "finalAmount")
     private float finalAmount;
 
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {})
+    @JoinColumn(name="PromotionID")
+    private Promotion promotion;
+
     public Purchase(String paymentVoucher, String store, String cuitStore, float amount, float finalAmount) {
         this.paymentVoucher = paymentVoucher;
         this.store = store;

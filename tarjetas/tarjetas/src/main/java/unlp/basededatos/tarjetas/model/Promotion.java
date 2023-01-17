@@ -43,6 +43,10 @@ public abstract class Promotion {
     )
     private List<Bank> banks;
 
+    @OneToMany( cascade = CascadeType.ALL, fetch = FetchType.LAZY )
+    private Purchase purchase;
+
+
 
     public Promotion(String code, String promotionTitle, String nameStore, String cuitStore, Date validityStartDate, Date validityEndDate, String comments) {
         this.code = code;
