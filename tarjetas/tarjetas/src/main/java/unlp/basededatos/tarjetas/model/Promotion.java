@@ -1,21 +1,35 @@
 package unlp.basededatos.tarjetas.model;
 
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name = "Promotion")
 public abstract class Promotion {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name ="id_promotion")
+    private Long id;
 
+    @Column(name = "code")
     private String code;
 
+    @Column(name = "promotionTitle")
     private String promotionTitle;
 
+    @Column(name = "nameStore")
     private String nameStore;
 
+    @Column(name = "cuitStore")
     private String cuitStore;
 
+    @Column(name = "validityStartDate")
     private Date validityStartDate;
 
+    @Column(name = "validityEndDate")
     private Date validityEndDate;
 
+    @Column(name = "comments")
     private String comments;
 
     public Promotion(String code, String promotionTitle, String nameStore, String cuitStore, Date validityStartDate, Date validityEndDate, String comments) {

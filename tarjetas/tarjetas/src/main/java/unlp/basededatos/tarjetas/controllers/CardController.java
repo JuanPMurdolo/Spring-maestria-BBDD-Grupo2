@@ -53,7 +53,7 @@ public class CardController {
         Random r = new Random();
         int randomId = r.nextInt(Integer.MAX_VALUE);
         this.service.createCard(card);
-        return "Banco creado exitosamente!";
+        return "Tarjeta creado exitosamente!";
     }
 
     /*

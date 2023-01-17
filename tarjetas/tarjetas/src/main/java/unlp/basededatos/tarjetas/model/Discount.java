@@ -1,13 +1,21 @@
 package unlp.basededatos.tarjetas.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.Date;
 
+@Entity
+@Table(name = "Discount")
 public class Discount extends Promotion{
 
+    @Column(name = "discountPercentage")
     private float discountPercentage;
 
+    @Column(name = "priceCap")
     private float priceCap;
 
+    @Column(name = "onlyCash")
     private boolean onlyCash;
 
     public Discount(String code, String promotionTitle, String nameStore, String cuitStore, Date validityStartDate, Date validityEndDate, String comments, float discountPercentage, float priceCap, boolean onlyCash) {

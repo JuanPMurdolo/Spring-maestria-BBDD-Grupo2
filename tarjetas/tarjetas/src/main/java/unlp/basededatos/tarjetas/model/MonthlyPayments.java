@@ -1,9 +1,17 @@
 package unlp.basededatos.tarjetas.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "MonthlyPayments")
 public class MonthlyPayments extends Purchase {
 
+    @Column(name = "intereset")
     private float interest;
 
+    @Column(name = "numberOfQuotas")
     private int numberOfQuotas;
 
     public MonthlyPayments(String paymentVoucher, String store, String cuitStore, float amount, float finalAmount, float interest, int numberOfQuotas) {

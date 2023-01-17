@@ -1,30 +1,44 @@
 package unlp.basededatos.tarjetas.model;
 
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name = "Payment")
 public class Payment {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name ="id_payment")
+    private Long id;
 
+    @Column(name = "code")
     private String code;
 
+    @Column(name = "month")
     private String month;
 
+    @Column(name = "year")
     private String year;
 
+    @Column(name = "firstExpiration")
     private Date firstExpiration;
 
+    @Column(name = "secondExpiration")
     private Date secondExpiration;
 
-    private float surchase;
+    @Column(name = "purchase")
+    private float purchase;
 
+    @Column(name = "totalPrice")
     private float totalPrice;
 
-    public Payment(String code, String month, String year, Date firstExpiration, Date secondExpiration, float surchase, float totalPrice) {
+    public Payment(String code, String month, String year, Date firstExpiration, Date secondExpiration, float purchase, float totalPrice) {
         this.code = code;
         this.month = month;
         this.year = year;
         this.firstExpiration = firstExpiration;
         this.secondExpiration = secondExpiration;
-        this.surchase = surchase;
+        this.purchase = purchase;
         this.totalPrice = totalPrice;
     }
 
@@ -68,12 +82,12 @@ public class Payment {
         this.secondExpiration = secondExpiration;
     }
 
-    public float getSurchase() {
-        return surchase;
+    public float getPurchase() {
+        return purchase;
     }
 
-    public void setSurchase(float surchase) {
-        this.surchase = surchase;
+    public void setPurchase(float purchase) {
+        this.purchase = purchase;
     }
 
     public float getTotalPrice() {

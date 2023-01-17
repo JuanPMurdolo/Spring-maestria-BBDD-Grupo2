@@ -1,13 +1,25 @@
 package unlp.basededatos.tarjetas.model;
 
-public class Quota {
+import javax.persistence.*;
 
+@Entity
+@Table(name = "Quota")
+public class Quota {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name ="id_quota")
+    private Long id;
+
+    @Column(name ="number")
     private  int number;
 
+    @Column(name ="price")
     private float price;
 
+    @Column(name ="month")
     private String month;
 
+    @Column(name ="year")
     private String year;
 
     public Quota(int number, float price, String month, String year) {
@@ -16,6 +28,7 @@ public class Quota {
         this.month = month;
         this.year = year;
     }
+    public Quota(){}
 
     public int getNumber() {
         return number;

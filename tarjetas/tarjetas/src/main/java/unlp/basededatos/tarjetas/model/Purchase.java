@@ -1,15 +1,28 @@
 package unlp.basededatos.tarjetas.model;
 
-public abstract class Purchase {
+import javax.persistence.*;
 
+@Entity
+@Table(name = "Purchase")
+public abstract class Purchase {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name ="id_purchase")
+    private Long id;
+
+    @Column(name = "paymentVoucher")
     private String paymentVoucher;
 
+    @Column(name = "store")
     private String store;
 
+    @Column(name = "cuitStore")
     private String cuitStore;
 
+    @Column(name = "amount")
     private float amount;
 
+    @Column(name = "finalAmount")
     private float finalAmount;
 
     public Purchase(String paymentVoucher, String store, String cuitStore, float amount, float finalAmount) {
@@ -19,6 +32,8 @@ public abstract class Purchase {
         this.amount = amount;
         this.finalAmount = finalAmount;
     }
+
+    public Purchase(){}
 
     public String getPaymentVoucher() {
         return paymentVoucher;
