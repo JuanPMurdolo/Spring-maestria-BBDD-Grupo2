@@ -26,6 +26,13 @@ public class Card {
     @Column(name ="expiration")
     private Date expirationDate;
 
+	//bi-directional many-to-one association to Bank
+    // muchas tarjetas solo puede pertenecer a un Banco (bank)
+    // MUCHOS a uno
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {})
+	@JoinColumn(name="CardID")
+	private Bank bank;
+    
     public Card(String number, String ccv, String cardholderNameInCard, Date since, Date expirationDate) {
         this.number = number;
         this.ccv = ccv;
@@ -80,4 +87,14 @@ public class Card {
     public void setExpirationDate(Date expirationDate) {
         this.expirationDate = expirationDate;
     }
+
+	public Bank getBank() {
+		return bank;
+	}
+
+	public void setBank(Bank bank) {
+		this.bank = bank;
+	}
+    
+    
 }

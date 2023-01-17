@@ -1,9 +1,9 @@
 package unlp.basededatos.tarjetas.utils;
 
-public class BankException extends Exception{
+public class TarjetasException extends Exception{
     private String message;
 
-    public BankException(String message){
+    public TarjetasException(String message){
         this.message = message;
     }
 

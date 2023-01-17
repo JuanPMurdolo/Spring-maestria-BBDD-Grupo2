@@ -1,5 +1,7 @@
 package unlp.basededatos.tarjetas.model;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -23,6 +25,12 @@ public class Bank {
     @Column(name = "telephone")
     private String telephone;
 
+	// bi-directional many-to-one association to Card
+    // un Banco puede tener muchas Tarjetas(Cards)
+    // uno a MUCHOS
+    @OneToMany( cascade = CascadeType.ALL, fetch = FetchType.LAZY )
+	private List<Card> cards;
+	
     public Bank(String name, String cuit, String address, String telephone) {
         this.name = name;
         this.cuit = cuit;
@@ -50,14 +58,6 @@ public class Bank {
         this.cuit = cuit;
     }
 
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     public String getTelephone() {
         return telephone;
     }
@@ -74,4 +74,30 @@ public class Bank {
         this.id = id;
     }
 
+	public List<Card> getCards() {
+		return cards;
+	}
+
+	public void setCards(List<Card> cards) {
+		this.cards = cards;
+	}
+    
+	
+	public void addCard(Card address) {
+		cards.add(address);
+	}
+	
+	public boolean hasCard(Card address) {
+		return cards.contains(address);
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	
 }

@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import unlp.basededatos.tarjetas.model.Card;
 import unlp.basededatos.tarjetas.services.CardService;
-import unlp.basededatos.tarjetas.utils.CardException;
+import unlp.basededatos.tarjetas.utils.TarjetasException;
 
 import java.util.Random;
 
@@ -36,7 +36,7 @@ public class CardController {
     }
      */
     @PostMapping(path = "/create")
-    public Card createCard(@RequestBody Card card) throws CardException {
+    public Card createCard(@RequestBody Card card) throws TarjetasException {
         return this.service.createCard(card);
     }
 
@@ -48,7 +48,7 @@ public class CardController {
      */
 
     @PostMapping(path = "/testCreate")
-    public String create(String name, String mesage) throws CardException {
+    public String create(String name, String mesage) throws TarjetasException {
         Card card = new Card();
         Random r = new Random();
         int randomId = r.nextInt(Integer.MAX_VALUE);
@@ -64,7 +64,7 @@ public class CardController {
 
      */
     @GetMapping(path = "/id/{id}")
-    public Card getCard(@PathVariable Long id) throws CardException {
+    public Card getCard(@PathVariable Long id) throws TarjetasException {
         return this.service.getCard(id);
     }
 
@@ -81,7 +81,7 @@ public class CardController {
     }
      */
     @PutMapping(path = "/update/{id}")
-    public Card updateCard(@RequestBody Card card, @PathVariable Long id) throws CardException{
+    public Card updateCard(@RequestBody Card card, @PathVariable Long id) throws TarjetasException{
         return this.service.updateCard(card,id);
     }
 

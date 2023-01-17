@@ -1,6 +1,6 @@
 package unlp.basededatos.tarjetas.services;
 
-import unlp.basededatos.tarjetas.utils.BankException;
+import unlp.basededatos.tarjetas.utils.TarjetasException;
 import unlp.basededatos.tarjetas.model.Bank;
 import unlp.basededatos.tarjetas.repositories.BankRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,20 +18,20 @@ public class BanksServiceImpl implements BanksService{
 
     @Override
     @Transactional
-    public Bank createBank(Bank bank) throws BankException {
+    public Bank createBank(Bank bank) throws TarjetasException {
         Long id = this.repository.saveBank(bank);
         return this.repository.findBankById(id);
     }
 
     @Override
     @Transactional
-    public Bank getBank(Long id) throws BankException {
+    public Bank getBank(Long id) throws TarjetasException {
         return this.repository.findBankById(id);
     }
 
     @Override
     @Transactional
-    public Bank updateBank(Bank bank, Long id) throws BankException  {
+    public Bank updateBank(Bank bank, Long id) throws TarjetasException  {
         Bank bank1 =  this.repository.findBankById(id);
         bank1.setAddress(bank.getAddress());
         bank1.setName(bank.getName());
@@ -40,7 +40,7 @@ public class BanksServiceImpl implements BanksService{
     }
 
 	@Override
-	public String create(String name, String mesage) throws BankException {
+	public String create(String name, String mesage) throws TarjetasException {
 		// TODO Auto-generated method stub
 		return null;
 	}

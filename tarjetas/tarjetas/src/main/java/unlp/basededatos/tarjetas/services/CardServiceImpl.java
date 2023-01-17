@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import unlp.basededatos.tarjetas.model.Card;
 import unlp.basededatos.tarjetas.repositories.CardRepository;
-import unlp.basededatos.tarjetas.utils.CardException;
+import unlp.basededatos.tarjetas.utils.TarjetasException;
 
 @Service
 public class CardServiceImpl implements CardService{
@@ -15,25 +15,25 @@ public class CardServiceImpl implements CardService{
 
     @Override
     @Transactional
-    public Card createCard(Card card) throws CardException {
+    public Card createCard(Card card) throws TarjetasException {
         Long id = this.repository.saveCard(card);
         return this.repository.findCardById(id);
     }
 
     @Override
     @Transactional
-    public String create(String name, String mesage) throws CardException {
+    public String create(String name, String mesage) throws TarjetasException {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public Card getCard(Long id) throws CardException {
+    public Card getCard(Long id) throws TarjetasException {
         return this.repository.findCardById(id);
     }
 
     @Override
-    public Card updateCard(Card card, Long id) throws CardException {
+    public Card updateCard(Card card, Long id) throws TarjetasException {
         Card card1 = this.repository.findCardById(id);
         card1.setCardholderNameInCard(card.getCardholderNameInCard());
         card1.setCcv(card.getCcv());

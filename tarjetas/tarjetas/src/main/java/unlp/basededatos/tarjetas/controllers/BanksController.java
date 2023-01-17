@@ -1,6 +1,6 @@
 package unlp.basededatos.tarjetas.controllers;
 
-import unlp.basededatos.tarjetas.utils.BankException;
+import unlp.basededatos.tarjetas.utils.TarjetasException;
 import unlp.basededatos.tarjetas.model.Bank;
 import unlp.basededatos.tarjetas.services.BanksService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +37,7 @@ public class BanksController {
     }
      */
     @PostMapping(path = "/create")
-    public Bank createBank(@RequestBody Bank bank) throws BankException {
+    public Bank createBank(@RequestBody Bank bank) throws TarjetasException {
         return this.service.createBank(bank);
     }
 
@@ -49,7 +49,7 @@ public class BanksController {
      */
     
     @PostMapping(path = "/testCreate")
-    public String create(String name, String mesage) throws BankException {
+    public String create(String name, String mesage) throws TarjetasException {
     	Bank bank = new Bank();
     	Random r = new Random();
     	int randomId = r.nextInt(Integer.MAX_VALUE);
@@ -70,7 +70,7 @@ public class BanksController {
     
      */
     @GetMapping(path = "/id/{id}")
-    public Bank getBank(@PathVariable Long id) throws BankException {
+    public Bank getBank(@PathVariable Long id) throws TarjetasException {
         return this.service.getBank(id);
     }
 
@@ -87,7 +87,7 @@ public class BanksController {
     }
      */
     @PutMapping(path = "/update/{id}")
-    public Bank updateBank(@RequestBody Bank bank, @PathVariable Long id) throws BankException{
+    public Bank updateBank(@RequestBody Bank bank, @PathVariable Long id) throws TarjetasException{
         return this.service.updateBank(bank,id);
     }
 
