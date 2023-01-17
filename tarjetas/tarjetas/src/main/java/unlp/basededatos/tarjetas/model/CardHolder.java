@@ -32,7 +32,7 @@ public class CardHolder {
     private Date entry;
 
     //La relacion parece ser muchos a muchos
-    private Bank bank;
+    private List<Bank> banks;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Card> cards;
