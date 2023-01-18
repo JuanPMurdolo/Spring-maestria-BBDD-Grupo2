@@ -22,9 +22,8 @@ public class ITarjetasServiceImpl implements ITarjetasService{
         for (int i = 0; i < lista.size(); i++) {
             //Leer el payment en dicha posicion
             Payment payment1 = lista.get(i);
-            //se modifica la fecha de expiracion 1
+            //se modifica la fecha de expiracion
             payment1.setFirstExpiration(first);
-            //se modifica la fecha de expiracion 2
             payment1.setSecondExpiration(second);
             //Se actualiza el payment
             this.paymentRepository.updatePayment(payment1);
