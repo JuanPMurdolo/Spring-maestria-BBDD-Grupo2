@@ -1,10 +1,18 @@
 package unlp.basededatos.tarjetas.services;
 
+import unlp.basededatos.tarjetas.model.Card;
+import unlp.basededatos.tarjetas.model.Payment;
+import unlp.basededatos.tarjetas.utils.TarjetasException;
+
+import java.util.Date;
+import java.util.List;
+
 public interface ITarjetasService {
 
     // Agregar una nueva promoción de tipo descuento a un banco dado
 
     // Editar las fecha de vencimiento de un pago con cierto código.
+    public List<Payment> updatePaymentsFirstExpiration(String code, Date first, Date second) throws TarjetasException;
 
     //Generar el total de pago de un mes dado, informando las compras correspondientes
 

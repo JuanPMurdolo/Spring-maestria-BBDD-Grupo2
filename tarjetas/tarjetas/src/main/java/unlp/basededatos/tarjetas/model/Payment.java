@@ -42,6 +42,8 @@ public class Payment {
         this.totalPrice = totalPrice;
     }
 
+    public Payment(){}
+
     public String getCode() {
         return code;
     }
