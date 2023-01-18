@@ -9,7 +9,9 @@ import org.springframework.stereotype.Component;
 
 import unlp.basededatos.tarjetas.model.Bank;
 import unlp.basededatos.tarjetas.model.Card;
+import unlp.basededatos.tarjetas.model.CardHolder;
 import unlp.basededatos.tarjetas.services.BanksService;
+import unlp.basededatos.tarjetas.services.CardHolderService;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 
 @Component
@@ -18,6 +20,9 @@ public class ApplicationInitializer implements CommandLineRunner {
 	
 	@Autowired
 	BanksService bankService;
+
+	@Autowired
+	CardHolderService cardHolderService;
 
 	////////
 	// URL Swagger: http://localhost:8081/swagger-ui/index.html
@@ -37,7 +42,7 @@ public class ApplicationInitializer implements CommandLineRunner {
         card1.setCcv("500");
         card1.setNumber("123456");
 
-		Card card2 = new Card();
+        Card card2 = new Card();
         card2.setCardholderNameInCard("Pablito");
         card2.setCcv("500");
         card2.setNumber("123456");
@@ -45,6 +50,24 @@ public class ApplicationInitializer implements CommandLineRunner {
         List<Card> cardsList = new ArrayList<Card>();
         cardsList.add(card1);
         cardsList.add(card2);
+
+		CardHolder cardHolder1 = new CardHolder();
+		cardHolder1.setCompleteName("Abramcito");
+		cardHolder1.setDni("123456");
+		cardHolder1.setTelephone("654321");
+		cardHolder1.setCuil("11-4681561-8");
+		cardHolderService.createCardHolder(cardHolder1);
+		
+        CardHolder cardHolder2 = new CardHolder();
+		cardHolder2.setCompleteName("Pablito");
+		cardHolder2.setDni("345673546");
+		cardHolder2.setTelephone("34561234");
+		cardHolder2.setCuil("11-1213454-8");
+		cardHolderService.createCardHolder(cardHolder2);
+
+        List<CardHolder> cardHoldersList = new ArrayList<CardHolder>();
+        cardHoldersList.add(cardHolder1);
+        cardHoldersList.add(cardHolder2);
         
 		Bank bank1 = new Bank();
 		bank1.setName("Banco Frances");
@@ -52,10 +75,12 @@ public class ApplicationInitializer implements CommandLineRunner {
 		bank1.setCuit("20-1245454-2");
 		bank1.setTelephone("98765412");
 		bank1.setCards(cardsList);
-		
+        bank1.setCardHolders(cardHoldersList);
+
         card1.setBank(bank1);
         card2.setBank(bank1);
 
+        
 		bankService.createBank(bank1);
 
 		Bank bank2 = new Bank();
@@ -64,20 +89,15 @@ public class ApplicationInitializer implements CommandLineRunner {
 		bank2.setCuit("20-1245454-2");
 		bank2.setTelephone("98765412");
 		bankService.createBank(bank2);
+		
 
-		Bank bank3 = new Bank();
-		bank3.setName("Banco Hipotecario");
-		bank3.setAddress("San Martin 1234");
-		bank3.setCuit("20-1245454-2");
-		bank3.setTelephone("98765412");
-		bankService.createBank(bank3);
+        
+        List<Bank> banksList = new ArrayList<Bank>();
+        banksList.add(bank1);
+        banksList.add(bank2);
+        
 
-		Bank bank4 = new Bank();
-		bank4.setName("Banco Patagonia");
-		bank4.setAddress("San Martin 1234");
-		bank4.setCuit("20-1245454-2");
-		bank4.setTelephone("98765412");
-		bankService.createBank(bank4);
+        
 
 		System.out.println("Bancos creados exitosamente!");
 

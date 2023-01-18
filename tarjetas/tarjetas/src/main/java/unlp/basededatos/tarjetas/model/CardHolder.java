@@ -1,6 +1,7 @@
 package unlp.basededatos.tarjetas.model;
 
 import javax.persistence.*;
+
 import java.util.Date;
 import java.util.List;
 
@@ -32,14 +33,9 @@ public class CardHolder {
     private Date entry;
 
     //La relacion parece ser muchos a muchos
-    @ManyToMany
-    @JoinTable(
-            name = "Bank_CardHolder",
-            joinColumns = @JoinColumn(name = "bankID"),
-            inverseJoinColumns = @JoinColumn(name = "clientID")
-    )
+    @ManyToMany(mappedBy = "cardHolders")
     private List<Bank> banks;
-
+    
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Card> cards;
 
@@ -101,4 +97,30 @@ public class CardHolder {
     public void setEntry(Date entry) {
         this.entry = entry;
     }
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public List<Bank> getBanks() {
+		return banks;
+	}
+
+	public void setBanks(List<Bank> banks) {
+		this.banks = banks;
+	}
+
+	public List<Card> getCards() {
+		return cards;
+	}
+
+	public void setCards(List<Card> cards) {
+		this.cards = cards;
+	}
+    
+    
 }

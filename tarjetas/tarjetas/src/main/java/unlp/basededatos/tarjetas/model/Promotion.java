@@ -35,7 +35,7 @@ public abstract class Promotion {
 
     //Una promocion puede pertenecer a muchos bancos
     //Y los bancos pueden tener 0 o muchas promociones
-    @ManyToMany(mappedBy = "banks")
+    @ManyToMany()
     @JoinTable(
             name = "Bank_Promotions",
             joinColumns = @JoinColumn(name = "bankID"),
@@ -44,8 +44,7 @@ public abstract class Promotion {
     private List<Bank> banks;
 
     @OneToMany( cascade = CascadeType.ALL, fetch = FetchType.LAZY )
-    private Purchase purchase;
-
+    private List<Purchase> purchase;
 
 
     public Promotion(String code, String promotionTitle, String nameStore, String cuitStore, Date validityStartDate, Date validityEndDate, String comments) {

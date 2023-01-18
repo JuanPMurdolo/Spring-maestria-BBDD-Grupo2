@@ -35,8 +35,13 @@ public class Bank {
     //Un Banco puede tener muchos clientes (CardHolders)
     //Pero los clientes pueden pertenecer a uno o mas bancos
     //la relacion parece muchos a muchos
-    @ManyToMany(mappedBy = "banks")
-    private List<CardHolder> clients;
+    @ManyToMany( cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable(
+        name = "banks_cardholders",
+        joinColumns = @JoinColumn(name = "bank_id"),
+        inverseJoinColumns = @JoinColumn(name = "cardholder_id")
+    )
+    private List<CardHolder> cardHolders;
 
 
     //Una promocion puede pertenecer a muchos bancos
@@ -110,6 +115,22 @@ public class Bank {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public List<CardHolder> getCardHolders() {
+		return cardHolders;
+	}
+
+	public void setCardHolders(List<CardHolder> cardHolders) {
+		this.cardHolders = cardHolders;
+	}
+
+	public List<Promotion> getPromotions() {
+		return promotions;
+	}
+
+	public void setPromotions(List<Promotion> promotions) {
+		this.promotions = promotions;
 	}
 
 	
