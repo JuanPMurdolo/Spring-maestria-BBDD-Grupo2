@@ -3,6 +3,7 @@ package unlp.basededatos.tarjetas.model;
 import javax.persistence.*;
 
 @Entity
+@DiscriminatorColumn(name = "REF_TYPE")
 @Table(name = "Purchase")
 public abstract class Purchase {
     @Id

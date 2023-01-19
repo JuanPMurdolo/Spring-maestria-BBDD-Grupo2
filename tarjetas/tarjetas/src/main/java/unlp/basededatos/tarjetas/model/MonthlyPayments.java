@@ -1,11 +1,9 @@
 package unlp.basededatos.tarjetas.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.Table;
+import javax.persistence.*;
 
-@MappedSuperclass
+@Entity
+@DiscriminatorValue("Monthly")
 public class MonthlyPayments extends Purchase {
 
     @Column(name = "intereset")
@@ -19,6 +17,8 @@ public class MonthlyPayments extends Purchase {
         this.interest = interest;
         this.numberOfQuotas = numberOfQuotas;
     }
+
+    public MonthlyPayments(){}
 
     public float getInterest() {
         return interest;

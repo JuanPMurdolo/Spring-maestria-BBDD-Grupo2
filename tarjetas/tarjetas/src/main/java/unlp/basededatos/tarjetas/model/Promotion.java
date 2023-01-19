@@ -6,6 +6,7 @@ import java.util.List;
 
 @Entity
 @DiscriminatorColumn(name = "REF_TYPE")
+@Table(name = "Promotion")
 public abstract class Promotion {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -56,6 +57,8 @@ public abstract class Promotion {
         this.validityEndDate = validityEndDate;
         this.comments = comments;
     }
+
+    public Promotion(){}
 
     public String getCode() {
         return code;

@@ -1,11 +1,9 @@
 package unlp.basededatos.tarjetas.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.Table;
+import javax.persistence.*;
 
-@MappedSuperclass
+@Entity
+@DiscriminatorValue("Cash")
 public class CashPayment extends Purchase{
 
     @Column(name = "storeDiscount")
@@ -14,6 +12,9 @@ public class CashPayment extends Purchase{
     public CashPayment(String paymentVoucher, String store, String cuitStore, float amount, float finalAmount, float storeDiscount) {
         super(paymentVoucher, store, cuitStore, amount, finalAmount);
         this.storeDiscount = storeDiscount;
+    }
+    public CashPayment(){
+        super();
     }
 
     public float getStoreDiscount() {
