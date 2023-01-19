@@ -2,11 +2,11 @@ package unlp.basededatos.tarjetas.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.Table;
 import java.util.Date;
 
-@Entity
-@Table(name = "Promotion")
+@MappedSuperclass
 public class Financing extends Promotion{
 
     @Column(name = "numberOfQuotas")

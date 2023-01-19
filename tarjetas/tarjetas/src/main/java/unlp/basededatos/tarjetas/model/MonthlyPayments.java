@@ -2,10 +2,10 @@ package unlp.basededatos.tarjetas.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "MonthlyPayments")
+@MappedSuperclass
 public class MonthlyPayments extends Purchase {
 
     @Column(name = "intereset")

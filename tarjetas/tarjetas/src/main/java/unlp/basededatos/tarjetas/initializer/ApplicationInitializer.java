@@ -1,6 +1,7 @@
 package unlp.basededatos.tarjetas.initializer;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +11,12 @@ import org.springframework.stereotype.Component;
 import unlp.basededatos.tarjetas.model.Bank;
 import unlp.basededatos.tarjetas.model.Card;
 import unlp.basededatos.tarjetas.model.CardHolder;
+import unlp.basededatos.tarjetas.model.Payment;
 import unlp.basededatos.tarjetas.services.BanksService;
 import unlp.basededatos.tarjetas.services.CardHolderService;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
+
+import javax.xml.crypto.Data;
 
 @Component
 public class ApplicationInitializer implements CommandLineRunner {
@@ -95,6 +99,28 @@ public class ApplicationInitializer implements CommandLineRunner {
         List<Bank> banksList = new ArrayList<Bank>();
         banksList.add(bank1);
         banksList.add(bank2);
+
+		Date fecha = new Date();
+
+
+		Payment payment1 = new Payment();
+		payment1.setCode("212");
+		payment1.setFirstExpiration(fecha);
+		payment1.setSecondExpiration(fecha);
+		payment1.setMonth("January");
+		payment1.setYear("2023");
+		payment1.setPurchase(1230);
+		payment1.setTotalPrice(12000);
+
+		Payment payment2 = new Payment();
+		payment1.setCode("212");
+		payment1.setFirstExpiration(fecha);
+		payment1.setSecondExpiration(fecha);
+		payment1.setMonth("January");
+		payment1.setYear("2023");
+		payment1.setPurchase(1230);
+		payment1.setTotalPrice(12000);
+
         
 
         

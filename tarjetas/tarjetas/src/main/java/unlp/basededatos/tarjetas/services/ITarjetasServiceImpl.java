@@ -16,7 +16,7 @@ public class ITarjetasServiceImpl implements ITarjetasService{
     private PaymentRepository paymentRepository;
 
     @Override
-    public List<Payment> updatePaymentsFirstExpiration(String code, Date first, Date second) throws TarjetasException {
+    public List<Payment> updatePaymentsExpiration(String code, Date first, Date second) throws TarjetasException {
         //obtener todas los payments que se correspondan con el code
         List<Payment> lista = this.paymentRepository.findPaymentsByCode(code);
         for (int i = 0; i < lista.size(); i++) {

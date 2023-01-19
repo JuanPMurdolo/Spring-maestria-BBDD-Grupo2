@@ -12,7 +12,7 @@ public interface ITarjetasService {
     // Agregar una nueva promoción de tipo descuento a un banco dado
 
     // Editar las fecha de vencimiento de un pago con cierto código.
-    public List<Payment> updatePaymentsFirstExpiration(String code, Date first, Date second) throws TarjetasException;
+    public List<Payment> updatePaymentsExpiration(String code, Date first, Date second) throws TarjetasException;
 
     //Generar el total de pago de un mes dado, informando las compras correspondientes
 

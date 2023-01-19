@@ -7,6 +7,9 @@ import unlp.basededatos.tarjetas.model.Payment;
 import unlp.basededatos.tarjetas.services.ITarjetasService;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 
+import java.util.Date;
+import java.util.List;
+
 @RestController
 @RequestMapping(value = "/ITarjetas")
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
@@ -19,4 +22,11 @@ public class ITarjetasController {
     public String prueba() {
         return "OK";
     }
+
+    @PutMapping(path = "/UpdatePaymentExpiration/{code}")
+    public List<Payment> updatePaymentExpiration(@PathVariable String code ) throws TarjetasException {
+        return null;
+    }
+
+
 }
