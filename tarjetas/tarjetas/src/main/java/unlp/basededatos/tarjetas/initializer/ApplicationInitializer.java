@@ -14,6 +14,7 @@ import unlp.basededatos.tarjetas.model.CardHolder;
 import unlp.basededatos.tarjetas.model.Payment;
 import unlp.basededatos.tarjetas.services.BanksService;
 import unlp.basededatos.tarjetas.services.CardHolderService;
+import unlp.basededatos.tarjetas.services.PaymentService;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 
 import javax.xml.crypto.Data;
@@ -24,6 +25,9 @@ public class ApplicationInitializer implements CommandLineRunner {
 	
 	@Autowired
 	BanksService bankService;
+
+	@Autowired
+	PaymentService paymentService;
 
 	@Autowired
 	CardHolderService cardHolderService;
@@ -111,6 +115,7 @@ public class ApplicationInitializer implements CommandLineRunner {
 		payment1.setYear("2023");
 		payment1.setPurchase(1230);
 		payment1.setTotalPrice(12000);
+		paymentService.createPayment(payment1);
 
 		Payment payment2 = new Payment();
 		payment1.setCode("212");
@@ -120,6 +125,7 @@ public class ApplicationInitializer implements CommandLineRunner {
 		payment1.setYear("2023");
 		payment1.setPurchase(1230);
 		payment1.setTotalPrice(12000);
+		paymentService.createPayment(payment2);
 
         
 
