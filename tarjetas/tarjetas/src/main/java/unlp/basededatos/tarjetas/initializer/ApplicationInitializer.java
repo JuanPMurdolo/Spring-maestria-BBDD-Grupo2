@@ -106,7 +106,7 @@ public class ApplicationInitializer implements CommandLineRunner {
 
 		Date fecha = new Date();
 
-		/*
+
 		Payment payment1 = new Payment();
 		payment1.setCode("212");
 		payment1.setFirstExpiration(fecha);
@@ -126,7 +126,7 @@ public class ApplicationInitializer implements CommandLineRunner {
 		payment1.setPurchase(1230);
 		payment1.setTotalPrice(12000);
 		paymentService.createPayment(payment2);
-		*/
+
         
 
         
