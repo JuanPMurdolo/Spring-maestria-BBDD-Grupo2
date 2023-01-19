@@ -118,13 +118,13 @@ public class ApplicationInitializer implements CommandLineRunner {
 		paymentService.createPayment(payment1);
 
 		Payment payment2 = new Payment();
-		payment1.setCode("212");
-		payment1.setFirstExpiration(fecha);
-		payment1.setSecondExpiration(fecha);
-		payment1.setMonth("January");
-		payment1.setYear("2023");
-		payment1.setPurchase(1230);
-		payment1.setTotalPrice(12000);
+		payment2.setCode("212");
+		payment2.setFirstExpiration(fecha);
+		payment2.setSecondExpiration(fecha);
+		payment2.setMonth("January");
+		payment2.setYear("2023");
+		payment2.setPurchase(1230);
+		payment2.setTotalPrice(12000);
 		paymentService.createPayment(payment2);
 
         
