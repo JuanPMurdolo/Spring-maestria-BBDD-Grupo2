@@ -6,7 +6,8 @@ import javax.persistence.MappedSuperclass;
 import javax.persistence.Table;
 import java.util.Date;
 
-@MappedSuperclass
+@Entity
+@Table(name = "Financing")
 public class Financing extends Promotion{
 
     @Column(name = "numberOfQuotas")

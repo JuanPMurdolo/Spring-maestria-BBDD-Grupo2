@@ -5,7 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "Promotion")
+@DiscriminatorColumn(name = "REF_TYPE")
 public abstract class Promotion {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
