@@ -28,7 +28,7 @@ public class Bank {
 	// bi-directional many-to-one association to Card
     // un Banco puede tener muchas Tarjetas(Cards)
     // uno a MUCHOS
-    @OneToMany( cascade = CascadeType.ALL, fetch = FetchType.LAZY )
+    @OneToMany( cascade = CascadeType.ALL, fetch = FetchType.EAGER )
 	private List<Card> cards;
 
 
@@ -132,5 +132,11 @@ public class Bank {
 		this.promotions = promotions;
 	}
 
+	public void addPromotion(Promotion promotion) {
+		promotions.add(promotion);
+	}
 	
+	public boolean hasPromotion(Promotion promotion) {
+		return promotions.contains(promotion);
+	}
 }

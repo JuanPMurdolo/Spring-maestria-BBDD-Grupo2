@@ -2,6 +2,9 @@ package unlp.basededatos.tarjetas.controllers;
 
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 import unlp.basededatos.tarjetas.model.Bank;
+import unlp.basededatos.tarjetas.model.Discount;
+import unlp.basededatos.tarjetas.model.Financing;
+import unlp.basededatos.tarjetas.model.Promotion;
 import unlp.basededatos.tarjetas.services.BanksService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -90,5 +93,30 @@ public class BanksController {
     public Bank updateBank(@RequestBody Bank bank, @PathVariable Long id) throws TarjetasException{
         return this.service.updateBank(bank,id);
     }
-
+    
+	/*
+	 * @PostMapping("/addNewDiscount") public long addNewDiscount( @RequestBody
+	 * Discount discount ) { try { discount = service.addNewPromotion(discount);
+	 * return (discount != null) ? discount.getId() : -1; } catch (Exception e) {
+	 * e.printStackTrace(); return -1; } }
+	 * 
+	 * @PostMapping("/addNewFinancing") public long addNewFinancing( @RequestBody
+	 * Financing financing ) { try { financing = service.addNewPromotion(financing);
+	 * return (financing != null) ? financing.getId() : -1; } catch (Exception e) {
+	 * e.printStackTrace(); return -1; } }
+	 */
+	
+	@PostMapping("/addPromotion/{id}")
+	public long addNewDiscount( @RequestBody Promotion promotion, @PathVariable Long id ) {
+    	try {
+    		promotion = service.addNewPromotion(promotion,id);
+    		return (promotion != null) ? promotion.getId() : -1;
+		}
+    	catch (Exception e) {
+			e.printStackTrace();
+			return -1;
+		}
+    }
+	
+	
 }

@@ -2,6 +2,8 @@ package unlp.basededatos.tarjetas.services;
 
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 import unlp.basededatos.tarjetas.model.Bank;
+import unlp.basededatos.tarjetas.model.Discount;
+import unlp.basededatos.tarjetas.model.Promotion;
 import unlp.basededatos.tarjetas.repositories.BankRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,5 +46,39 @@ public class BanksServiceImpl implements BanksService{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+	@Transactional
+	public Promotion addNewPromotion(Promotion promotion, Long id) throws TarjetasException {
+
+		// Obtengo el Banco
+		Bank bank = repository.findBankById(id);
+
+		// Si el Banco no existe, retorno false
+		if (bank ==  null) {
+			System.out.println("El banco no existe");
+			return null;
+		}
+
+		bank.addPromotion(promotion);
+		bank = this.repository.findBankById(repository.saveBank(bank));
+
+		return bank.getPromotions().get( bank.getPromotions().size() -1 );
+	}
+
+	/*
+	 * public long bankCount() throws Exception { return repository.count(); }
+	 * 
+	 * public List<Bank> getAllBanks() throws Exception { // Retorno todos los
+	 * Bankes return repository.findAll(); }
+	 * 
+	 * public List<Promotion> getAddresses(long idBank) throws Exception { //
+	 * Obtengo el Banke Bank bank = repository.getBankById( idBank );
+	 * 
+	 * // Si el banke no existe, retorno false if (bank == null) {
+	 * System.out.println("El banke no existe"); return null; }
+	 * 
+	 * return bank.getAddresses(); }
+	 */
 
 }

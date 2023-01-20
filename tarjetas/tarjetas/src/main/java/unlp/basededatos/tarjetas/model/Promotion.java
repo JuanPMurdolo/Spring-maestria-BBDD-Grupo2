@@ -1,8 +1,23 @@
 package unlp.basededatos.tarjetas.model;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
+import unlp.basededatos.tarjetas.enums.PromotionType;
+
 import java.util.Date;
 import java.util.List;
+
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME,
+		include = JsonTypeInfo.As.EXISTING_PROPERTY,
+		property = "promoType",
+		visible = true)
+@JsonSubTypes({
+		@JsonSubTypes.Type(value = Discount.class, name = "discount"),
+		@JsonSubTypes.Type(value = Financing.class, name = "financing"),
+})
 
 @Entity
 @Table(name = "Promotion")
@@ -33,7 +48,10 @@ public abstract class Promotion {
 
     @Column(name = "comments")
     private String comments;
-
+    
+    @Column(name = "promoType")
+    private PromotionType promoType;
+    
     //Una promocion puede pertenecer a muchos bancos
     //Y los bancos pueden tener 0 o muchas promociones
 	/*
@@ -48,7 +66,23 @@ public abstract class Promotion {
     private List<Purchase> purchase;
 
 
-    public Promotion(String code, String promotionTitle, String nameStore, String cuitStore, Date validityStartDate, Date validityEndDate, String comments) {
+    public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public List<Purchase> getPurchase() {
+		return purchase;
+	}
+
+	public void setPurchase(List<Purchase> purchase) {
+		this.purchase = purchase;
+	}
+
+	public Promotion(String code, String promotionTitle, String nameStore, String cuitStore, Date validityStartDate, Date validityEndDate, String comments) {
         this.code = code;
         this.promotionTitle = promotionTitle;
         this.nameStore = nameStore;
