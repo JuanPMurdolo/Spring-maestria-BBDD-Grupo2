@@ -2,6 +2,9 @@ package unlp.basededatos.tarjetas.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import unlp.basededatos.tarjetas.model.Bank;
+import unlp.basededatos.tarjetas.model.Discount;
 import unlp.basededatos.tarjetas.model.Payment;
 import unlp.basededatos.tarjetas.repositories.PaymentRepository;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
@@ -30,4 +33,10 @@ public class ITarjetasServiceImpl implements ITarjetasService{
         }
         return lista;
     }
+    
+    public Discount addDiscountbyBank(Discount discount, Bank bank) throws TarjetasException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

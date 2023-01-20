@@ -44,9 +44,8 @@ public class Bank {
     private List<CardHolder> cardHolders;
 
 
-    //Una promocion puede pertenecer a muchos bancos
     //Y los bancos pueden tener 0 o muchas promociones
-    @ManyToMany(mappedBy = "banks")
+    @OneToMany( cascade = CascadeType.ALL, fetch = FetchType.LAZY )
     private List<Promotion> promotions;
 	
     public Bank(String name, String cuit, String address, String telephone) {

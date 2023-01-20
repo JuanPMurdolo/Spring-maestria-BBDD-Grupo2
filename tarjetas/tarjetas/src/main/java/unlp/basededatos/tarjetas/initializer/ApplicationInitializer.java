@@ -11,10 +11,14 @@ import org.springframework.stereotype.Component;
 import unlp.basededatos.tarjetas.model.Bank;
 import unlp.basededatos.tarjetas.model.Card;
 import unlp.basededatos.tarjetas.model.CardHolder;
+import unlp.basededatos.tarjetas.model.Discount;
 import unlp.basededatos.tarjetas.model.Payment;
+import unlp.basededatos.tarjetas.model.Promotion;
 import unlp.basededatos.tarjetas.services.BanksService;
 import unlp.basededatos.tarjetas.services.CardHolderService;
+import unlp.basededatos.tarjetas.services.ITarjetasService;
 import unlp.basededatos.tarjetas.services.PaymentService;
+import unlp.basededatos.tarjetas.services.PromotionsService;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 
 import javax.xml.crypto.Data;
@@ -22,7 +26,6 @@ import javax.xml.crypto.Data;
 @Component
 public class ApplicationInitializer implements CommandLineRunner {
     
-	
 	@Autowired
 	BanksService bankService;
 
@@ -31,6 +34,12 @@ public class ApplicationInitializer implements CommandLineRunner {
 
 	@Autowired
 	CardHolderService cardHolderService;
+	
+	@Autowired
+	PromotionsService promotionsService;
+	
+	@Autowired
+	ITarjetasService tarjetasService;
 
 	////////
 	// URL Swagger: http://localhost:8081/swagger-ui/index.html
@@ -38,7 +47,9 @@ public class ApplicationInitializer implements CommandLineRunner {
 
 	public void run(String... args) throws Exception {
 
-		crearBancos();
+		//crearBancos();
+		//crearPagos();
+		crearPunto1();
 
 	}
 
@@ -104,8 +115,13 @@ public class ApplicationInitializer implements CommandLineRunner {
         banksList.add(bank1);
         banksList.add(bank2);
 
-		Date fecha = new Date();
+    	System.out.println("Bancos creados exitosamente!");
 
+	}
+
+	public void crearPagos() throws TarjetasException {
+
+		Date fecha = new Date();
 
 		Payment payment1 = new Payment();
 		payment1.setCode("212");
@@ -126,12 +142,35 @@ public class ApplicationInitializer implements CommandLineRunner {
 		payment2.setPurchase(1230);
 		payment2.setTotalPrice(12000);
 		paymentService.createPayment(payment2);
+      
+		System.out.println("Pagos creados exitosamente!");
 
+	}
+	
+	public void crearPunto1() throws TarjetasException {
+
+		Discount discount1 = new Discount();
+		discount1.setComments("Descuento en la Anonima");
+		discount1.setCode("212");
+		discount1.setCuitStore("123456");
+		discount1.setDiscountPercentage(10);
+		//no es necesario persistir porq ya persiste cuando crea el BANCO
+		//promotionsService.createPromotion(discount1);
+		
+        List<Promotion> promotionsList = new ArrayList<Promotion>();
+        promotionsList.add(discount1);
         
-
-        
-
-		System.out.println("Bancos creados exitosamente!");
+		Bank bank1 = new Bank();
+		bank1.setName("Banco Frances");
+		bank1.setAddress("San Martin 1234");
+		bank1.setCuit("20-1245454-2");
+		bank1.setTelephone("98765412");
+		bank1.setPromotions(promotionsList);
+		bankService.createBank(bank1);
+		
+		tarjetasService.addDiscountbyBank(discount1, bank1);
+     
+		System.out.println("Promocion Descuento agregada exitosamente!");
 
 	}
 

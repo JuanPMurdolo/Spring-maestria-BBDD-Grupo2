@@ -5,8 +5,8 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@DiscriminatorColumn(name = "REF_TYPE")
 @Table(name = "Promotion")
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Promotion {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -36,14 +36,14 @@ public abstract class Promotion {
 
     //Una promocion puede pertenecer a muchos bancos
     //Y los bancos pueden tener 0 o muchas promociones
-    @ManyToMany()
-    @JoinTable(
-            name = "Bank_Promotions",
-            joinColumns = @JoinColumn(name = "bankID"),
-            inverseJoinColumns = @JoinColumn(name = "promotionID")
-    )
-    private List<Bank> banks;
-
+	/*
+	 * @ManyToMany()
+	 * 
+	 * @JoinTable( name = "Bank_Promotions", joinColumns = @JoinColumn(name =
+	 * "bankID"), inverseJoinColumns = @JoinColumn(name = "promotionID") ) private
+	 * List<Bank> banks;
+	 */
+    
     @OneToMany( cascade = CascadeType.ALL, fetch = FetchType.LAZY )
     private List<Purchase> purchase;
 
