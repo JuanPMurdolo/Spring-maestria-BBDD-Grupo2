@@ -36,7 +36,7 @@ public class PaymentRepository {
     }
     public List<Payment> findPaymentsByCode(String code) throws TarjetasException{
         try{
-            return (List<Payment>) this.sessionFactory.getCurrentSession().createQuery("from Payment where code = :code").setParameter("code", code);
+            return (List<Payment>) this.sessionFactory.getCurrentSession().createQuery("from Payment where code = :code").setParameter("code", code).getResultList();
         }   catch (Exception e) {
             throw new TarjetasException(e.getMessage());
         }

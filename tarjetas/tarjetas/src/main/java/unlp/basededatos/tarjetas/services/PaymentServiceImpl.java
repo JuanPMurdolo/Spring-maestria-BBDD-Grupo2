@@ -7,6 +7,8 @@ import unlp.basededatos.tarjetas.model.Payment;
 import unlp.basededatos.tarjetas.repositories.PaymentRepository;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 
+import java.util.List;
+
 @Service
 public class PaymentServiceImpl implements PaymentService{
     @Autowired
@@ -17,4 +19,5 @@ public class PaymentServiceImpl implements PaymentService{
         Long id = this.paymentRepository.savePayment(payment);
         return this.paymentRepository.findPaymentById(id);
     }
+
 }

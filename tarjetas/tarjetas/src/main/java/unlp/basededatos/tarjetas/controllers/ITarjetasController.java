@@ -15,17 +15,10 @@ import java.util.List;
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 
 public class ITarjetasController {
-    @Autowired
-    private ITarjetasService service;
 
     @GetMapping(path = "/testing")
     public String prueba() {
         return "OK";
-    }
-
-    @PutMapping(path = "/UpdatePaymentExpiration/{code}")
-    public List<Payment> updatePaymentExpiration(@PathVariable String code ) throws TarjetasException {
-        return null;
     }
 
 

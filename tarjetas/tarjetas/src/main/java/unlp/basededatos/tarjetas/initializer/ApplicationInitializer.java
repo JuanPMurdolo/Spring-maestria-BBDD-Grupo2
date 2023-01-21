@@ -48,7 +48,7 @@ public class ApplicationInitializer implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 
 		//crearBancos();
-		//crearPagos();
+		crearPagos();
 		crearPunto1();
 
 	}

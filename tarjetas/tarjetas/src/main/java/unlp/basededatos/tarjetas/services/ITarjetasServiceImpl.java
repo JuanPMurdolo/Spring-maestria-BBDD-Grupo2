@@ -3,6 +3,7 @@ package unlp.basededatos.tarjetas.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import org.springframework.transaction.annotation.Transactional;
 import unlp.basededatos.tarjetas.model.Bank;
 import unlp.basededatos.tarjetas.model.Discount;
 import unlp.basededatos.tarjetas.model.Payment;
@@ -25,9 +26,11 @@ public class ITarjetasServiceImpl implements ITarjetasService{
 	BanksService bankService;
 	
     @Override
+	@Transactional
     public List<Payment> updatePaymentsExpiration(String code, Date first, Date second) throws TarjetasException {
         //obtener todas los payments que se correspondan con el code
         List<Payment> lista = this.paymentRepository.findPaymentsByCode(code);
+		List<Payment> lista2 = new ArrayList<>();
         for (int i = 0; i < lista.size(); i++) {
             //Leer el payment en dicha posicion
             Payment payment1 = lista.get(i);
@@ -36,8 +39,9 @@ public class ITarjetasServiceImpl implements ITarjetasService{
             payment1.setSecondExpiration(second);
             //Se actualiza el payment
             this.paymentRepository.updatePayment(payment1);
+			lista2.add(payment1);
         }
-        return lista;
+        return lista2;
     }
     
     public Discount addDiscountbyBank(Discount discount, Bank bank) throws TarjetasException {
