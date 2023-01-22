@@ -32,6 +32,10 @@ public class Payment {
     @Column(name = "totalPrice")
     private float totalPrice;
 
+    //falta la relacion e/Quota y Payment
+
+    //Falta la relacion /CashPayment y Payment
+
     public Payment(String code, String month, String year, Date firstExpiration, Date secondExpiration, float purchase, float totalPrice) {
         this.code = code;
         this.month = month;
