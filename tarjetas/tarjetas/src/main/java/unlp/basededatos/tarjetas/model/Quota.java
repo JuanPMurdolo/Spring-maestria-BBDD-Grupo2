@@ -22,6 +22,12 @@ public class Quota {
     @Column(name ="year")
     private String year;
 
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {})
+    @JoinColumn(name="PaymentId")
+    private Payment payment;
+
+
+
     public Quota(int number, float price, String month, String year) {
         this.number = number;
         this.price = price;
@@ -29,6 +35,14 @@ public class Quota {
         this.year = year;
     }
     public Quota(){}
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public int getNumber() {
         return number;
@@ -60,5 +74,13 @@ public class Quota {
 
     public void setYear(String year) {
         this.year = year;
+    }
+
+    public Payment getPayment() {
+        return payment;
+    }
+
+    public void setPayment(Payment payment) {
+        this.payment = payment;
     }
 }

@@ -2,6 +2,7 @@ package unlp.basededatos.tarjetas.model;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "Payment")
@@ -33,6 +34,8 @@ public class Payment {
     private float totalPrice;
 
     //falta la relacion e/Quota y Payment
+    @OneToMany( cascade = CascadeType.ALL, fetch = FetchType.EAGER )
+    private List<Quota> quotas;
 
     //Falta la relacion /CashPayment y Payment
 
@@ -102,5 +105,13 @@ public class Payment {
 
     public void setTotalPrice(float totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    public List<Quota> getQuotas() {
+        return quotas;
+    }
+
+    public void setQuotas(List<Quota> quotas) {
+        this.quotas = quotas;
     }
 }

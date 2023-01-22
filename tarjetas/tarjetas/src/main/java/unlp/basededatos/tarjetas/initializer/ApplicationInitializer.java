@@ -8,17 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import unlp.basededatos.tarjetas.model.Bank;
-import unlp.basededatos.tarjetas.model.Card;
-import unlp.basededatos.tarjetas.model.CardHolder;
-import unlp.basededatos.tarjetas.model.Discount;
-import unlp.basededatos.tarjetas.model.Payment;
-import unlp.basededatos.tarjetas.model.Promotion;
-import unlp.basededatos.tarjetas.services.BanksService;
-import unlp.basededatos.tarjetas.services.CardHolderService;
-import unlp.basededatos.tarjetas.services.ITarjetasService;
-import unlp.basededatos.tarjetas.services.PaymentService;
-import unlp.basededatos.tarjetas.services.PromotionsService;
+import unlp.basededatos.tarjetas.model.*;
+import unlp.basededatos.tarjetas.services.*;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 
 import javax.xml.crypto.Data;
@@ -37,6 +28,9 @@ public class ApplicationInitializer implements CommandLineRunner {
 	
 	@Autowired
 	PromotionsService promotionsService;
+
+	@Autowired
+	QuotaService quotaService;
 	
 	@Autowired
 	ITarjetasService tarjetasService;
@@ -50,6 +44,7 @@ public class ApplicationInitializer implements CommandLineRunner {
 		//crearBancos();
 		crearPagos();
 		crearPunto1();
+
 
 	}
 
@@ -131,7 +126,18 @@ public class ApplicationInitializer implements CommandLineRunner {
 		payment1.setYear("2023");
 		payment1.setPurchase(1230);
 		payment1.setTotalPrice(12000);
+		Quota quota1 = new Quota();
+		quota1.setPayment(payment1);
+		quota1.setPrice(1230);
+		quota1.setMonth(payment1.getMonth());
+		quota1.setYear(payment1.getYear());
+		quota1.setNumber(1);
+		List<Quota> lista = new ArrayList<>();
+		lista.add(quota1);
+
+		payment1.setQuotas(lista);
 		paymentService.createPayment(payment1);
+		quotaService.createQuota(quota1);
 
 		Payment payment2 = new Payment();
 		payment2.setCode("212");
@@ -144,6 +150,7 @@ public class ApplicationInitializer implements CommandLineRunner {
 		paymentService.createPayment(payment2);
       
 		System.out.println("Pagos creados exitosamente!");
+
 
 	}
 	
