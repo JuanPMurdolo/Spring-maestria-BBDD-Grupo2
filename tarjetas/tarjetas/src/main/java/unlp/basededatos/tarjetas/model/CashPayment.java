@@ -9,6 +9,10 @@ public class CashPayment extends Purchase{
     @Column(name = "storeDiscount")
     private float storeDiscount;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="payment_id", nullable=false)
+    private Payment payment;
+    
     public CashPayment(String paymentVoucher, String store, String cuitStore, float amount, float finalAmount, float storeDiscount) {
         super(paymentVoucher, store, cuitStore, amount, finalAmount);
         this.storeDiscount = storeDiscount;

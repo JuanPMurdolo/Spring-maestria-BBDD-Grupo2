@@ -1,6 +1,7 @@
 package unlp.basededatos.tarjetas.model;
 
 import javax.persistence.*;
+
 import java.util.Date;
 import java.util.List;
 
@@ -38,8 +39,10 @@ public class Payment {
     private List<Quota> quotas;
 
     //Falta la relacion /CashPayment y Payment
-
-    public Payment(String code, String month, String year, Date firstExpiration, Date secondExpiration, float purchase, float totalPrice) {
+	@OneToMany(mappedBy="payment")
+	private List<CashPayment> cashpayments;
+	
+	public Payment(String code, String month, String year, Date firstExpiration, Date secondExpiration, float purchase, float totalPrice) {
         this.code = code;
         this.month = month;
         this.year = year;
@@ -48,6 +51,22 @@ public class Payment {
         this.purchase = purchase;
         this.totalPrice = totalPrice;
     }
+
+    public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public List<CashPayment> getCashpayments() {
+		return cashpayments;
+	}
+
+	public void setCashpayments(List<CashPayment> cashpayments) {
+		this.cashpayments = cashpayments;
+	}
 
     public Payment(){}
 

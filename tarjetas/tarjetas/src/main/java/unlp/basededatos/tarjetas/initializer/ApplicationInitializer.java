@@ -43,7 +43,7 @@ public class ApplicationInitializer implements CommandLineRunner {
 
 		//crearBancos();
 		crearPagos();
-		crearPunto1();
+		//crearPunto1();
 
 
 	}
@@ -126,18 +126,28 @@ public class ApplicationInitializer implements CommandLineRunner {
 		payment1.setYear("2023");
 		payment1.setPurchase(1230);
 		payment1.setTotalPrice(12000);
+		
 		Quota quota1 = new Quota();
 		quota1.setPayment(payment1);
 		quota1.setPrice(1230);
 		quota1.setMonth(payment1.getMonth());
 		quota1.setYear(payment1.getYear());
 		quota1.setNumber(1);
+
+		Quota quota2 = new Quota();
+		quota2.setPayment(payment1);
+		quota2.setPrice(1230);
+		quota2.setMonth(payment1.getMonth());
+		quota2.setYear(payment1.getYear());
+		quota2.setNumber(2);
+		
 		List<Quota> lista = new ArrayList<>();
 		lista.add(quota1);
+		lista.add(quota2);
 
 		payment1.setQuotas(lista);
 		paymentService.createPayment(payment1);
-		quotaService.createQuota(quota1);
+		//quotaService.createQuota(quota1);
 
 		Payment payment2 = new Payment();
 		payment2.setCode("212");
@@ -175,7 +185,7 @@ public class ApplicationInitializer implements CommandLineRunner {
 		bank1.setPromotions(promotionsList);
 		bankService.createBank(bank1);
 		
-		tarjetasService.addNewPromotion(discount1, (long) 3);
+		tarjetasService.addNewPromotion(discount1, bank1.getId());
      
 		System.out.println("Promocion Descuento agregada exitosamente!");
 

@@ -22,11 +22,13 @@ public class Quota {
     @Column(name ="year")
     private String year;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {})
-    @JoinColumn(name="PaymentId")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="payment_id", nullable=false)
     private Payment payment;
 
-
+	@ManyToOne( fetch = FetchType.EAGER, cascade = CascadeType.ALL )
+    @JoinColumn( name = "montlypayment_id" )
+	private MonthlyPayments montlypayment;
 
     public Quota(int number, float price, String month, String year) {
         this.number = number;
