@@ -41,31 +41,6 @@ public class BanksServiceImpl implements BanksService{
         return bank1;
     }
 
-	@Override
-	public String create(String name, String mesage) throws TarjetasException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-
-	@Transactional
-	public Promotion addNewPromotion(Promotion promotion, Long id) throws TarjetasException {
-
-		// Obtengo el Banco
-		Bank bank = repository.findBankById(id);
-
-		// Si el Banco no existe, retorno false
-		if (bank ==  null) {
-			System.out.println("El banco no existe");
-			return null;
-		}
-
-		bank.addPromotion(promotion);
-		bank = this.repository.findBankById(repository.saveBank(bank));
-
-		return bank.getPromotions().get( bank.getPromotions().size() -1 );
-	}
-
 	/*
 	 * public long bankCount() throws Exception { return repository.count(); }
 	 * 

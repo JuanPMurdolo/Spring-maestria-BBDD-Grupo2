@@ -6,6 +6,8 @@ import unlp.basededatos.tarjetas.model.Discount;
 import unlp.basededatos.tarjetas.model.Financing;
 import unlp.basededatos.tarjetas.model.Promotion;
 import unlp.basededatos.tarjetas.services.BanksService;
+import unlp.basededatos.tarjetas.services.ITarjetasService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,6 +21,9 @@ public class BanksController {
 
     @Autowired
     private BanksService service;
+    
+    @Autowired
+    private ITarjetasService serviceTarjetas;
 
     /*
     Endpoint de prueba, puede utilizarlo para confirmar el correcto funcionamiento
@@ -109,7 +114,7 @@ public class BanksController {
 	@PostMapping("/addPromotion/{id}")
 	public long addNewDiscount( @RequestBody Promotion promotion, @PathVariable Long id ) {
     	try {
-    		promotion = service.addNewPromotion(promotion,id);
+    		promotion = serviceTarjetas.addNewPromotion(promotion,id);
     		return (promotion != null) ? promotion.getId() : -1;
 		}
     	catch (Exception e) {

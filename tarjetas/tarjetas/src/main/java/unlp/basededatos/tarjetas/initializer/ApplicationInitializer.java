@@ -175,7 +175,7 @@ public class ApplicationInitializer implements CommandLineRunner {
 		bank1.setPromotions(promotionsList);
 		bankService.createBank(bank1);
 		
-		tarjetasService.addDiscountbyBank(discount1, bank1);
+		tarjetasService.addNewPromotion(discount1, (long) 3);
      
 		System.out.println("Promocion Descuento agregada exitosamente!");
 

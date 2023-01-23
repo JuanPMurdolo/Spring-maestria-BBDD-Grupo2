@@ -5,14 +5,13 @@ import org.springframework.stereotype.Service;
 
 import org.springframework.transaction.annotation.Transactional;
 import unlp.basededatos.tarjetas.model.Bank;
-import unlp.basededatos.tarjetas.model.Discount;
 import unlp.basededatos.tarjetas.model.Payment;
 import unlp.basededatos.tarjetas.model.Promotion;
+import unlp.basededatos.tarjetas.repositories.BankRepository;
 import unlp.basededatos.tarjetas.repositories.PaymentRepository;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -23,8 +22,11 @@ public class ITarjetasServiceImpl implements ITarjetasService{
     private PaymentRepository paymentRepository;
 
 	@Autowired
-	BanksService bankService;
+	private BanksService bankService;
 	
+    @Autowired
+    private BankRepository repository;
+    
     @Override
 	@Transactional
     public List<Payment> updatePaymentsExpiration(String code, Date first, Date second) throws TarjetasException {
@@ -44,29 +46,22 @@ public class ITarjetasServiceImpl implements ITarjetasService{
         return lista2;
     }
     
-    public Discount addDiscountbyBank(Discount discount, Bank bank) throws TarjetasException {
-    	
-    	Discount discount1 = new Discount();
-		discount1.setComments("Descuento en la Anonima");
-		discount1.setCode("212");
-		discount1.setCuitStore("123456");
-		discount1.setDiscountPercentage(10);
-		//no es necesario persistir porq ya persiste cuando crea el BANCO
-		//promotionsService.createPromotion(discount1);
-		
-        List<Promotion> promotionsList = new ArrayList<Promotion>();
-        promotionsList.add(discount1);
-        
-		Bank bank1 = new Bank();
-		bank1.setName("Banco Frances");
-		bank1.setAddress("San Martin 1234");
-		bank1.setCuit("20-1245454-2");
-		bank1.setTelephone("98765412");
-		bank1.setPromotions(promotionsList);
-		bankService.createBank(bank1);
-		
-		return discount1;
-		
+	@Transactional
+	public Promotion addNewPromotion(Promotion promotion, Long id) throws TarjetasException {
+
+		// Obtengo el Banco
+		Bank bank = repository.findBankById(id);
+
+		// Si el Banco no existe, retorno false
+		if (bank ==  null) {
+			System.out.println("El banco no existe");
+			return null;
+		}
+
+		bank.addPromotion(promotion);
+		bank = this.repository.findBankById(repository.saveBank(bank));
+
+		return bank.getPromotions().get( bank.getPromotions().size() -1 );
 	}
 
 }
