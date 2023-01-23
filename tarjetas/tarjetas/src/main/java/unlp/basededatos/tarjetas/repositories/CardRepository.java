@@ -7,6 +7,11 @@ import org.springframework.stereotype.Repository;
 import unlp.basededatos.tarjetas.model.Card;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+import java.util.List;
+
 @Repository
 public class CardRepository {
 
@@ -36,6 +41,19 @@ public class CardRepository {
         try {
             session = this.sessionFactory.getCurrentSession();
             session.save(card);
+        } catch (Exception e) {
+            throw new TarjetasException(e.getMessage());
+        }
+    }
+
+    public List<Card> findCardExpirationDate() throws TarjetasException {
+        Date date = new Date();
+        LocalDate localDate = LocalDate.now().plusDays(30);
+        Date date1 = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        System.out.println(date1);
+        System.out.println(date);
+        try {
+            return (List<Card>) this.sessionFactory.getCurrentSession().createQuery("from Card where expirationDate <= :date and expirationDate > :date1").setParameter("date", date).setParameter("date1", date1).getResultList();
         } catch (Exception e) {
             throw new TarjetasException(e.getMessage());
         }

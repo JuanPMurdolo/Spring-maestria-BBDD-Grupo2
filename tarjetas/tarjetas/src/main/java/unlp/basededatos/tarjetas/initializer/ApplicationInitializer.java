@@ -1,5 +1,7 @@
 package unlp.basededatos.tarjetas.initializer;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -41,7 +43,7 @@ public class ApplicationInitializer implements CommandLineRunner {
 
 	public void run(String... args) throws Exception {
 
-		//crearBancos();
+		crearBancos();
 		crearPagos();
 		//crearPunto1();
 
@@ -60,6 +62,16 @@ public class ApplicationInitializer implements CommandLineRunner {
         card2.setCardholderNameInCard("Pablito");
         card2.setCcv("500");
         card2.setNumber("123456");
+		DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		try{
+		Date dateFormated1 = formatter.parse("2023-02-02");
+		card2.setExpirationDate(dateFormated1);
+		}
+		catch (Exception e)
+		{
+			throw new TarjetasException(e.getMessage());
+		}
+
         
         List<Card> cardsList = new ArrayList<Card>();
         cardsList.add(card1);

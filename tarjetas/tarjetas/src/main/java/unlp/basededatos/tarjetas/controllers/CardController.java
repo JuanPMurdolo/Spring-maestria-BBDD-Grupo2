@@ -4,8 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import unlp.basededatos.tarjetas.model.Card;
 import unlp.basededatos.tarjetas.services.CardService;
+import unlp.basededatos.tarjetas.services.ITarjetasService;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 
+import java.util.List;
 import java.util.Random;
 
 @RestController
@@ -15,6 +17,9 @@ public class CardController {
 
     @Autowired
     private CardService service;
+
+    @Autowired
+    private ITarjetasService tarjetasService;
 
     /*
     Endpoint de prueba, puede utilizarlo para confirmar el correcto funcionamiento
@@ -83,6 +88,11 @@ public class CardController {
     @PutMapping(path = "/update/{id}")
     public Card updateCard(@RequestBody Card card, @PathVariable Long id) throws TarjetasException{
         return this.service.updateCard(card,id);
+    }
+
+    @GetMapping(path="/listExpireSoon/")
+    public List<Card> listExpireSoon() throws TarjetasException {
+        return this.tarjetasService.getCardSoonExpiration();
     }
 
 

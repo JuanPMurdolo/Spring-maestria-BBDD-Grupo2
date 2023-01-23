@@ -7,6 +7,8 @@ import unlp.basededatos.tarjetas.model.Card;
 import unlp.basededatos.tarjetas.repositories.CardRepository;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 
+import java.util.Date;
+
 @Service
 public class CardServiceImpl implements CardService{
 
@@ -42,4 +44,5 @@ public class CardServiceImpl implements CardService{
         card1.setExpirationDate(card.getExpirationDate());
         return card1;
     }
+
 }

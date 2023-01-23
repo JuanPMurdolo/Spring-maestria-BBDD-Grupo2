@@ -21,6 +21,7 @@ public interface ITarjetasService {
     //Generar el total de pago de un mes dado, informando las compras correspondientes
 
     //Obtener el listado de tarjetas que vencen en los siguientes 30 días.
+    public List<Card> getCardSoonExpiration() throws TarjetasException;
 
     //Obtener la información de una compra, incluyendo el listado de cuotas si esta posee.
 
