@@ -1,6 +1,7 @@
 package unlp.basededatos.tarjetas.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import unlp.basededatos.tarjetas.model.Card;
 import unlp.basededatos.tarjetas.services.CardService;

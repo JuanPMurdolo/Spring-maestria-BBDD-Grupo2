@@ -4,13 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import org.springframework.transaction.annotation.Transactional;
-import unlp.basededatos.tarjetas.model.Bank;
-import unlp.basededatos.tarjetas.model.Card;
-import unlp.basededatos.tarjetas.model.Payment;
-import unlp.basededatos.tarjetas.model.Promotion;
+import unlp.basededatos.tarjetas.model.*;
 import unlp.basededatos.tarjetas.repositories.BankRepository;
 import unlp.basededatos.tarjetas.repositories.CardRepository;
 import unlp.basededatos.tarjetas.repositories.PaymentRepository;
+import unlp.basededatos.tarjetas.repositories.PurchaseRepository;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 
 import java.util.ArrayList;
@@ -31,6 +29,9 @@ public class ITarjetasServiceImpl implements ITarjetasService{
 
 	@Autowired
 	private CardRepository cardRepository;
+
+	 @Autowired
+	 private PurchaseRepository purchaseRepository;
     
     @Override
 	@Transactional
@@ -73,6 +74,13 @@ public class ITarjetasServiceImpl implements ITarjetasService{
 	@Transactional
 	public List<Card> getCardSoonExpiration() throws TarjetasException {
 		return this.cardRepository.findCardExpirationDate();
-	};
+	}
+
+	@Override
+	public Purchase getPurchaseInfo(Long id) throws TarjetasException {
+		return this.purchaseRepository.findPurchaseById(id);
+	}
+
+	;
 
 }

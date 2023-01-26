@@ -1,10 +1,6 @@
 package unlp.basededatos.tarjetas.services;
 
-import unlp.basededatos.tarjetas.model.Bank;
-import unlp.basededatos.tarjetas.model.Card;
-import unlp.basededatos.tarjetas.model.Discount;
-import unlp.basededatos.tarjetas.model.Payment;
-import unlp.basededatos.tarjetas.model.Promotion;
+import unlp.basededatos.tarjetas.model.*;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 
 import java.util.Date;
@@ -24,6 +20,7 @@ public interface ITarjetasService {
     public List<Card> getCardSoonExpiration() throws TarjetasException;
 
     //Obtener la información de una compra, incluyendo el listado de cuotas si esta posee.
+    public Purchase getPurchaseInfo(Long id) throws TarjetasException;
 
     //Eliminar una promoción a traves de su código (tener en cuenta que esta puede haber sido aplicada alguna compra)
 
