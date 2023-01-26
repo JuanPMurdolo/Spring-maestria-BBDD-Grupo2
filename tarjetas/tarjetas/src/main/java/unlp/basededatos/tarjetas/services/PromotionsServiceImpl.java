@@ -39,10 +39,4 @@ public class PromotionsServiceImpl implements PromotionsService{
         return promotion1;
     }
 
-	@Override
-	public String create(String name, String mesage) throws TarjetasException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }

@@ -10,7 +10,7 @@ public class CashPayment extends Purchase{
     private float storeDiscount;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="payment_id", nullable=false)
+    @JoinColumn(name="id_payment")
     private Payment payment;
     
     public CashPayment(String paymentVoucher, String store, String cuitStore, float amount, float finalAmount, float storeDiscount) {

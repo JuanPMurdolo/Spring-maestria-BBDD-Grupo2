@@ -9,7 +9,6 @@ import unlp.basededatos.tarjetas.model.Promotion;
 public interface PromotionsService {
 
 	    public Promotion createPromotion(Promotion promotion) throws TarjetasException;
-	    public String create(String name, String mesage) throws TarjetasException; 
 
 	    public Promotion getPromotion(Long id) throws TarjetasException;
 

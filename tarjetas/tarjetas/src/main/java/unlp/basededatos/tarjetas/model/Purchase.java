@@ -2,9 +2,23 @@ package unlp.basededatos.tarjetas.model;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
+import unlp.basededatos.tarjetas.enums.PurchaseType;
+
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME,
+		include = JsonTypeInfo.As.EXISTING_PROPERTY,
+		property = "purchaseType",
+		visible = true)
+@JsonSubTypes({
+		@JsonSubTypes.Type(value = MonthlyPayments.class, name = "monthly"),
+		@JsonSubTypes.Type(value = CashPayment.class, name = "cash"),
+})
+
 @Entity
-@DiscriminatorColumn(name = "REF_TYPE")
 @Table(name = "Purchase")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Purchase {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,6 +43,9 @@ public abstract class Purchase {
     @ManyToOne(fetch = FetchType.EAGER, cascade = {})
     @JoinColumn(name="PromotionID")
     private Promotion promotion;
+    
+    @Column(name = "purchaseType")
+    private PurchaseType purchaseType;
 
     public Purchase(String paymentVoucher, String store, String cuitStore, float amount, float finalAmount) {
         this.paymentVoucher = paymentVoucher;

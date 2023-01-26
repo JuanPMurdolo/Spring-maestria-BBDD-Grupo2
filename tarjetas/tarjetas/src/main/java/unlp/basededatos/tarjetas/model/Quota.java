@@ -23,7 +23,7 @@ public class Quota {
     private String year;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="payment_id", nullable=false)
+    @JoinColumn(name="id_payment", nullable=false)
     private Payment payment;
 
 	@ManyToOne( fetch = FetchType.EAGER, cascade = CascadeType.ALL )

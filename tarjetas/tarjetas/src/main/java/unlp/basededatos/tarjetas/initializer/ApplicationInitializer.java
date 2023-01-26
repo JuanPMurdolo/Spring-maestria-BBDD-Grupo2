@@ -35,6 +35,9 @@ public class ApplicationInitializer implements CommandLineRunner {
 	QuotaService quotaService;
 	
 	@Autowired
+	PurchaseService purchaseService;
+	
+	@Autowired
 	ITarjetasService tarjetasService;
 
 	////////
@@ -43,10 +46,10 @@ public class ApplicationInitializer implements CommandLineRunner {
 
 	public void run(String... args) throws Exception {
 
-		crearBancos();
-		crearPagos();
+		//crearBancos();
+		//crearPagos();
 		//crearPunto1();
-
+		crearPurchases();
 
 	}
 
@@ -200,6 +203,31 @@ public class ApplicationInitializer implements CommandLineRunner {
 		tarjetasService.addNewPromotion(discount1, bank1.getId());
      
 		System.out.println("Promocion Descuento agregada exitosamente!");
+
+	}
+	
+	public void crearPurchases() throws TarjetasException {
+
+		
+		MonthlyPayments monthly1 = new MonthlyPayments();
+		monthly1.setCuitStore("123456");
+		monthly1.setAmount(1234);
+		monthly1.setFinalAmount(54321);
+		monthly1.setInterest(18);
+		monthly1.setNumberOfQuotas(12);
+		purchaseService.createPurchase(monthly1);
+
+		CashPayment cash1 = new CashPayment();
+		cash1.setCuitStore("123456");
+		cash1.setAmount(1234);
+		cash1.setFinalAmount(54321);
+		cash1.setPaymentVoucher("la anonima");
+		cash1.setStore("Carrefour");
+		purchaseService.createPurchase(cash1);
+
+		//tarjetasService.addNewPromotion(discount1, bank1.getId());
+     
+		System.out.println("Purchases creadas exitosamente!");
 
 	}
 
