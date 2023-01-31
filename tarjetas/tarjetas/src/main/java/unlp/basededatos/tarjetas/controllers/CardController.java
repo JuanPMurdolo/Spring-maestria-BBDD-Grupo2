@@ -8,6 +8,7 @@ import unlp.basededatos.tarjetas.services.CardService;
 import unlp.basededatos.tarjetas.services.ITarjetasService;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 
+import java.text.ParseException;
 import java.util.List;
 import java.util.Random;
 
@@ -91,7 +92,7 @@ public class CardController {
         return this.service.updateCard(card,id);
     }
 
-    @GetMapping(path="/listExpireSoon/")
+    @GetMapping(path="/listExpireSoon")
     public List<Card> listExpireSoon() throws TarjetasException {
         return this.tarjetasService.getCardSoonExpiration();
     }

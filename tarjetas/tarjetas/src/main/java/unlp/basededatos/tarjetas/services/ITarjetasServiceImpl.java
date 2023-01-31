@@ -11,6 +11,7 @@ import unlp.basededatos.tarjetas.repositories.PaymentRepository;
 import unlp.basededatos.tarjetas.repositories.PurchaseRepository;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -79,6 +80,12 @@ public class ITarjetasServiceImpl implements ITarjetasService{
 	@Override
 	public Purchase getPurchaseInfo(Long id) throws TarjetasException {
 		return this.purchaseRepository.findPurchaseById(id);
+	}
+
+	@Override
+	public Promotion deletePromotion(String code) throws TarjetasException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 	;

@@ -1,6 +1,9 @@
 package unlp.basededatos.tarjetas.model;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Date;
 
 @Entity
@@ -29,6 +32,7 @@ public class Card {
 	//bi-directional many-to-one association to Bank
     // muchas tarjetas solo puede pertenecer a un Banco (bank)
     // MUCHOS a uno
+    @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER, cascade = {})
 	@JoinColumn(name="CardID")
 	private Bank bank;

@@ -3,6 +3,7 @@ package unlp.basededatos.tarjetas.services;
 import unlp.basededatos.tarjetas.model.*;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
@@ -23,6 +24,7 @@ public interface ITarjetasService {
     public Purchase getPurchaseInfo(Long id) throws TarjetasException;
 
     //Eliminar una promoción a traves de su código (tener en cuenta que esta puede haber sido aplicada alguna compra)
+	public Promotion deletePromotion(String code) throws TarjetasException;
 
     //Obtener el precio total a pagar de una compra en cuotas (tener en cuenta que pueden existir promociones aplicadas)
     
