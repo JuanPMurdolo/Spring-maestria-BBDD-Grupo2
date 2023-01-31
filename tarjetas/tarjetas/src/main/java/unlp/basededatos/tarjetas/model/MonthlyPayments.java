@@ -41,4 +41,13 @@ public class MonthlyPayments extends Purchase {
     public void setNumberOfQuotas(int numberOfQuotas) {
         this.numberOfQuotas = numberOfQuotas;
     }
+
+	public List<Quota> getQuotas() {
+		return quotas;
+	}
+
+	public void setQuotas(List<Quota> quotas) {
+		this.quotas = quotas;
+	}
+	
 }

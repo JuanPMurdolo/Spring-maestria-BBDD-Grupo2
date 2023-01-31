@@ -209,24 +209,68 @@ public class ApplicationInitializer implements CommandLineRunner {
 	public void crearPurchases() throws TarjetasException {
 
 		
+		Date fecha = new Date();
+
+		Payment payment1 = new Payment();
+		payment1.setCode("212");
+		payment1.setFirstExpiration(fecha);
+		payment1.setSecondExpiration(fecha);
+		payment1.setMonth("January");
+		payment1.setYear("2023");
+		payment1.setPurchase(1230);
+		payment1.setTotalPrice(12000);
+		
+		Quota quota1 = new Quota();
+		quota1.setPayment(payment1);
+		quota1.setPrice(1230);
+		quota1.setMonth(payment1.getMonth());
+		quota1.setYear(payment1.getYear());
+		quota1.setNumber(1);
+
+		Quota quota2 = new Quota();
+		quota2.setPayment(payment1);
+		quota2.setPrice(1230);
+		quota2.setMonth(payment1.getMonth());
+		quota2.setYear(payment1.getYear());
+		quota2.setNumber(2);
+		
+		List<Quota> listaQuotas = new ArrayList<>();
+		listaQuotas.add(quota1);
+		listaQuotas.add(quota2);
+
+		payment1.setQuotas(listaQuotas);
+		paymentService.createPayment(payment1);
+		//quotaService.createQuota(quota1);
+
+		Payment payment2 = new Payment();
+		payment2.setCode("212");
+		payment2.setFirstExpiration(fecha);
+		payment2.setSecondExpiration(fecha);
+		payment2.setMonth("January");
+		payment2.setYear("2023");
+		payment2.setPurchase(1230);
+		payment2.setTotalPrice(12000);
+		paymentService.createPayment(payment2);
+		
 		MonthlyPayments monthly1 = new MonthlyPayments();
 		monthly1.setCuitStore("123456");
 		monthly1.setAmount(1234);
 		monthly1.setFinalAmount(54321);
 		monthly1.setInterest(18);
 		monthly1.setNumberOfQuotas(12);
+		monthly1.setQuotas(listaQuotas);
 		purchaseService.createPurchase(monthly1);
-
+		
 		CashPayment cash1 = new CashPayment();
 		cash1.setCuitStore("123456");
 		cash1.setAmount(1234);
-		cash1.setFinalAmount(54321);
 		cash1.setPaymentVoucher("la anonima");
 		cash1.setStore("Carrefour");
 		purchaseService.createPurchase(cash1);
 
 		//tarjetasService.addNewPromotion(discount1, bank1.getId());
      
+    
 		System.out.println("Purchases creadas exitosamente!");
 
 	}
