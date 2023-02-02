@@ -33,7 +33,6 @@ public class PaymentController {
     @GetMapping(path = "/getQuotasTotal/{id}")
     public float getQuotasTotal(@PathVariable Long id) throws TarjetasException {
         try {
-            System.out.println("Entra en el controller");
             return this.service.totalQuota(id);
         }
         catch (Exception e){

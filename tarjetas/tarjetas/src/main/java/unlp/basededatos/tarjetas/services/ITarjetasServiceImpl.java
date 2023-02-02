@@ -91,13 +91,9 @@ public class ITarjetasServiceImpl implements ITarjetasService{
 	@Override
 	@Transactional
 	public float totalQuota(Long id) throws TarjetasException {
-		System.out.println("Llega al servicio");
 		Float totalPayment = (float) 0;
-		System.out.println(totalPayment);
 		Payment payment = this.paymentRepository.findPaymentById(id);
-		System.out.println(payment);
 		List<Quota> quotas = payment.getQuotas();
-		System.out.println(quotas);
 		for (int i = 0; i < quotas.size(); i++){
 			System.out.println(quotas.get(i));
 			totalPayment = totalPayment + quotas.get(i).getPrice();
