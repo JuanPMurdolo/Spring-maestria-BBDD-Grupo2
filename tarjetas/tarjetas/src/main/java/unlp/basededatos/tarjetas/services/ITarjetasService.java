@@ -27,6 +27,7 @@ public interface ITarjetasService {
 	public Promotion deletePromotion(String code) throws TarjetasException;
 
     //Obtener el precio total a pagar de una compra en cuotas (tener en cuenta que pueden existir promociones aplicadas)
+    public float totalQuota(Long id) throws TarjetasException;
     
     //Obtener el listado de las promociones disponibles de un local entre dos fechas
 

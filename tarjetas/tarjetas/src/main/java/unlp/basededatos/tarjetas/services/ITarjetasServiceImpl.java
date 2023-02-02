@@ -5,10 +5,7 @@ import org.springframework.stereotype.Service;
 
 import org.springframework.transaction.annotation.Transactional;
 import unlp.basededatos.tarjetas.model.*;
-import unlp.basededatos.tarjetas.repositories.BankRepository;
-import unlp.basededatos.tarjetas.repositories.CardRepository;
-import unlp.basededatos.tarjetas.repositories.PaymentRepository;
-import unlp.basededatos.tarjetas.repositories.PurchaseRepository;
+import unlp.basededatos.tarjetas.repositories.*;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 
 import java.text.ParseException;
@@ -33,6 +30,9 @@ public class ITarjetasServiceImpl implements ITarjetasService{
 
 	 @Autowired
 	 private PurchaseRepository purchaseRepository;
+
+	 @Autowired
+	 private QuotaRepository quotaRepository;
     
     @Override
 	@Transactional
@@ -88,6 +88,21 @@ public class ITarjetasServiceImpl implements ITarjetasService{
 		return null;
 	}
 
-	;
+	@Override
+	@Transactional
+	public float totalQuota(Long id) throws TarjetasException {
+		System.out.println("Llega al servicio");
+		Float totalPayment = (float) 0;
+		System.out.println(totalPayment);
+		Payment payment = this.paymentRepository.findPaymentById(id);
+		System.out.println(payment);
+		List<Quota> quotas = payment.getQuotas();
+		System.out.println(quotas);
+		for (int i = 0; i < quotas.size(); i++){
+			System.out.println(quotas.get(i));
+			totalPayment = totalPayment + quotas.get(i).getPrice();
+		}
+		return totalPayment;
+	}
 
 }

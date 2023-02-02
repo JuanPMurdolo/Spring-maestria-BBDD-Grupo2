@@ -1,5 +1,7 @@
 package unlp.basededatos.tarjetas.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 import java.util.Date;
@@ -35,6 +37,7 @@ public class Payment {
     private float totalPrice;
 
     //falta la relacion e/Quota y Payment
+    @JsonIgnore
     @OneToMany( cascade = CascadeType.ALL, fetch = FetchType.EAGER )
     private List<Quota> quotas;
 
