@@ -96,10 +96,7 @@ public class ITarjetasServiceImpl implements ITarjetasService{
 	public float totalQuota(Long id) throws TarjetasException {
 		Float totalPayment = (float) 0;
 		MonthlyPayments monthlyPayments = this.monthlyPaymentRepository.findMonthlyPaymentById(id);
-		System.out.println(monthlyPayments);
-		//Payment payment = this.paymentRepository.findPaymentById(id);
 		List<Quota> quotas = monthlyPayments.getQuotas();
-		System.out.println(quotas);
 		for (int i = 0; i < quotas.size(); i++){
 			System.out.println(quotas.get(i));
 			totalPayment = totalPayment + quotas.get(i).getPrice();
