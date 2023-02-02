@@ -1,5 +1,6 @@
 package unlp.basededatos.tarjetas.controllers;
 
+import unlp.basededatos.tarjetas.services.ITarjetasService;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 import unlp.basededatos.tarjetas.model.Purchase;
 import unlp.basededatos.tarjetas.services.PurchaseService;
@@ -16,6 +17,9 @@ public class PurchaseController {
 
     @Autowired
     private PurchaseService service;
+
+    @Autowired
+    private ITarjetasService iTarjetasService;
 
     /*
     Endpoint de prueba, puede utilizarlo para confirmar el correcto funcionamiento
@@ -89,6 +93,16 @@ public class PurchaseController {
     @PutMapping(path = "/update/{id}")
     public Purchase updatePurchase(@RequestBody Purchase purchase, @PathVariable Long id) throws TarjetasException{
         return this.service.updatePurchase(purchase,id);
+    }
+
+    @GetMapping(path = "/getQuotasTotal/{id}")
+    public float getQuotasTotal(@PathVariable Long id) throws TarjetasException {
+        try {
+            return this.iTarjetasService.totalQuota(id);
+        }
+        catch (Exception e){
+            throw new TarjetasException(e.getMessage());
+        }
     }
 
 }

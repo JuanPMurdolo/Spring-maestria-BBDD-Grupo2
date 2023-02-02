@@ -245,6 +245,7 @@ public class ApplicationInitializer implements CommandLineRunner {
 		quota2.setMonth(payment1.getMonth());
 		quota2.setYear(payment1.getYear());
 		quota2.setNumber(2);
+
 		
 		List<Quota> listaQuotas = new ArrayList<>();
 		listaQuotas.add(quota1);
@@ -263,6 +264,7 @@ public class ApplicationInitializer implements CommandLineRunner {
 		payment2.setPurchase(1230);
 		payment2.setTotalPrice(12000);
 		paymentService.createPayment(payment2);
+
 		
 		MonthlyPayments monthly1 = new MonthlyPayments();
 		monthly1.setCuitStore("123456");
@@ -272,7 +274,11 @@ public class ApplicationInitializer implements CommandLineRunner {
 		monthly1.setNumberOfQuotas(12);
 		monthly1.setQuotas(listaQuotas);
 		purchaseService.createPurchase(monthly1);
-		
+		quota1.setMontlypayment(monthly1);
+		quota2.setMontlypayment(monthly1);
+		quotaService.createQuota(quota2);
+		quotaService.createQuota(quota1);
+
 		CashPayment cash1 = new CashPayment();
 		cash1.setCuitStore("123456");
 		cash1.setAmount(1234);

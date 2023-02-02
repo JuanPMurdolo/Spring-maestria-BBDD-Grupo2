@@ -85,4 +85,13 @@ public class Quota {
     public void setPayment(Payment payment) {
         this.payment = payment;
     }
+
+    public MonthlyPayments getMontlypayment() {
+        return montlypayment;
+    }
+
+    public void setMontlypayment(MonthlyPayments montlypayment) {
+        this.montlypayment = montlypayment;
+    }
+
 }

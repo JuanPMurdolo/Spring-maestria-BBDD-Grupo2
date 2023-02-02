@@ -29,14 +29,4 @@ public class PaymentController {
             throw new TarjetasException(e.getMessage());
         }
     }
-
-    @GetMapping(path = "/getQuotasTotal/{id}")
-    public float getQuotasTotal(@PathVariable Long id) throws TarjetasException {
-        try {
-            return this.service.totalQuota(id);
-        }
-        catch (Exception e){
-            throw new TarjetasException(e.getMessage());
-        }
-    }
 }
