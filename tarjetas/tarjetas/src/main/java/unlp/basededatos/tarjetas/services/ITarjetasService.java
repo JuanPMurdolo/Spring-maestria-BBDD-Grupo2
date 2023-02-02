@@ -21,7 +21,7 @@ public interface ITarjetasService {
     public List<Card> getCardSoonExpiration() throws TarjetasException;
 
     //Obtener la información de una compra, incluyendo el listado de cuotas si esta posee.
-    public Purchase getPurchaseInfo(Long id) throws TarjetasException;
+    public String getPurchaseInfo(Long id) throws TarjetasException;
 
     //Eliminar una promoción a traves de su código (tener en cuenta que esta puede haber sido aplicada alguna compra)
 	public Promotion deletePromotion(String code) throws TarjetasException;

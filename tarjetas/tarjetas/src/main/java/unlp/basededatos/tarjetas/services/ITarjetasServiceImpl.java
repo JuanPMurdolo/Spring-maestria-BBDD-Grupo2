@@ -81,8 +81,9 @@ public class ITarjetasServiceImpl implements ITarjetasService{
 	}
 
 	@Override
-	public Purchase getPurchaseInfo(Long id) throws TarjetasException {
-		return this.purchaseRepository.findPurchaseById(id);
+	public String getPurchaseInfo(Long id) throws TarjetasException {
+		Purchase purchase = this.purchaseRepository.findPurchaseById(id);
+		return null;
 	}
 
 	@Override

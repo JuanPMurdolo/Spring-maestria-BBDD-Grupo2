@@ -95,6 +95,15 @@ public class PurchaseController {
         return this.service.updatePurchase(purchase,id);
     }
 
+    @GetMapping(path = "/purchaseFullInfo/{id}")
+    public String purchaseFullInfo(@PathVariable Long id) throws TarjetasException{
+        try {
+            return null;
+        } catch (Exception e) {
+            throw new TarjetasException(e.getMessage());
+        }
+    }
+
     @GetMapping(path = "/getQuotasTotal/{id}")
     public float getQuotasTotal(@PathVariable Long id) throws TarjetasException {
         try {
