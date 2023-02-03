@@ -1,9 +1,11 @@
 package unlp.basededatos.tarjetas.controllers;
 
+import unlp.basededatos.tarjetas.utils.Response;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 import unlp.basededatos.tarjetas.model.Promotion;
 import unlp.basededatos.tarjetas.services.PromotionsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,7 +14,7 @@ import java.util.Random;
 @RestController
 @RequestMapping(value = "/promotion")
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
-public class PromotionController {
+public class PromotionController extends BaseController {
 
     @Autowired
     private PromotionsService service;
@@ -90,5 +92,10 @@ public class PromotionController {
     public Promotion updatePromotion(@RequestBody Promotion promotion, @PathVariable Long id) throws TarjetasException{
         return this.service.updatePromotion(promotion,id);
     }
-
+    
+    @DeleteMapping("/delete/{code}")
+    public ResponseEntity<Response> deletePromotion(@PathVariable("code") String code) throws TarjetasException{
+        Response response = this.service.deletePromotion(code);
+        return new ResponseEntity(response, responseStatus(response));
+    }
 }

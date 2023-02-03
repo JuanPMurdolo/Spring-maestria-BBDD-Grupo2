@@ -52,6 +52,9 @@ public abstract class Promotion {
     @Column(name = "promoType")
     private PromotionType promoType;
     
+    @Column(name = "borrado")
+    private Boolean borrado = false;
+
     //Una promocion puede pertenecer a muchos bancos
     //Y los bancos pueden tener 0 o muchas promociones
 	/*
@@ -145,8 +148,25 @@ public abstract class Promotion {
     public String getComments() {
         return comments;
     }
-
-    public void setComments(String comments) {
+    
+	public void setComments(String comments) {
         this.comments = comments;
     }
+    public PromotionType getPromoType() {
+		return promoType;
+	}
+
+	public void setPromoType(PromotionType promoType) {
+		this.promoType = promoType;
+	}
+
+	public Boolean getBorrado() {
+		return borrado;
+	}
+
+	public void setBorrado(Boolean borrado) {
+		this.borrado = borrado;
+	}
+
+
 }

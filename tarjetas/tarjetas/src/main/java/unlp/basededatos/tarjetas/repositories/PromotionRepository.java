@@ -31,6 +31,14 @@ public class PromotionRepository {
             throw new TarjetasException(e.getMessage());
         }
     }
+    
+    public Promotion findPromotionByCode(String code) throws TarjetasException {
+        try {
+            return (Promotion) this.sessionFactory.getCurrentSession().createQuery("from Promotion where code = :code").setParameter("code", code).uniqueResult();
+        } catch (Exception e) {
+            throw new TarjetasException(e.getMessage());
+        }
+    }
 
     public void updatePromotion(Promotion promotion) throws TarjetasException {
         Session session = null;
@@ -41,4 +49,16 @@ public class PromotionRepository {
             throw new TarjetasException(e.getMessage());
         }
     }
+
+	public void deletePromotion(Promotion promotion) throws TarjetasException {
+        Session session = null;
+        try {
+            session = this.sessionFactory.getCurrentSession();
+            promotion.setBorrado(true);
+            session.save(promotion);
+        } catch (Exception e) {
+            throw new TarjetasException(e.getMessage());
+        }		
+	}
+    
 }

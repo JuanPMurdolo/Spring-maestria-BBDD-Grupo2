@@ -1,5 +1,6 @@
 package unlp.basededatos.tarjetas.services;
 
+import unlp.basededatos.tarjetas.utils.Response;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 import unlp.basededatos.tarjetas.model.Promotion;
 import unlp.basededatos.tarjetas.repositories.PromotionRepository;
@@ -38,5 +39,18 @@ public class PromotionsServiceImpl implements PromotionsService{
         this.repository.updatePromotion(promotion1);
         return promotion1;
     }
+
+	@Override
+    @Transactional
+	public Response<Promotion> deletePromotion(String code) throws TarjetasException {
+        Promotion promotion1 =  this.repository.findPromotionByCode(code);
+        this.repository.deletePromotion(promotion1);
+
+		Response<Promotion> response = new Response<Promotion>();
+       // response.setData(supplierDto);
+        response.setMessage("La promocion '" + code + "'fue eliminada correctamente. ");
+        return response;
+        
+	}
 
 }
