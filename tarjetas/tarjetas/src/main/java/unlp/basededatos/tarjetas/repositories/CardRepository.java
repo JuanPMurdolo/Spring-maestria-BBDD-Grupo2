@@ -60,8 +60,6 @@ public class CardRepository {
         LocalDate localDate = LocalDate.now().plusDays(30);
         Date date1 = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
 
-        System.out.println(date1);
-        System.out.println(date);
         try {
             return (List<Card>) this.sessionFactory.getCurrentSession().createQuery("FROM Card as c WHERE c.expirationDate >= :date or c.expirationDate <= :date1").setParameter("date", date).setParameter("date1", date1).getResultList();
         } catch (Exception e) {

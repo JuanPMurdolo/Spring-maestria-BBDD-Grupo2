@@ -5,6 +5,11 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+import java.util.List;
+
 import unlp.basededatos.tarjetas.model.Promotion;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 
@@ -60,5 +65,13 @@ public class PromotionRepository {
             throw new TarjetasException(e.getMessage());
         }		
 	}
+
+    public List<Promotion> findPromotionByCuitByDate(String cuit, Date date, Date date1) throws TarjetasException{
+        try {
+            return (List<Promotion>) this.sessionFactory.getCurrentSession().createQuery("from Promotion where cuitStore = :cuit and validityStartDate >= :date or validityEndDate <= :date1").setParameter("cuit", cuit).setParameter("date", date).setParameter("date1", date1).getResultList();
+        } catch (Exception e) {
+            throw new TarjetasException(e.getMessage());
+        }
+    }
     
 }

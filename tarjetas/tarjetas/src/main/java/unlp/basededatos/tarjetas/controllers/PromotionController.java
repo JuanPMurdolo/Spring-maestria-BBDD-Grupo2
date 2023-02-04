@@ -1,5 +1,6 @@
 package unlp.basededatos.tarjetas.controllers;
 
+import unlp.basededatos.tarjetas.services.ITarjetasService;
 import unlp.basededatos.tarjetas.utils.Response;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 import unlp.basededatos.tarjetas.model.Promotion;
@@ -8,7 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 @RestController
@@ -18,6 +23,9 @@ public class PromotionController extends BaseController {
 
     @Autowired
     private PromotionsService service;
+
+    @Autowired
+    private ITarjetasService iTarjetasService;
 
     /*
     Endpoint de prueba, puede utilizarlo para confirmar el correcto funcionamiento
@@ -91,6 +99,20 @@ public class PromotionController extends BaseController {
     @PutMapping(path = "/update/{id}")
     public Promotion updatePromotion(@RequestBody Promotion promotion, @PathVariable Long id) throws TarjetasException{
         return this.service.updatePromotion(promotion,id);
+    }
+
+    @GetMapping(path = "/getByCuitAndDate/{cuit}")
+    public List<Promotion> getByCuitAndDate(@PathVariable String cuit, @RequestBody Map<String, String> json) throws TarjetasException {
+        try {
+            DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            Date dateFormated1 = formatter.parse(json.get("date1").toString());
+            Date dateFormated2 = formatter.parse(json.get("date2").toString());
+            return this.iTarjetasService.promotionListBetweenDates(cuit, dateFormated1, dateFormated2);
+        }
+        catch (Exception e) {
+            throw new TarjetasException(e.getMessage());
+        }
+
     }
     
     @DeleteMapping("/delete/{code}")

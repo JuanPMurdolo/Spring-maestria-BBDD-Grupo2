@@ -30,6 +30,7 @@ public interface ITarjetasService {
     public float totalQuota(Long id) throws TarjetasException;
     
     //Obtener el listado de las promociones disponibles de un local entre dos fechas
+    public List<Promotion> promotionListBetweenDates(String cuit, Date date, Date date1) throws TarjetasException;
 
     //Obtener los titulares de las 10 tarjetas con más compras.
 

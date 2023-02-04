@@ -36,6 +36,9 @@ public class ITarjetasServiceImpl implements ITarjetasService{
 
 	 @Autowired
 	 private MonthlyPaymentRepository monthlyPaymentRepository;
+
+	 @Autowired
+	 private PromotionRepository promotionRepository;
     
     @Override
 	@Transactional
@@ -99,10 +102,14 @@ public class ITarjetasServiceImpl implements ITarjetasService{
 		MonthlyPayments monthlyPayments = this.monthlyPaymentRepository.findMonthlyPaymentById(id);
 		List<Quota> quotas = monthlyPayments.getQuotas();
 		for (int i = 0; i < quotas.size(); i++){
-			System.out.println(quotas.get(i));
 			totalPayment = totalPayment + quotas.get(i).getPrice();
 		}
 		return totalPayment;
 	}
 
+	@Override
+	@Transactional
+	public List<Promotion> promotionListBetweenDates(String cuit, Date date, Date date1) throws TarjetasException {
+		return this.promotionRepository.findPromotionByCuitByDate(cuit,date,date1);
+	}
 }
