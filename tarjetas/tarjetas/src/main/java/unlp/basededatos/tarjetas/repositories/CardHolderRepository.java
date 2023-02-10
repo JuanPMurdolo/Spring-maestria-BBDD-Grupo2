@@ -6,42 +6,15 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
-public class CardHolderRepository {
+public interface CardHolderRepository extends JpaRepository<CardHolder, Long>{
 
-    @Autowired
-    private SessionFactory sessionFactory;
-
-    public Long saveCardHolder(CardHolder cardHolder) throws TarjetasException {
-        Session session = null;
-        try {
-            session = this.sessionFactory.getCurrentSession();
-            return (Long) session.save(cardHolder);
-        } catch (Exception e) {
-            throw new TarjetasException(e.getMessage());
-        }
-    }
-
-    public CardHolder findCardHolderById(Long id) throws TarjetasException {
-        try {
-            return (CardHolder) this.sessionFactory.getCurrentSession().createQuery("from CardHolder where id = :id").setParameter("id", id).uniqueResult();
-        } catch (Exception e) {
-            throw new TarjetasException(e.getMessage());
-        }
-    }
-
-    public void updateCardHolder(CardHolder cardHolder) throws TarjetasException {
-        Session session = null;
-        try {
-            session = this.sessionFactory.getCurrentSession();
-            session.save(cardHolder);
-        } catch (Exception e) {
-            throw new TarjetasException(e.getMessage());
-        }
-    }
+    @Query(nativeQuery = true, value ="SELECT 	* FROM 	cardholder LIMIT 10")
+	public List<CardHolder> get10CardHolersWithMorePurchases();
 
 }

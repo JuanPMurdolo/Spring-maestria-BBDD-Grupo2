@@ -1,8 +1,13 @@
 package unlp.basededatos.tarjetas.services;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import unlp.basededatos.tarjetas.model.CardHolder;
 import unlp.basededatos.tarjetas.repositories.CardHolderRepository;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
@@ -13,34 +18,19 @@ public class CardHolderServiceImpl implements CardHolderService {
     @Autowired
     private CardHolderRepository repository;
 
+
     @Override
-    @Transactional
-    public CardHolder createCardHolder(CardHolder cardHolder) throws TarjetasException {
-        Long id = this.repository.saveCardHolder(cardHolder);
-        return this.repository.findCardHolderById(id);
+    public Optional<CardHolder> getCardHolder(Long id) throws TarjetasException {
+        return this.repository.findById(id);
     }
 
     @Override
-    @Transactional
-    public String create(String name, String mesage) throws TarjetasException {
-        // TODO Auto-generated method stub
-        return null;
+    public List<CardHolder> get10CardHolersWithMorePurchases() throws TarjetasException {
+       return this.repository.get10CardHolersWithMorePurchases();
     }
 
-    @Override
-    public CardHolder getCardHolder(Long id) throws TarjetasException {
-        return this.repository.findCardHolderById(id);
-    }
-
-    @Override
-    public CardHolder updateCardHolder(CardHolder cardHolder, Long id) throws TarjetasException {
-        CardHolder cardHolder1 = this.repository.findCardHolderById(id);
-        cardHolder1.setAddress(cardHolder.getAddress());
-        cardHolder1.setCuil(cardHolder.getCuil());
-        cardHolder1.setTelephone(cardHolder.getTelephone());
-        cardHolder1.setDni(cardHolder.getDni());
-        cardHolder1.setCompleteName(cardHolder.getCompleteName());
-        cardHolder1.setEntry(cardHolder.getEntry());
-        return cardHolder1;
-    }
+	@Override
+	public void createCardHolder(CardHolder cardHolder2) {
+         this.repository.save(cardHolder2);
+	}
 }

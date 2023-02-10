@@ -28,17 +28,20 @@ public class ITarjetasServiceImpl implements ITarjetasService{
 	@Autowired
 	private CardRepository cardRepository;
 
-	 @Autowired
-	 private PurchaseRepository purchaseRepository;
+	@Autowired
+	private PurchaseRepository purchaseRepository;
 
-	 @Autowired
-	 private QuotaRepository quotaRepository;
+	@Autowired
+	private QuotaRepository quotaRepository;
 
-	 @Autowired
-	 private MonthlyPaymentRepository monthlyPaymentRepository;
+	@Autowired
+	private MonthlyPaymentRepository monthlyPaymentRepository;
 
-	 @Autowired
-	 private PromotionRepository promotionRepository;
+	@Autowired
+	private PromotionRepository promotionRepository;
+	
+	@Autowired
+	private CardHolderRepository cardHolderRepository;
     
     @Override
 	@Transactional
@@ -111,5 +114,11 @@ public class ITarjetasServiceImpl implements ITarjetasService{
 	@Transactional
 	public List<Promotion> promotionListBetweenDates(String cuit, Date date, Date date1) throws TarjetasException {
 		return this.promotionRepository.findPromotionByCuitByDate(cuit,date,date1);
+	}
+
+	@Override
+	@Transactional
+	public List<CardHolder> get10CardHolersWithMorePurchases() throws TarjetasException {
+		return this.cardHolderRepository.get10CardHolersWithMorePurchases();
 	}
 }

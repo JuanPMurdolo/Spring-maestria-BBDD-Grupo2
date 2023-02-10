@@ -34,7 +34,7 @@ public class Card {
     // MUCHOS a uno
     @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER, cascade = {})
-	@JoinColumn(name="CardID")
+	@JoinColumn(name="BankID")
 	private Bank bank;
 
     //Una tarjeta puede tener solo un owner(CardHolder)
