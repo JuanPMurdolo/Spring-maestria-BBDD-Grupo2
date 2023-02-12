@@ -12,9 +12,12 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 public interface CardHolderRepository extends JpaRepository<CardHolder, Long>{
 
-    @Query(nativeQuery = true, value ="SELECT 	* FROM 	cardholder LIMIT 10")
+    @Query(nativeQuery = true, value ="SELECT 	* FROM 	card_holder LIMIT 10")
 	public List<CardHolder> get10CardHolersWithMorePurchases();
 
 }

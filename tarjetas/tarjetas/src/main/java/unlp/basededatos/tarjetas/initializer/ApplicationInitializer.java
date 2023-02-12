@@ -46,10 +46,11 @@ public class ApplicationInitializer implements CommandLineRunner {
 
 	public void run(String... args) throws Exception {
 
-		crearBancos();
+		//crearBancos();
 		//crearPagos();
 		//crearPunto1();
-		crearPurchases();
+		//crearPurchases();
+		crearTitulares();
 
 	}
 
@@ -290,6 +291,26 @@ public class ApplicationInitializer implements CommandLineRunner {
      
     
 		System.out.println("Purchases creadas exitosamente!");
+
+	}
+	
+	public void crearTitulares() throws TarjetasException {
+
+		CardHolder cardHolder1 = new CardHolder();
+		cardHolder1.setCompleteName("Abramcito");
+		cardHolder1.setDni("123456");
+		cardHolder1.setTelephone("654321");
+		cardHolder1.setCuil("11-4681561-8");
+		cardHolderService.createCardHolder(cardHolder1);
+		
+        CardHolder cardHolder2 = new CardHolder();
+		cardHolder2.setCompleteName("Pablito");
+		cardHolder2.setDni("345673546");
+		cardHolder2.setTelephone("34561234");
+		cardHolder2.setCuil("11-1213454-8");
+		cardHolderService.createCardHolder(cardHolder2);
+     
+		System.out.println("titulares agregados exitosamente!");
 
 	}
 

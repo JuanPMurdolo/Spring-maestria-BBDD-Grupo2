@@ -13,7 +13,7 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping(value = "/cardHolder")
+@RequestMapping(value = "/cardholder")
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 public class CardHolderController {
 
