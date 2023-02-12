@@ -1,9 +1,11 @@
-package unlp.basededatos.tarjetas.services;
+package unlp.basededatos.tarjetas.services.impl;
 
 import unlp.basededatos.tarjetas.utils.Response;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 import unlp.basededatos.tarjetas.model.Promotion;
 import unlp.basededatos.tarjetas.repositories.PromotionRepository;
+import unlp.basededatos.tarjetas.services.PromotionsService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

@@ -1,10 +1,11 @@
-package unlp.basededatos.tarjetas.services;
+package unlp.basededatos.tarjetas.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import unlp.basededatos.tarjetas.model.Quota;
 import unlp.basededatos.tarjetas.repositories.QuotaRepository;
+import unlp.basededatos.tarjetas.services.QuotaService;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 
 @Service

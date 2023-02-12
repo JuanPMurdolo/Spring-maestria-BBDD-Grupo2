@@ -1,17 +1,23 @@
-package unlp.basededatos.tarjetas.services;
+package unlp.basededatos.tarjetas.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import org.springframework.transaction.annotation.Transactional;
+
 import unlp.basededatos.tarjetas.model.*;
 import unlp.basededatos.tarjetas.repositories.*;
+import unlp.basededatos.tarjetas.services.BanksService;
+import unlp.basededatos.tarjetas.services.ITarjetasService;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
+
+import javax.persistence.EntityNotFoundException;
 
 @Service
 public class ITarjetasServiceImpl implements ITarjetasService{
@@ -66,16 +72,13 @@ public class ITarjetasServiceImpl implements ITarjetasService{
 	public Promotion addNewPromotion(Promotion promotion, Long id) throws TarjetasException {
 
 		// Obtengo el Banco
-		Bank bank = repository.findBankById(id);
-
-		// Si el Banco no existe, retorno false
-		if (bank ==  null) {
-			System.out.println("El banco no existe");
-			return null;
-		}
-
+		Optional<Bank> bank1 = repository.findById(id);
+		
+		Bank bank = repository.findById(id)
+                .orElseThrow(()-> new EntityNotFoundException("Can't find bank by id: "+id));
+        
 		bank.addPromotion(promotion);
-		bank = this.repository.findBankById(repository.saveBank(bank));
+		repository.save(bank);
 
 		return bank.getPromotions().get( bank.getPromotions().size() -1 );
 	}

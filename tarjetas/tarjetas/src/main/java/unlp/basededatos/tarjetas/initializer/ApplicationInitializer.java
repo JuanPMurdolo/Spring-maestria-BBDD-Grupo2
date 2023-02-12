@@ -50,6 +50,7 @@ public class ApplicationInitializer implements CommandLineRunner {
 		//crearPagos();
 		//crearPunto1();
 		//crearPurchases();
+		crearBancos2();
 		crearTitulares();
 
 	}
@@ -311,7 +312,26 @@ public class ApplicationInitializer implements CommandLineRunner {
 		cardHolderService.createCardHolder(cardHolder2);
      
 		System.out.println("titulares agregados exitosamente!");
-
 	}
 
+	public void crearBancos2() throws TarjetasException {
+              
+		Bank bank1 = new Bank();
+		bank1.setName("Banco Frances");
+		bank1.setAddress("San Martin 1234");
+		bank1.setCuit("20-1245454-2");
+		bank1.setTelephone("98765412");
+        
+		bankService.createBank(bank1);
+
+		Bank bank2 = new Bank();
+		bank2.setName("Banco Galicia");
+		bank2.setAddress("San Martin 1234");
+		bank2.setCuit("20-1245454-2");
+		bank2.setTelephone("98765412");
+		bankService.createBank(bank2);
+		
+    	System.out.println("Bancos creados exitosamente!");
+
+	}
 }

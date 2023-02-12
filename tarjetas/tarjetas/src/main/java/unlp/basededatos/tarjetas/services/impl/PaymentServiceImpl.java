@@ -1,10 +1,11 @@
-package unlp.basededatos.tarjetas.services;
+package unlp.basededatos.tarjetas.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import unlp.basededatos.tarjetas.model.Payment;
 import unlp.basededatos.tarjetas.repositories.PaymentRepository;
+import unlp.basededatos.tarjetas.services.PaymentService;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 
 import java.util.List;

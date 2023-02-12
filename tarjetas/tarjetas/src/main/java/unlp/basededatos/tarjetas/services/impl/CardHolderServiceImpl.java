@@ -1,4 +1,4 @@
-package unlp.basededatos.tarjetas.services;
+package unlp.basededatos.tarjetas.services.impl;
 
 import java.util.Arrays;
 import java.util.List;
@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import unlp.basededatos.tarjetas.model.CardHolder;
 import unlp.basededatos.tarjetas.repositories.CardHolderRepository;
+import unlp.basededatos.tarjetas.services.CardHolderService;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 
 @Service
@@ -30,7 +31,7 @@ public class CardHolderServiceImpl implements CardHolderService {
     }
 
 	@Override
-	public void createCardHolder(CardHolder cardHolder2) {
-         this.repository.save(cardHolder2);
+	public void createCardHolder(CardHolder cardHolder) {
+         this.repository.save(cardHolder);
 	}
 }
