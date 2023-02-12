@@ -9,7 +9,7 @@ import unlp.basededatos.tarjetas.model.Purchase;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 
 @Repository
-public class PurchaseRepository {
+public class PurchaseRepository{
 
     @Autowired
     private SessionFactory sessionFactory;

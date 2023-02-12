@@ -8,6 +8,8 @@ import unlp.basededatos.tarjetas.repositories.QuotaRepository;
 import unlp.basededatos.tarjetas.services.QuotaService;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 
+import java.util.Optional;
+
 @Service
 public class QuotaServiceImpl implements QuotaService{
 
@@ -16,27 +18,26 @@ public class QuotaServiceImpl implements QuotaService{
 
     @Override
     @Transactional
-    public Quota createQuota(Quota quota) throws TarjetasException {
-        Long id = this.repository.saveQuota(quota);
-        return this.repository.findQuotaById(id);
+    public void createQuota(Quota quota) throws TarjetasException {
+        this.repository.save(quota);
     }
-
+/*
     @Override
     @Transactional
     public String create(String name, String message) throws TarjetasException {
         return null;
     }
-
+*/
     @Override
     @Transactional
-    public Quota getQuota(Long id) throws TarjetasException {
-        return this.repository.findQuotaById(id);
+    public Optional<Quota> getQuota(Long id) throws TarjetasException {
+        return this.repository.findById(id);
     }
-
+/*
     @Override
     @Transactional
     public Quota updateQuota(Quota quota, Long id) throws TarjetasException {
-        Quota quota1 = this.repository.findQuotaById(id);
+        Optional<Quota> quota1 = this.repository.findById(id);
         quota1.setNumber(quota.getNumber());
         quota1.setPrice(quota.getPrice());
         quota1.setMonth(quota.getMonth());
@@ -44,4 +45,6 @@ public class QuotaServiceImpl implements QuotaService{
         quota1.setPayment(quota.getPayment());
         return quota1;
     }
+    */
+
 }
