@@ -17,7 +17,6 @@ public class QuotaServiceImpl implements QuotaService{
     private QuotaRepository repository;
 
     @Override
-    @Transactional
     public void createQuota(Quota quota) throws TarjetasException {
         this.repository.save(quota);
     }
@@ -29,7 +28,6 @@ public class QuotaServiceImpl implements QuotaService{
     }
 */
     @Override
-    @Transactional
     public Optional<Quota> getQuota(Long id) throws TarjetasException {
         return this.repository.findById(id);
     }

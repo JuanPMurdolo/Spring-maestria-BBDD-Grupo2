@@ -19,19 +19,16 @@ public class PurchaseServiceImpl implements PurchaseService{
     private PurchaseRepository repository;
 
     @Override
-    @Transactional
     public Purchase createPurchase(Purchase purchase) throws TarjetasException {
         return this.repository.save(purchase);
     }
 
     @Override
-    @Transactional
     public Purchase getPurchase(Long id) throws TarjetasException {
         return this.repository.getReferenceById(id);
     }
 
     @Override
-    @Transactional
     public Purchase updatePurchase(Purchase purchase, Long id) throws TarjetasException  {
         Purchase purchase1 =  this.repository.getReferenceById(id);
         purchase1.setStore(purchase.getStore());
