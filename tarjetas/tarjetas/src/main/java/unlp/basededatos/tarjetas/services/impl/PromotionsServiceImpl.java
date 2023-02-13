@@ -22,23 +22,22 @@ public class PromotionsServiceImpl implements PromotionsService{
     @Override
     @Transactional
     public Promotion createPromotion(Promotion promotion) throws TarjetasException {
-        Long id = this.repository.savePromotion(promotion);
-        return this.repository.findPromotionById(id);
+        return this.repository.save(promotion);
     }
 
     @Override
     @Transactional
     public Promotion getPromotion(Long id) throws TarjetasException {
-        return this.repository.findPromotionById(id);
+        return this.repository.getReferenceById(id);
     }
 
     @Override
     @Transactional
     public Promotion updatePromotion(Promotion promotion, Long id) throws TarjetasException  {
-        Promotion promotion1 =  this.repository.findPromotionById(id);
+        Promotion promotion1 =  this.repository.getReferenceById(id);
         promotion1.setCode(promotion.getCode());
         promotion1.setComments(promotion.getComments());
-        this.repository.updatePromotion(promotion1);
+        this.repository.save(promotion1);
         return promotion1;
     }
 
@@ -46,7 +45,7 @@ public class PromotionsServiceImpl implements PromotionsService{
     @Transactional
 	public Response<Promotion> deletePromotion(String code) throws TarjetasException {
         Promotion promotion1 =  this.repository.findPromotionByCode(code);
-        this.repository.deletePromotion(promotion1);
+        this.repository.delete(promotion1);
 
 		Response<Promotion> response = new Response<Promotion>();
        // response.setData(supplierDto);

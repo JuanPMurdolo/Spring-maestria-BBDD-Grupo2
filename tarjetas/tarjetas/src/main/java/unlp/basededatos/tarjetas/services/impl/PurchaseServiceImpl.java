@@ -21,23 +21,22 @@ public class PurchaseServiceImpl implements PurchaseService{
     @Override
     @Transactional
     public Purchase createPurchase(Purchase purchase) throws TarjetasException {
-        Long id = this.repository.savePurchase(purchase);
-        return this.repository.findPurchaseById(id);
+        return this.repository.save(purchase);
     }
 
     @Override
     @Transactional
     public Purchase getPurchase(Long id) throws TarjetasException {
-        return this.repository.findPurchaseById(id);
+        return this.repository.getReferenceById(id);
     }
 
     @Override
     @Transactional
     public Purchase updatePurchase(Purchase purchase, Long id) throws TarjetasException  {
-        Purchase purchase1 =  this.repository.findPurchaseById(id);
+        Purchase purchase1 =  this.repository.getReferenceById(id);
         purchase1.setStore(purchase.getStore());
         purchase1.setPaymentVoucher(purchase.getPaymentVoucher());
-        this.repository.updatePurchase(purchase1);
+        this.repository.save(purchase1);
         return purchase1;
     }
 
