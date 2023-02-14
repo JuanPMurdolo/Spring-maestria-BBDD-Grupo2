@@ -52,7 +52,7 @@ public class ApplicationInitializer implements CommandLineRunner {
 		//crearBancos();
 		crearPagos();
 		//crearPunto1();
-		//crearPurchases();
+		crearPurchases();
 		crearBancos2();
 		crearTitulares();
 		crearCards();

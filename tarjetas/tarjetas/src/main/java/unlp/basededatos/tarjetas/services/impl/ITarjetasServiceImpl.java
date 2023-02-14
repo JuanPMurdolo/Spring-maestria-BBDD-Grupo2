@@ -112,7 +112,8 @@ public class ITarjetasServiceImpl implements ITarjetasService{
 	@Transactional
 	public float totalQuota(Long id) throws TarjetasException {
 		Float totalPayment = (float) 0;
-		MonthlyPayments monthlyPayments = this.monthlyPaymentRepository.findMonthlyPaymentById(id);
+		MonthlyPayments monthlyPayments = this.monthlyPaymentRepository.findById(id)
+                .orElseThrow(()-> new EntityNotFoundException("Can't find MonthlyPayment by id: "+id));
 		List<Quota> quotas = monthlyPayments.getQuotas();
 		for (int i = 0; i < quotas.size(); i++){
 			totalPayment = totalPayment + quotas.get(i).getPrice();

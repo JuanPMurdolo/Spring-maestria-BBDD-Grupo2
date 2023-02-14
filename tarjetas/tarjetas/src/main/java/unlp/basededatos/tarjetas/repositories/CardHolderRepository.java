@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface CardHolderRepository extends JpaRepository<CardHolder, Long>{
 
-    @Query(nativeQuery = true, value ="SELECT * FROM 	card_holder LIMIT 10")
+    @Query(nativeQuery = true, value ="SELECT * FROM card_holder LIMIT 10")
 	List<CardHolder> get10CardHolersWithMorePurchases();
 
 }

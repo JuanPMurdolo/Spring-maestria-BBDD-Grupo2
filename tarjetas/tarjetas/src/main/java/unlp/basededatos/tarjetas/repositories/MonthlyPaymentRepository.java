@@ -2,22 +2,14 @@ package unlp.basededatos.tarjetas.repositories;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
+
+import unlp.basededatos.tarjetas.model.CardHolder;
 import unlp.basededatos.tarjetas.model.MonthlyPayments;
 import unlp.basededatos.tarjetas.model.Purchase;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 
-@Repository
-public class MonthlyPaymentRepository {
+public interface MonthlyPaymentRepository extends JpaRepository<MonthlyPayments, Long>{
 
-    @Autowired
-    private SessionFactory sessionFactory;
-
-    public MonthlyPayments findMonthlyPaymentById(Long id) throws TarjetasException {
-        try {
-            return (MonthlyPayments) this.sessionFactory.getCurrentSession().createQuery("from MonthlyPayments where id = :id").setParameter("id", id).uniqueResult();
-        } catch (Exception e) {
-            throw new TarjetasException(e.getMessage());
-        }
-    }
 }
