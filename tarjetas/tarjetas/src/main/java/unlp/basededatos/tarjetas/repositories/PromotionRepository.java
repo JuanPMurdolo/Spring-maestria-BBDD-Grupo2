@@ -9,10 +9,11 @@ import java.util.Date;
 import java.util.List;
 
 public interface PromotionRepository extends JpaRepository<Promotion, Long> {
+	
     @Query(nativeQuery = true, value ="SELECT p FROM Promotion p WHERE promotion.cuit = :cuit AND p.validityStartDate BETWEEN :date AND :date1 OR p.validityEndDate BETWEEN :date AND :date1")
-    public List<Promotion> findPromotionByCuitByDate(@Param("cuit") String cuit, @Param("date") Date date, @Param("date1") Date date1);
+    List<Promotion> findPromotionByCuitByDate(@Param("cuit") String cuit, @Param("date") Date date, @Param("date1") Date date1);
 
     @Query(nativeQuery = true, value ="SELECT p FROM Promotion p WHERE promotion.code = :code LIMIT 1")
-    public Promotion findPromotionByCode(@Param("code") String code);
+    Promotion findPromotionByCode(@Param("code") String code);
 
 }

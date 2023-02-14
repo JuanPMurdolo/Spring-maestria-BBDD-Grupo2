@@ -12,7 +12,7 @@ public interface CardHolderService {
 
     public List<CardHolder> get10CardHolersWithMorePurchases() throws TarjetasException;
 
-	public void createCardHolder(CardHolder cardHolder2);;
+	public void createCardHolder(CardHolder cardHolder)  throws TarjetasException;;
 
 
 }

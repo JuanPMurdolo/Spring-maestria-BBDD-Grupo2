@@ -64,7 +64,7 @@ public class ITarjetasServiceImpl implements ITarjetasService{
             payment1.setFirstExpiration(first);
             payment1.setSecondExpiration(second);
             //Se actualiza el payment
-            this.paymentRepository.updatePayment(payment1);
+            this.paymentRepository.save(payment1);
 			lista2.add(payment1);
         }
         return lista2;
