@@ -50,7 +50,7 @@ public class ApplicationInitializer implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 
 		//crearBancos();
-		crearPagos();
+		//crearPagos();
 		//crearPunto1();
 		crearPurchases();
 		crearBancos2();
@@ -204,6 +204,9 @@ public class ApplicationInitializer implements CommandLineRunner {
 		discount1.setCode("212");
 		discount1.setCuitStore("123456");
 		discount1.setDiscountPercentage(10);
+		Date date23 = new Date();
+		discount1.setValidityEndDate(date23);
+		discount1.setValidityStartDate(date23);
 		//no es necesario persistir porq ya persiste cuando crea el BANCO
 		//promotionsService.createPromotion(discount1);
 		
@@ -319,13 +322,27 @@ public class ApplicationInitializer implements CommandLineRunner {
 	}
 
 	public void crearBancos2() throws TarjetasException {
-              
+		Discount discount1 = new Discount();
+		discount1.setComments("Descuento en la Anonima");
+		discount1.setCode("212");
+		discount1.setCuitStore("123456");
+		discount1.setDiscountPercentage(10);
+		Date date23 = new Date();
+		discount1.setValidityEndDate(date23);
+		discount1.setValidityStartDate(date23);
+		//no es necesario persistir porq ya persiste cuando crea el BANCO
+		//promotionsService.createPromotion(discount1);
+
+		List<Promotion> promotionsList = new ArrayList<Promotion>();
+		promotionsList.add(discount1);
+		//promotionsService.createPromotion(discount1);
+
 		Bank bank1 = new Bank();
 		bank1.setName("Banco Frances");
 		bank1.setAddress("San Martin 1234");
 		bank1.setCuit("20-1245454-2");
 		bank1.setTelephone("98765412");
-        
+        bank1.setPromotions(promotionsList);
 		bankService.createBank(bank1);
 
 		Bank bank2 = new Bank();
@@ -334,6 +351,8 @@ public class ApplicationInitializer implements CommandLineRunner {
 		bank2.setCuit("20-1245454-2");
 		bank2.setTelephone("98765412");
 		bankService.createBank(bank2);
+
+
 		
     	System.out.println("Bancos creados exitosamente!");
 
