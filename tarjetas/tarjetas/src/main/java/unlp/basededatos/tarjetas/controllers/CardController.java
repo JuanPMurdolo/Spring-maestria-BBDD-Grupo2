@@ -10,6 +10,7 @@ import unlp.basededatos.tarjetas.utils.TarjetasException;
 
 import java.text.ParseException;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 @RestController
@@ -29,22 +30,6 @@ public class CardController {
     @GetMapping(path = "/testing")
     public String prueba() {
         return "OK";
-    }
-
-    /*
-    POST /bank
-    Recibe en el body un objeto Real State y lo persiste en la base de datos
-    Ejemplo:
-    {
-        "name": "banco 3",
-        "cuit": "542345656565",
-        "address": "Calle 3 n890",
-        "telephone": "30207867861"
-    }
-     */
-    @PostMapping(path = "/create")
-    public Card createCard(@RequestBody Card card) throws TarjetasException {
-        return this.service.createCard(card);
     }
 
     /*
@@ -71,26 +56,10 @@ public class CardController {
 
      */
     @GetMapping(path = "/id/{id}")
-    public Card getCard(@PathVariable Long id) throws TarjetasException {
+    public Optional<Card> getCard(@PathVariable Long id) throws TarjetasException {
         return this.service.getCard(id);
     }
 
-    /*
-    PUT /bank
-    Actualiza los datos de una Real State, debe contener todos los datos de esta.
-    Ejemplo:
-    {
-        "name": "Inmobiliaria 2",
-        "cuil": "30207867861",
-        "number": "542345656565",
-        "address": "Calle 3 n880",
-        "numberOfEmployees": 0,
-    }
-     */
-    @PutMapping(path = "/update/{id}")
-    public Card updateCard(@RequestBody Card card, @PathVariable Long id) throws TarjetasException{
-        return this.service.updateCard(card,id);
-    }
 
     @GetMapping(path="/listExpireSoon")
     public List<Card> listExpireSoon() throws TarjetasException {

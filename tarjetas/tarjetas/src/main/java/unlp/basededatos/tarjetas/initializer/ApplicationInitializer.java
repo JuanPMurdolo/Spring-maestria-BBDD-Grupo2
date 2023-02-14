@@ -29,6 +29,9 @@ public class ApplicationInitializer implements CommandLineRunner {
 	CardHolderService cardHolderService;
 	
 	@Autowired
+	CardService cardService;
+	
+	@Autowired
 	PromotionsService promotionsService;
 
 	@Autowired
@@ -52,6 +55,7 @@ public class ApplicationInitializer implements CommandLineRunner {
 		//crearPurchases();
 		crearBancos2();
 		crearTitulares();
+		crearCards();
 
 	}
 
@@ -334,4 +338,48 @@ public class ApplicationInitializer implements CommandLineRunner {
     	System.out.println("Bancos creados exitosamente!");
 
 	}
+	
+	public void crearCards() throws TarjetasException {
+
+        //creo tarjetas y le seteo el banco
+		Card card1 = new Card();
+        card1.setCardholderNameInCard("Abramcito");
+        card1.setCcv("500");
+        card1.setNumber("123456");
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
+		try{
+		Date dateFormated1 = sdf.parse("2023-02-05");
+		card1.setExpirationDate(dateFormated1);
+		}
+		catch (Exception e)
+		{
+			throw new TarjetasException(e.getMessage());
+		}
+		
+        Card card2 = new Card();
+        card2.setCardholderNameInCard("Pablito");
+        card2.setCcv("500");
+        card2.setNumber("123456");
+		//DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
+		try{
+		Date dateFormated1 = sdf.parse("2023-02-02");
+		card2.setExpirationDate(dateFormated1);
+		}
+		catch (Exception e)
+		{
+			throw new TarjetasException(e.getMessage());
+		}
+
+		cardService.createCard(card1);
+
+		cardService.createCard(card2);
+
+		
+    	System.out.println("Cards creados exitosamente!");
+
+	}
+
 }

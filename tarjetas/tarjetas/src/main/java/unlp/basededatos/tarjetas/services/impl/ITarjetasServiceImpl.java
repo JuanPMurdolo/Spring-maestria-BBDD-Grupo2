@@ -12,6 +12,8 @@ import unlp.basededatos.tarjetas.services.ITarjetasService;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 
 import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -86,7 +88,12 @@ public class ITarjetasServiceImpl implements ITarjetasService{
 	@Override
 	@Transactional
 	public List<Card> getCardSoonExpiration() throws TarjetasException {
-		return this.cardRepository.findCardExpirationDate();
+
+		Date date = new Date();
+		LocalDate localDate = LocalDate.now().plusDays(30);
+		Date date1 = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+
+		return this.cardRepository.findCardExpirationDate(date,date1);
 	}
 
 	@Override
