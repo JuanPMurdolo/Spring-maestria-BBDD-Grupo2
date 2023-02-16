@@ -28,4 +28,11 @@ public class CashPayment extends Purchase{
     public void setStoreDiscount(float storeDiscount) {
         this.storeDiscount = storeDiscount;
     }
+    
+	public Payment getPayment() {
+		return payment;
+	}
+	public void setPayment(Payment payment) {
+		this.payment = payment;
+	}
 }

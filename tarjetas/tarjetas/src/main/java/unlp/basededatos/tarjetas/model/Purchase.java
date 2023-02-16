@@ -69,7 +69,7 @@ public abstract class Purchase {
         return store;
     }
 
-    public void setStore(String store) {
+	public void setStore(String store) {
         this.store = store;
     }
 
@@ -96,4 +96,20 @@ public abstract class Purchase {
     public void setFinalAmount(float finalAmount) {
         this.finalAmount = finalAmount;
     }
+    
+    public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Promotion getPromotion() {
+		return promotion;
+	}
+
+	public void setPromotion(Promotion promotion) {
+		this.promotion = promotion;
+	}
 }

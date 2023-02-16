@@ -56,6 +56,7 @@ public class ApplicationInitializer implements CommandLineRunner {
 		crearBancos2();
 		crearTitulares();
 		crearCards();
+		crearCashyPromos(); 
 
 	}
 
@@ -288,16 +289,6 @@ public class ApplicationInitializer implements CommandLineRunner {
 		quotaService.createQuota(quota2);
 		quotaService.createQuota(quota1);
 
-		CashPayment cash1 = new CashPayment();
-		cash1.setCuitStore("123456");
-		cash1.setAmount(1234);
-		cash1.setPaymentVoucher("la anonima");
-		cash1.setStore("Carrefour");
-		purchaseService.createPurchase(cash1);
-
-		//tarjetasService.addNewPromotion(discount1, bank1.getId());
-     
-    
 		System.out.println("Purchases creadas exitosamente!");
 
 	}
@@ -401,4 +392,115 @@ public class ApplicationInitializer implements CommandLineRunner {
 
 	}
 
+	public void crearCashyPromos() throws TarjetasException {
+
+		Date fecha = new Date();
+
+		Discount discount1 = new Discount();
+		discount1.setComments("Descuento en Carrefour");
+		discount1.setCode("222");
+		discount1.setCuitStore("123456");
+		discount1.setDiscountPercentage(20);
+		Date date23 = new Date();
+		discount1.setValidityEndDate(date23);
+		discount1.setValidityStartDate(date23);
+		promotionsService.createPromotion(discount1);
+			
+		Discount discount2 = new Discount();
+		discount2.setComments("Descuento en la Victoria");
+		discount2.setCode("333");
+		discount2.setCuitStore("123456");
+		discount2.setDiscountPercentage(20);
+		discount2.setValidityEndDate(date23);
+		discount2.setValidityStartDate(date23);
+		promotionsService.createPromotion(discount2);
+		
+		Financing financing1 = new Financing();
+		financing1.setComments("Financiamiento PLANERO");
+		financing1.setCode("664");
+		financing1.setCuitStore("123456");
+		financing1.setInteres(2);
+		financing1.setNumberOfQuotas(12);
+		financing1.setValidityEndDate(date23);
+		financing1.setValidityStartDate(date23);
+		promotionsService.createPromotion(financing1);
+			
+		Financing financing2 = new Financing();
+		financing2.setComments("Financiamiento CHORI");
+		financing2.setCode("345");
+		financing2.setCuitStore("123456");
+		financing2.setInteres(2);
+		financing2.setNumberOfQuotas(16);
+		financing2.setValidityEndDate(date23);
+		financing2.setValidityStartDate(date23);
+		promotionsService.createPromotion(financing2);
+
+		Payment payment1= new Payment();
+		payment1.setCode("3232");
+		payment1.setFirstExpiration(fecha);
+		payment1.setSecondExpiration(fecha);
+		payment1.setMonth("January");
+		payment1.setYear("2023");
+		payment1.setPurchase(1230);
+		payment1.setTotalPrice(12000);
+		paymentService.createPayment(payment1);
+		
+		CashPayment cash1 = new CashPayment();
+		cash1.setCuitStore("123456");
+		cash1.setAmount(1234);
+		cash1.setFinalAmount(1100);
+		cash1.setPaymentVoucher("la anonima");
+		cash1.setStore("Carrefour");
+		cash1.setPayment(payment1);
+		cash1.setPromotion(discount1);
+		purchaseService.createPurchase(cash1);
+		
+		Payment payment2 = new Payment();
+		payment2.setCode("3232");
+		payment2.setFirstExpiration(fecha);
+		payment2.setSecondExpiration(fecha);
+		payment2.setMonth("January");
+		payment2.setYear("2023");
+		payment2.setPurchase(1230);
+		payment2.setTotalPrice(12000);
+		paymentService.createPayment(payment2);
+		
+		CashPayment cash2 = new CashPayment();
+		cash2.setCuitStore("123456");
+		cash2.setAmount(4324);
+		cash2.setFinalAmount(4000);
+		cash2.setPaymentVoucher("la anonima");
+		cash2.setStore("Victoria");
+		cash2.setPayment(payment2);
+		cash2.setPromotion(discount2);
+		purchaseService.createPurchase(cash2);
+		
+		Payment payment3 = new Payment();
+		payment3.setCode("3232");
+		payment3.setFirstExpiration(fecha);
+		payment3.setSecondExpiration(fecha);
+		payment3.setMonth("January");
+		payment3.setYear("2023");
+		payment3.setPurchase(1230);
+		payment3.setTotalPrice(12000);
+		paymentService.createPayment(payment3);
+		
+		CashPayment cash3 = new CashPayment();
+		cash3.setCuitStore("123456");
+		cash3.setAmount(1500);
+		cash3.setFinalAmount(1300);
+		cash3.setPaymentVoucher("la anonima");
+		cash3.setStore("La anonima");
+		cash3.setPayment(payment3);
+		cash3.setPromotion(financing1);
+		purchaseService.createPurchase(cash3);
+
+
+
+		
+		//tarjetasService.addNewPromotion(discount1, bank1.getId());
+     
+    	System.out.println("cash y promos creados exitosamente!");
+
+	}
 }
