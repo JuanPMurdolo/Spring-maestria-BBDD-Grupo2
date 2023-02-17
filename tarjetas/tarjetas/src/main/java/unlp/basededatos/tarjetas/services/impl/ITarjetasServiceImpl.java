@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import unlp.basededatos.tarjetas.model.*;
 import unlp.basededatos.tarjetas.repositories.*;
+import unlp.basededatos.tarjetas.repositories.interfaces.IPaymentRepository;
 import unlp.basededatos.tarjetas.services.BanksService;
 import unlp.basededatos.tarjetas.services.ITarjetasService;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
@@ -26,7 +27,10 @@ public class ITarjetasServiceImpl implements ITarjetasService{
     
 	@Autowired
     private PaymentRepository paymentRepository;
-
+    
+	@Autowired
+    private IPaymentRepository paymentRepository2;
+	
 	@Autowired
 	private BanksService bankService;
 	
@@ -136,6 +140,12 @@ public class ITarjetasServiceImpl implements ITarjetasService{
 	@Override
 	public Promotion getPromotionMostUsed() throws TarjetasException{
 		return this.promotionRepository.getMostUsed();
+	}
+
+	@Override
+	@Transactional
+	public String getTotalByMonth(String month) throws TarjetasException {
+		return this.paymentRepository2.findTotalByMonth(month);
 	}
 
 

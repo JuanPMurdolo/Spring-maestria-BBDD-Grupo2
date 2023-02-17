@@ -16,6 +16,7 @@ public interface ITarjetasService {
     public List<Payment> updatePaymentsExpiration(String code, Date first, Date second) throws TarjetasException;
 
     // 3- Generar el total de pago de un mes dado, informando las compras correspondientes
+    public String getTotalByMonth(String month) throws TarjetasException;
 
     // 4- Obtener el listado de tarjetas que vencen en los siguientes 30 días.
     public List<Card> getCardSoonExpiration() throws TarjetasException;

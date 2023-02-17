@@ -235,10 +235,10 @@ public class ApplicationInitializer implements CommandLineRunner {
 		payment1.setCode("212");
 		payment1.setFirstExpiration(fecha);
 		payment1.setSecondExpiration(fecha);
-		payment1.setMonth("February");
+		payment1.setMonth("January");
 		payment1.setYear("2023");
-		payment1.setPurchase(1230);
-		payment1.setTotalPrice(12000);
+		payment1.setPurchase(2322);
+		payment1.setTotalPrice(5344);
 		
 		Quota quota1 = new Quota();
 		quota1.setPrice(1230);
@@ -265,7 +265,7 @@ public class ApplicationInitializer implements CommandLineRunner {
 		payment2.setCode("212");
 		payment2.setFirstExpiration(fecha);
 		payment2.setSecondExpiration(fecha);
-		payment2.setMonth("February");
+		payment2.setMonth("January");
 		payment2.setYear("2023");
 		payment2.setPurchase(1230);
 		payment2.setTotalPrice(12000);
@@ -299,6 +299,7 @@ public class ApplicationInitializer implements CommandLineRunner {
 		monthly1.setNumberOfQuotas(12);
 		monthly1.setQuotas(listaQuotas);
 		purchaseService.createPurchase(monthly1);
+		
 		quota1.setMontlypayment(monthly1);
 		quota2.setMontlypayment(monthly1);
 		quotaService.createQuota(quota2);
@@ -478,8 +479,8 @@ public class ApplicationInitializer implements CommandLineRunner {
 		payment1.setSecondExpiration(fecha);
 		payment1.setMonth("January");
 		payment1.setYear("2023");
-		payment1.setPurchase(1230);
-		payment1.setTotalPrice(12000);
+		payment1.setPurchase(3322);
+		payment1.setTotalPrice(5452);
 		payment1.setCashpayments(listaCash);
 
 		paymentService.createPayment(payment1);
@@ -502,8 +503,8 @@ public class ApplicationInitializer implements CommandLineRunner {
 		payment2.setSecondExpiration(fecha);
 		payment2.setMonth("January");
 		payment2.setYear("2023");
-		payment2.setPurchase(1230);
-		payment2.setTotalPrice(12000);
+		payment2.setPurchase(86465);
+		payment2.setTotalPrice(3455);
 		payment2.setCashpayments(listaCash2);
 		paymentService.createPayment(payment2);
 
@@ -525,8 +526,8 @@ public class ApplicationInitializer implements CommandLineRunner {
 		payment3.setSecondExpiration(fecha);
 		payment3.setMonth("January");
 		payment3.setYear("2023");
-		payment3.setPurchase(1230);
-		payment3.setTotalPrice(12000);
+		payment3.setPurchase(4324);
+		payment3.setTotalPrice(8645);
 		payment3.setCashpayments(listaCash3);
 		paymentService.createPayment(payment3);
 		
