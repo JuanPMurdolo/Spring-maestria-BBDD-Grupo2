@@ -42,7 +42,7 @@ public class Payment {
     private List<Quota> quotas;
 
     //Falta la relacion /CashPayment y Payment
-	@OneToMany(mappedBy="payment")
+	@OneToMany
 	private List<CashPayment> cashpayments;
 	
 	public Payment(String code, String month, String year, Date firstExpiration, Date secondExpiration, float purchase, float totalPrice) {

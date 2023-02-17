@@ -22,10 +22,6 @@ public class Quota {
     @Column(name ="year")
     private String year;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="id_payment", nullable=false)
-    private Payment payment;
-
 	@ManyToOne( fetch = FetchType.EAGER, cascade = CascadeType.ALL )
     @JoinColumn( name = "montlypayment_id" )
 	private MonthlyPayments montlypayment;
@@ -76,14 +72,6 @@ public class Quota {
 
     public void setYear(String year) {
         this.year = year;
-    }
-
-    public Payment getPayment() {
-        return payment;
-    }
-
-    public void setPayment(Payment payment) {
-        this.payment = payment;
     }
 
     public MonthlyPayments getMontlypayment() {

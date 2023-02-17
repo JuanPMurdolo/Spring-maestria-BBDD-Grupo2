@@ -162,14 +162,12 @@ public class ApplicationInitializer implements CommandLineRunner {
 		payment1.setTotalPrice(12000);
 		
 		Quota quota1 = new Quota();
-		quota1.setPayment(payment1);
 		quota1.setPrice(1230);
 		quota1.setMonth(payment1.getMonth());
 		quota1.setYear(payment1.getYear());
 		quota1.setNumber(1);
 
 		Quota quota2 = new Quota();
-		quota2.setPayment(payment1);
 		quota2.setPrice(1230);
 		quota2.setMonth(payment1.getMonth());
 		quota2.setYear(payment1.getYear());
@@ -243,15 +241,13 @@ public class ApplicationInitializer implements CommandLineRunner {
 		payment1.setTotalPrice(12000);
 		
 		Quota quota1 = new Quota();
-		quota1.setPayment(payment1);
 		quota1.setPrice(1230);
 		quota1.setMonth(payment1.getMonth());
 		quota1.setYear(payment1.getYear());
 		quota1.setNumber(1);
 
 		Quota quota2 = new Quota();
-		quota2.setPayment(payment1);
-		quota2.setPrice(1230);
+		quota2.setPrice(2323);
 		quota2.setMonth(payment1.getMonth());
 		quota2.setYear(payment1.getYear());
 		quota2.setNumber(2);
@@ -273,6 +269,25 @@ public class ApplicationInitializer implements CommandLineRunner {
 		payment2.setYear("2023");
 		payment2.setPurchase(1230);
 		payment2.setTotalPrice(12000);
+		
+		Quota quota3 = new Quota();
+		quota3.setPrice(3233);
+		quota3.setMonth(payment1.getMonth());
+		quota3.setYear(payment1.getYear());
+		quota3.setNumber(1);
+
+		Quota quota4 = new Quota();
+		quota4.setPrice(1124);
+		quota4.setMonth(payment1.getMonth());
+		quota4.setYear(payment1.getYear());
+		quota4.setNumber(2);
+
+		
+		List<Quota> listaQuotas1 = new ArrayList<>();
+		listaQuotas1.add(quota3);
+		listaQuotas1.add(quota4);
+		
+		payment2.setQuotas(listaQuotas1);
 		paymentService.createPayment(payment2);
 
 		
@@ -435,6 +450,28 @@ public class ApplicationInitializer implements CommandLineRunner {
 		financing2.setValidityStartDate(date23);
 		promotionsService.createPromotion(financing2);
 
+		CashPayment cash1 = new CashPayment();
+		cash1.setCuitStore("123456");
+		cash1.setAmount(1234);
+		cash1.setFinalAmount(1100);
+		cash1.setPaymentVoucher("Carrefour");
+		cash1.setStore("Carrefour");
+		cash1.setPromotion(discount1);
+		purchaseService.createPurchase(cash1);
+		
+		CashPayment cash2 = new CashPayment();
+		cash2.setCuitStore("123456");
+		cash2.setAmount(4324);
+		cash2.setFinalAmount(4000);
+		cash2.setPaymentVoucher("la Victoria");
+		cash2.setStore("Victoria");
+		cash2.setPromotion(discount2);
+		purchaseService.createPurchase(cash2);
+		
+		List<CashPayment> listaCash = new ArrayList<>();
+		listaCash.add(cash1);
+		listaCash.add(cash2);
+		
 		Payment payment1= new Payment();
 		payment1.setCode("3232");
 		payment1.setFirstExpiration(fecha);
@@ -443,17 +480,21 @@ public class ApplicationInitializer implements CommandLineRunner {
 		payment1.setYear("2023");
 		payment1.setPurchase(1230);
 		payment1.setTotalPrice(12000);
+		payment1.setCashpayments(listaCash);
+
 		paymentService.createPayment(payment1);
 		
-		CashPayment cash1 = new CashPayment();
-		cash1.setCuitStore("123456");
-		cash1.setAmount(1234);
-		cash1.setFinalAmount(1100);
-		cash1.setPaymentVoucher("Carrefour");
-		cash1.setStore("Carrefour");
-		cash1.setPayment(payment1);
-		cash1.setPromotion(discount1);
-		purchaseService.createPurchase(cash1);
+		CashPayment cash3 = new CashPayment();
+		cash3.setCuitStore("123456");
+		cash3.setAmount(1500);
+		cash3.setFinalAmount(1300);
+		cash3.setPaymentVoucher("la anonima");
+		cash3.setStore("La anonima");
+		cash3.setPromotion(financing1);
+		purchaseService.createPurchase(cash3);	
+		
+		List<CashPayment> listaCash2 = new ArrayList<>();
+		listaCash2.add(cash3);
 		
 		Payment payment2 = new Payment();
 		payment2.setCode("3232");
@@ -463,17 +504,20 @@ public class ApplicationInitializer implements CommandLineRunner {
 		payment2.setYear("2023");
 		payment2.setPurchase(1230);
 		payment2.setTotalPrice(12000);
+		payment2.setCashpayments(listaCash2);
 		paymentService.createPayment(payment2);
+
+		CashPayment cash4 = new CashPayment();
+		cash4.setCuitStore("123456");
+		cash4.setAmount(1500);
+		cash4.setFinalAmount(1300);
+		cash4.setPaymentVoucher("la anonima");
+		cash4.setStore("La anonima");
+		cash4.setPromotion(financing1);
+		purchaseService.createPurchase(cash4);	
 		
-		CashPayment cash2 = new CashPayment();
-		cash2.setCuitStore("123456");
-		cash2.setAmount(4324);
-		cash2.setFinalAmount(4000);
-		cash2.setPaymentVoucher("la Victoria");
-		cash2.setStore("Victoria");
-		cash2.setPayment(payment2);
-		cash2.setPromotion(discount2);
-		purchaseService.createPurchase(cash2);
+		List<CashPayment> listaCash3 = new ArrayList<>();
+		listaCash3.add(cash4);
 		
 		Payment payment3 = new Payment();
 		payment3.setCode("3232");
@@ -483,20 +527,8 @@ public class ApplicationInitializer implements CommandLineRunner {
 		payment3.setYear("2023");
 		payment3.setPurchase(1230);
 		payment3.setTotalPrice(12000);
+		payment3.setCashpayments(listaCash3);
 		paymentService.createPayment(payment3);
-		
-		CashPayment cash3 = new CashPayment();
-		cash3.setCuitStore("123456");
-		cash3.setAmount(1500);
-		cash3.setFinalAmount(1300);
-		cash3.setPaymentVoucher("la anonima");
-		cash3.setStore("La anonima");
-		cash3.setPayment(payment3);
-		cash3.setPromotion(financing1);
-		purchaseService.createPurchase(cash3);
-
-
-
 		
 		//tarjetasService.addNewPromotion(discount1, bank1.getId());
      
