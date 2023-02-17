@@ -31,5 +31,10 @@ public class PaymentServiceImpl implements PaymentService {
 	    return this.repository.findPaymentsByCode(code);
 	}
 
+	@Override
+	public float getTotalCashByMonth(String month) throws TarjetasException {
+	    return this.repository.totalCashByMonth(month);
+	}
+
 
 }

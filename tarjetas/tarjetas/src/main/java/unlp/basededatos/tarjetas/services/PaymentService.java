@@ -14,4 +14,7 @@ public interface PaymentService {
 
 	public void createPayment(Payment payment) throws TarjetasException;
 	
+	public float getTotalCashByMonth(String month) throws TarjetasException;
+
+	
 }

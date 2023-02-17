@@ -237,7 +237,7 @@ public class ApplicationInitializer implements CommandLineRunner {
 		payment1.setCode("212");
 		payment1.setFirstExpiration(fecha);
 		payment1.setSecondExpiration(fecha);
-		payment1.setMonth("January");
+		payment1.setMonth("February");
 		payment1.setYear("2023");
 		payment1.setPurchase(1230);
 		payment1.setTotalPrice(12000);
@@ -269,7 +269,7 @@ public class ApplicationInitializer implements CommandLineRunner {
 		payment2.setCode("212");
 		payment2.setFirstExpiration(fecha);
 		payment2.setSecondExpiration(fecha);
-		payment2.setMonth("January");
+		payment2.setMonth("February");
 		payment2.setYear("2023");
 		payment2.setPurchase(1230);
 		payment2.setTotalPrice(12000);
@@ -449,7 +449,7 @@ public class ApplicationInitializer implements CommandLineRunner {
 		cash1.setCuitStore("123456");
 		cash1.setAmount(1234);
 		cash1.setFinalAmount(1100);
-		cash1.setPaymentVoucher("la anonima");
+		cash1.setPaymentVoucher("Carrefour");
 		cash1.setStore("Carrefour");
 		cash1.setPayment(payment1);
 		cash1.setPromotion(discount1);
@@ -469,7 +469,7 @@ public class ApplicationInitializer implements CommandLineRunner {
 		cash2.setCuitStore("123456");
 		cash2.setAmount(4324);
 		cash2.setFinalAmount(4000);
-		cash2.setPaymentVoucher("la anonima");
+		cash2.setPaymentVoucher("la Victoria");
 		cash2.setStore("Victoria");
 		cash2.setPayment(payment2);
 		cash2.setPromotion(discount2);
