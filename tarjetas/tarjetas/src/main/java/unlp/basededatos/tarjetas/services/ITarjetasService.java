@@ -36,6 +36,7 @@ public interface ITarjetasService {
     public List<CardHolder> get10CardHolersWithMorePurchases() throws TarjetasException;
 
     // 10-Obtener la promoción mas utilizada en las compras registradas
+    public Promotion getPromotionMostUsed() throws TarjetasException;
 
     // 11-Obtener el nombre y cuit del local, que mas facturo en cierto mes
 
