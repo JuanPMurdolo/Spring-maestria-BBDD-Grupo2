@@ -132,4 +132,11 @@ public class ITarjetasServiceImpl implements ITarjetasService{
 	public List<CardHolder> get10CardHolersWithMorePurchases() throws TarjetasException {
 		return this.cardHolderRepository.get10CardHolersWithMorePurchases();
 	}
+
+	@Override
+	public Promotion getPromotionMostUsed() throws TarjetasException{
+		return this.promotionRepository.getMostUsed();
+	}
+
+
 }

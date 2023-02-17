@@ -114,6 +114,16 @@ public class PromotionController extends BaseController {
         }
 
     }
+
+    @GetMapping("/getMostUsed")
+    public Promotion getMostUsed() throws TarjetasException{
+        try {
+            return this.iTarjetasService.getPromotionMostUsed();
+        }
+        catch (Exception e) {
+            throw  new TarjetasException(e.getMessage());
+        }
+    }
     
     @DeleteMapping("/delete/{code}")
     public ResponseEntity<Response> deletePromotion(@PathVariable("code") String code) throws TarjetasException{
