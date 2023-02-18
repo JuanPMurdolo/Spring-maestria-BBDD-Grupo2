@@ -154,5 +154,10 @@ public class ITarjetasServiceImpl implements ITarjetasService{
 		return this.paymentRepository2.findTotalByMonth(month);
 	}
 
+	@Override
+	public String getInfoFromBusiness(String month) throws TarjetasException{
+		return null;
+	}
+
 
 }
