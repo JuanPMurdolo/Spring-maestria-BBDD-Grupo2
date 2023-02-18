@@ -138,8 +138,8 @@ public class ITarjetasServiceImpl implements ITarjetasService{
 	}
 
 	@Override
-	public Promotion getPromotionMostUsed() throws TarjetasException{
-		return this.promotionRepository.getMostUsed();
+	public Optional<Promotion> getPromotionMostUsed() throws TarjetasException{
+		return this.promotionRepository.findById(this.promotionRepository.getMostUsed());
 	}
 
 	@Override

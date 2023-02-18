@@ -11,10 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 @RestController
 @RequestMapping(value = "/promotion")
@@ -116,7 +113,7 @@ public class PromotionController extends BaseController {
     }
 
     @GetMapping("/getMostUsed")
-    public Promotion getMostUsed() throws TarjetasException{
+    public Optional<Promotion> getMostUsed() throws TarjetasException{
         try {
             return this.iTarjetasService.getPromotionMostUsed();
         }
