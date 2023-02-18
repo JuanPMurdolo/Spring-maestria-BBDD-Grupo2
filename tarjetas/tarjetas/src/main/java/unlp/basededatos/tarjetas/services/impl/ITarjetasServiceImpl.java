@@ -139,7 +139,13 @@ public class ITarjetasServiceImpl implements ITarjetasService{
 
 	@Override
 	public Optional<Promotion> getPromotionMostUsed() throws TarjetasException{
+		int cash = this.promotionRepository.getOccurences();
+		int monthly = this.promotionRepository.getOccurencesMonthly();
+		if (cash > monthly) {
 		return this.promotionRepository.findById(this.promotionRepository.getMostUsed());
+		} else {
+			return this.promotionRepository.findById(this.promotionRepository.getMostUsedMonthly());
+		}
 	}
 
 	@Override

@@ -23,4 +23,27 @@ public interface PromotionRepository extends JpaRepository<Promotion, Long> {
             "LIMIT 1", nativeQuery = true)
     Long getMostUsed();
 
+    @Query(value = "SELECT COUNT(id_promotion) " +
+            "FROM cash_payment " +
+            "GROUP BY id_promotion " +
+            "ORDER BY COUNT(*) " +
+            "DESC LIMIT 1", nativeQuery = true)
+    int getOccurences();
+
+    @Query(value = "SELECT id_promotion " +
+            "FROM monthly_payments " +
+            "GROUP BY id_promotion " +
+            "ORDER BY COUNT(*) DESC " +
+            "LIMIT 1", nativeQuery = true)
+    Long getMostUsedMonthly();
+
+    @Query(value = "SELECT COUNT(id_promotion) " +
+            "FROM monthly_payments " +
+            "GROUP BY id_promotion " +
+            "ORDER BY COUNT(*) " +
+            "DESC LIMIT 1", nativeQuery = true)
+    int getOccurencesMonthly();
+
+
+
 }
