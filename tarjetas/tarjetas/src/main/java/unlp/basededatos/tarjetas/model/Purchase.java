@@ -41,7 +41,7 @@ public abstract class Purchase {
     private float finalAmount;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {})
-    @JoinColumn(name="PromotionID")
+    @JoinColumn(name="id_promotion")
     private Promotion promotion;
     
     @Column(name = "purchaseType")

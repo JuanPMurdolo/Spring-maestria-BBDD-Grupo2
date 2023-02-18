@@ -16,12 +16,7 @@ public interface PromotionRepository extends JpaRepository<Promotion, Long> {
     @Query(nativeQuery = true, value ="SELECT p FROM Promotion p WHERE promotion.code = :code LIMIT 1")
     Promotion findPromotionByCode(@Param("code") String code);
 
-    @Query(value = "SELECT promotionid"
-            + "FROM cash_payment "
-            + "GROUP BY promotionid"
-            + "ORDER BY COUNT(*) DESC"
-            + "LIMIT 1"
-            + "INNER JOIN promotion", nativeQuery = true)
+    @Query(value = "SELECT id_promotion FROM cash_payment ORDER BY COUNT(*) DESC LIMIT 1 INNER JOIN promotion_purchase", nativeQuery = true)
     Promotion getMostUsed();
 
 }

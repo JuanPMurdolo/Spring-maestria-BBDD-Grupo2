@@ -432,7 +432,7 @@ public class ApplicationInitializer implements CommandLineRunner {
 		promotionsService.createPromotion(discount2);
 		
 		Financing financing1 = new Financing();
-		financing1.setComments("Financiamiento PLANERO");
+		financing1.setComments("Financiamiento Plan A");
 		financing1.setCode("664");
 		financing1.setCuitStore("123456");
 		financing1.setInteres(2);
@@ -442,7 +442,7 @@ public class ApplicationInitializer implements CommandLineRunner {
 		promotionsService.createPromotion(financing1);
 			
 		Financing financing2 = new Financing();
-		financing2.setComments("Financiamiento CHORI");
+		financing2.setComments("Financiamiento Plan B");
 		financing2.setCode("345");
 		financing2.setCuitStore("123456");
 		financing2.setInteres(2);
