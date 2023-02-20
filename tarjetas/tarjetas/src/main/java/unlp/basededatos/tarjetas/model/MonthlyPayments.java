@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @DiscriminatorValue("Monthly")
 public class MonthlyPayments extends Purchase {
@@ -15,8 +17,12 @@ public class MonthlyPayments extends Purchase {
     private int numberOfQuotas;
 
   //bi-directional many-to-one association to Quota
-  	@OneToMany(mappedBy="montlypayment")
-  	private List<Quota> quotas;
+//  	@OneToMany(mappedBy="montlypayment")
+//  	private List<Quota> quotas;
+  	
+    @JsonIgnore
+    @OneToMany( cascade = CascadeType.ALL )
+    private List<Quota> quotas;
   	
     public MonthlyPayments(String paymentVoucher, String store, String cuitStore, float amount, float finalAmount, float interest, int numberOfQuotas) {
         super(paymentVoucher, store, cuitStore, amount, finalAmount);

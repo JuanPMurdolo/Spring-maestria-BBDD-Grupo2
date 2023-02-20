@@ -35,9 +35,9 @@ public class CardHolder {
     //La relacion parece ser muchos a muchos
     @ManyToMany(mappedBy = "cardHolders")
     private List<Bank> banks;
-    
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Card> cards;
+//    
+//    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    private List<Card> cards;
 
     public CardHolder(String completeName, String dni, String cuil, String address, String telephone, Date entry) {
         this.completeName = completeName;
@@ -114,13 +114,13 @@ public class CardHolder {
 		this.banks = banks;
 	}
 
-	public List<Card> getCards() {
-		return cards;
-	}
-
-	public void setCards(List<Card> cards) {
-		this.cards = cards;
-	}
-    
+//	public List<Card> getCards() {
+//		return cards;
+//	}
+//
+//	public void setCards(List<Card> cards) {
+//		this.cards = cards;
+//	}
+//    
     
 }

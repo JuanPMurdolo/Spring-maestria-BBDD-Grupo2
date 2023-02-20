@@ -3,14 +3,9 @@ package unlp.basededatos.tarjetas.services;
 import unlp.basededatos.tarjetas.model.*;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 
-import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
-
-import org.springframework.http.ResponseEntity;
-
-import com.fasterxml.jackson.core.JsonProcessingException;
 
 public interface ITarjetasService {
 
@@ -48,5 +43,6 @@ public interface ITarjetasService {
     public String getInfoFromBusiness(String month) throws TarjetasException;
 
     // 12-Obtener el banco que registre la mayor sumatoria de los importes en pagos con su tarjeta.
-	
+	public Bank getBankMostImportByCard(String month) throws TarjetasException;
+
 }

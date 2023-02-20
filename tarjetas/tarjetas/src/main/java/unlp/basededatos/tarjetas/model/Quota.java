@@ -22,9 +22,9 @@ public class Quota {
     @Column(name ="year")
     private String year;
 
-	@ManyToOne( fetch = FetchType.EAGER, cascade = CascadeType.ALL )
-    @JoinColumn( name = "montlypayment_id" )
-	private MonthlyPayments montlypayment;
+//	@ManyToOne( fetch = FetchType.EAGER, cascade = CascadeType.ALL )
+//    @JoinColumn( name = "montlypayment_id" )
+//	private MonthlyPayments montlypayment;
 
     public Quota(int number, float price, String month, String year) {
         this.number = number;
@@ -74,12 +74,12 @@ public class Quota {
         this.year = year;
     }
 
-    public MonthlyPayments getMontlypayment() {
-        return montlypayment;
-    }
-
-    public void setMontlypayment(MonthlyPayments montlypayment) {
-        this.montlypayment = montlypayment;
-    }
+//    public MonthlyPayments getMontlypayment() {
+//        return montlypayment;
+//    }
+//
+//    public void setMontlypayment(MonthlyPayments montlypayment) {
+//        this.montlypayment = montlypayment;
+//    }
 
 }

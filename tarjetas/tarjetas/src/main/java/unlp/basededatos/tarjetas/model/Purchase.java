@@ -1,7 +1,10 @@
 package unlp.basededatos.tarjetas.model;
 
+import java.util.List;
+
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
@@ -40,9 +43,19 @@ public abstract class Purchase {
     @Column(name = "finalAmount")
     private float finalAmount;
 
+    //@ManyToOne(fetch = FetchType.EAGER, cascade = {})
+    @ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.MERGE })
+    @JoinTable(
+            name = "purchase_promotion",
+            joinColumns = { @JoinColumn(name = "id_purchase") },
+            inverseJoinColumns = { @JoinColumn(name = "id_promotion") })
+    @JsonIgnore
+    private List<Promotion> promotions;
+    
+    //Una compra tiene asociada una sola tarjeta
     @ManyToOne(fetch = FetchType.EAGER, cascade = {})
-    @JoinColumn(name="id_promotion")
-    private Promotion promotion;
+    @JoinColumn(name="id_card")
+    private Card card;
     
     @Column(name = "purchaseType")
     private PurchaseType purchaseType;
@@ -105,11 +118,21 @@ public abstract class Purchase {
 		this.id = id;
 	}
 
-	public Promotion getPromotion() {
-		return promotion;
+	public List<Promotion> getPromotions() {
+		return promotions;
 	}
 
-	public void setPromotion(Promotion promotion) {
-		this.promotion = promotion;
+	public void setPromotions(List<Promotion> promotions) {
+		this.promotions = promotions;
 	}
+
+	public Card getCard() {
+		return card;
+	}
+
+	public void setCard(Card card) {
+		this.card = card;
+	}
+
+
 }

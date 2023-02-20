@@ -34,13 +34,13 @@ public class Card {
     // MUCHOS a uno
     @JsonIgnore
     @ManyToOne(fetch = FetchType.EAGER, cascade = {})
-	@JoinColumn(name="BankID")
+	@JoinColumn(name="id_bank")
 	private Bank bank;
 
     //Una tarjeta puede tener solo un owner(CardHolder)
     //Muchos a uno
     @ManyToOne(fetch = FetchType.EAGER, cascade = {})
-    @JoinColumn(name="OwnerID")
+    @JoinColumn(name="id_owner")
     private CardHolder owner;
     
     public Card(String number, String ccv, String cardholderNameInCard, Date since, Date expirationDate) {
@@ -51,7 +51,7 @@ public class Card {
         this.expirationDate = expirationDate;
     }
 
-    public Card() {
+	public Card() {
 
     }
     public Long getId() { return id; }
@@ -106,5 +106,13 @@ public class Card {
 		this.bank = bank;
 	}
     
+    public CardHolder getOwner() {
+		return owner;
+	}
+
+	public void setOwner(CardHolder owner) {
+		this.owner = owner;
+	}
+
     
 }

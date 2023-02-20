@@ -28,8 +28,8 @@ public class Bank {
 	// bi-directional many-to-one association to Card
     // un Banco puede tener muchas Tarjetas(Cards)
     // uno a MUCHOS
-    @OneToMany( cascade = CascadeType.ALL, fetch = FetchType.EAGER )
-	private List<Card> cards;
+//    @OneToMany( cascade = CascadeType.ALL, fetch = FetchType.EAGER )
+//	private List<Card> cards;
 
 
     //Un Banco puede tener muchos clientes (CardHolders)
@@ -38,8 +38,8 @@ public class Bank {
     @ManyToMany( cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
         name = "banks_cardholders",
-        joinColumns = @JoinColumn(name = "bank_id"),
-        inverseJoinColumns = @JoinColumn(name = "cardholder_id")
+        joinColumns = @JoinColumn(name = "id_bank"),
+        inverseJoinColumns = @JoinColumn(name = "id_cardholder")
     )
     private List<CardHolder> cardHolders;
 
@@ -91,22 +91,22 @@ public class Bank {
         this.id = id;
     }
 
-	public List<Card> getCards() {
-		return cards;
-	}
-
-	public void setCards(List<Card> cards) {
-		this.cards = cards;
-	}
-    
-	
-	public void addCard(Card address) {
-		cards.add(address);
-	}
-	
-	public boolean hasCard(Card address) {
-		return cards.contains(address);
-	}
+//	public List<Card> getCards() {
+//		return cards;
+//	}
+//
+//	public void setCards(List<Card> cards) {
+//		this.cards = cards;
+//	}
+//    
+//	
+//	public void addCard(Card address) {
+//		cards.add(address);
+//	}
+//	
+//	public boolean hasCard(Card address) {
+//		return cards.contains(address);
+//	}
 
 	public String getAddress() {
 		return address;
