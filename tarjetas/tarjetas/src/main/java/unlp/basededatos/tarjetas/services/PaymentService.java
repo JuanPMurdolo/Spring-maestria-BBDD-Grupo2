@@ -3,6 +3,10 @@ package unlp.basededatos.tarjetas.services;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.http.ResponseEntity;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 import unlp.basededatos.tarjetas.model.Payment;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 

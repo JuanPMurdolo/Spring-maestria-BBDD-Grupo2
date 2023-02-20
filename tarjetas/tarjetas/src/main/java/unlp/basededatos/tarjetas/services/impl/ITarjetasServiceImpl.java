@@ -1,9 +1,12 @@
 package unlp.basededatos.tarjetas.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import org.springframework.transaction.annotation.Transactional;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
 
 import unlp.basededatos.tarjetas.model.*;
 import unlp.basededatos.tarjetas.repositories.*;
@@ -26,10 +29,7 @@ import javax.persistence.EntityNotFoundException;
 public class ITarjetasServiceImpl implements ITarjetasService{
     
 	@Autowired
-    private PaymentRepository paymentRepository;
-    
-	@Autowired
-    private IPaymentRepository paymentRepository2;
+    private IPaymentRepository paymentRepository;
 	
 	@Autowired
 	private BanksService bankService;
@@ -151,7 +151,7 @@ public class ITarjetasServiceImpl implements ITarjetasService{
 	@Override
 	@Transactional
 	public String getTotalByMonth(String month) throws TarjetasException {
-		return this.paymentRepository2.findTotalByMonth(month);
+		return this.paymentRepository.findTotalByMonth(month);
 	}
 
 	@Override
