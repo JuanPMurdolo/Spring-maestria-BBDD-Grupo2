@@ -8,6 +8,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.http.ResponseEntity;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+
 public interface ITarjetasService {
 
     // 1- Agregar una nueva promoción de tipo descuento a un banco dado
