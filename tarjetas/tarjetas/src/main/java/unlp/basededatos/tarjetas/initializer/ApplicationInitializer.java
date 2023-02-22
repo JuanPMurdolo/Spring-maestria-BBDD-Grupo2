@@ -390,13 +390,21 @@ public class ApplicationInitializer implements CommandLineRunner {
 		mes2.setCard(card3);
 		purchaseService.createPurchase(mes2);
 		
-		/*
-		 * Payment payment4 = new Payment(); payment4.setCode("222");
-		 * payment4.setFirstExpiration(fecha); payment4.setSecondExpiration(fecha);
-		 * payment4.setMonth("January"); payment4.setYear("2023");
-		 * payment4.setPurchase(4324); payment4.setTotalPrice(8645);
-		 * payment4.setQuotas(lista); paymentService.createPayment(payment4);
-		 */
+		List<Quota> lista2 = new ArrayList<>();
+		lista2.add(quota1);
+		lista2.add(quota2);
+		lista2.add(quota3);
+		
+		Payment payment4 = new Payment();
+		payment4.setCode("222");
+		payment4.setFirstExpiration(fecha);
+		payment4.setSecondExpiration(fecha);
+		payment4.setMonth("January");
+		payment4.setYear("2023");
+		payment4.setPurchase(4324);
+		payment4.setTotalPrice(8645);
+		payment4.setQuotas(lista2);
+		paymentService.createPayment(payment4);
 		
 		System.out.println("Pagos creados exitosamente!");
 

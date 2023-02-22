@@ -38,7 +38,7 @@ public class Payment {
 
     //falta la relacion e/Quota y Payment
     @JsonIgnore
-    @OneToMany( cascade = CascadeType.ALL, fetch = FetchType.EAGER )
+    @OneToMany( cascade = CascadeType.MERGE, fetch = FetchType.EAGER )
     private List<Quota> quotasPaid;
 
     //Falta la relacion /CashPayment y Payment
