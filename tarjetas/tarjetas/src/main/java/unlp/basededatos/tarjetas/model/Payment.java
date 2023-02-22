@@ -39,7 +39,7 @@ public class Payment {
     //falta la relacion e/Quota y Payment
     @JsonIgnore
     @OneToMany( cascade = CascadeType.ALL, fetch = FetchType.EAGER )
-    private List<Quota> quotas;
+    private List<Quota> quotasPaid;
 
     //Falta la relacion /CashPayment y Payment
 	@OneToMany
@@ -130,10 +130,10 @@ public class Payment {
     }
 
     public List<Quota> getQuotas() {
-        return quotas;
+        return quotasPaid;
     }
 
     public void setQuotas(List<Quota> quotas) {
-        this.quotas = quotas;
+        this.quotasPaid = quotas;
     }
 }
