@@ -40,7 +40,7 @@ public interface ITarjetasService {
     public Optional<Promotion> getPromotionMostUsed() throws TarjetasException;
 
     // 11-Obtener el nombre y cuit del local, que mas facturo en cierto mes
-    public String getInfoFromBusiness(String month) throws TarjetasException;
+    public String getInfoFromBusiness(String month, String type) throws TarjetasException;
 
     // 12-Obtener el banco que registre la mayor sumatoria de los importes en pagos con su tarjeta.
 	public Bank getBankMostImportByCard(String month) throws TarjetasException;

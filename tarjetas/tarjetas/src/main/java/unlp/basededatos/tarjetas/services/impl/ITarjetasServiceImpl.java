@@ -98,8 +98,7 @@ public class ITarjetasServiceImpl implements ITarjetasService{
 
 	@Override
 	public String getPurchaseInfo(Long id) throws TarjetasException {
-		Purchase purchase = this.purchaseRepository.getReferenceById(id);
-		return null;
+		return this.purchaseRepository.getPurchaseInfo(id);
 	}
 
 	@Override
@@ -151,9 +150,12 @@ public class ITarjetasServiceImpl implements ITarjetasService{
 	}
 
 	@Override
-	public String getInfoFromBusiness(String month) throws TarjetasException{
-		// TODO Auto-generated method stub
-		return month;
+	public String getInfoFromBusiness(String month, String type) throws TarjetasException{
+		if (type == "cash") {
+			return this.purchaseRepository.getStoreWithMoreSalesCash(month);
+		} else {
+			return this.purchaseRepository.getStoreWithMoreSalesMonthly(month);
+		}
 	}
 	
 	@Override

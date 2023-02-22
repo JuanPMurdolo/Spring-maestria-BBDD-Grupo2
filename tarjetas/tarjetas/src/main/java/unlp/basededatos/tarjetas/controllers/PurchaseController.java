@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 @RestController
@@ -98,8 +99,20 @@ public class PurchaseController {
     @GetMapping(path = "/purchaseFullInfo/{id}")
     public String purchaseFullInfo(@PathVariable Long id) throws TarjetasException{
         try {
-            return null;
+            return this.iTarjetasService.getPurchaseInfo(id);
         } catch (Exception e) {
+            throw new TarjetasException(e.getMessage());
+        }
+    }
+
+    @GetMapping(path = "/getStoreWithMostSales/")
+    public String getStoreWithMostSales(@RequestBody Map<String, String> json)throws TarjetasException{
+        String month = json.get("month").toString();
+        String type = json.get("type").toString();
+        try {
+            return this.iTarjetasService.getInfoFromBusiness(month, type);
+        }
+        catch (Exception e) {
             throw new TarjetasException(e.getMessage());
         }
     }
