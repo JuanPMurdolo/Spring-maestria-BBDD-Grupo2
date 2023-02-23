@@ -1,6 +1,5 @@
 package unlp.basededatos.tarjetas.repositories.impl;
 
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -9,7 +8,6 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import unlp.basededatos.tarjetas.model.Bank;
-import unlp.basededatos.tarjetas.model.MonthlyPayments;
 import unlp.basededatos.tarjetas.repositories.BankRepository;
 import unlp.basededatos.tarjetas.repositories.interfaces.IBankRepository;
 import unlp.basededatos.tarjetas.utils.TarjetasException;

@@ -9,7 +9,6 @@ import unlp.basededatos.tarjetas.model.*;
 import unlp.basededatos.tarjetas.repositories.*;
 import unlp.basededatos.tarjetas.repositories.interfaces.IBankRepository;
 import unlp.basededatos.tarjetas.repositories.interfaces.IPaymentRepository;
-import unlp.basededatos.tarjetas.services.BanksService;
 import unlp.basededatos.tarjetas.services.ITarjetasService;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 
@@ -29,9 +28,6 @@ public class ITarjetasServiceImpl implements ITarjetasService{
     private IPaymentRepository paymentRepository;
 	
 	@Autowired
-	private BanksService bankService;
-	
-    @Autowired
     private IBankRepository bankRepository;
 
 	@Autowired
@@ -39,9 +35,6 @@ public class ITarjetasServiceImpl implements ITarjetasService{
 
 	@Autowired
 	private PurchaseRepository purchaseRepository;
-
-	@Autowired
-	private QuotaRepository quotaRepository;
 
 	@Autowired
 	private MonthlyPaymentRepository monthlyPaymentRepository;
@@ -74,8 +67,7 @@ public class ITarjetasServiceImpl implements ITarjetasService{
 	@Transactional
 	public Promotion addNewPromotion(Promotion promotion, Long id) throws TarjetasException {
 
-		// Obtengo el Banco
-		Optional<Bank> bank1 = bankRepository.findById(id);
+		bankRepository.findById(id);
 		
 		Bank bank = bankRepository.findById(id)
                 .orElseThrow(()-> new EntityNotFoundException("Can't find bank by id: "+id));
@@ -103,9 +95,10 @@ public class ITarjetasServiceImpl implements ITarjetasService{
 	}
 
 	@Override
-	public Promotion deletePromotion(String code) throws TarjetasException {
-		// TODO Auto-generated method stub
-		return null;
+	@Transactional
+	public void deletePromotion(String code) throws TarjetasException {
+        this.promotionRepository.deletePromotion(code);
+
 	}
 
 	@Override

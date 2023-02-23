@@ -8,11 +8,11 @@ import unlp.basededatos.tarjetas.utils.TarjetasException;
 
 public interface CardHolderService {
 
-    public Optional<CardHolder> getCardHolder(Long id) throws TarjetasException;
+    Optional<CardHolder> getCardHolder(Long id) throws TarjetasException;
 
-    public List<CardHolder> get10CardHolersWithMorePurchases() throws TarjetasException;
+    List<CardHolder> get10CardHolersWithMorePurchases() throws TarjetasException;
 
-	public void createCardHolder(CardHolder cardHolder)  throws TarjetasException;;
+	void createCardHolder(CardHolder cardHolder)  throws TarjetasException;;
 
 
 }

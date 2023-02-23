@@ -11,11 +11,11 @@ import unlp.basededatos.tarjetas.utils.TarjetasException;
 
 public interface CardService {
 
-    public void createCard(Card card) throws TarjetasException;
+    void createCard(Card card) throws TarjetasException;
 
-    public Optional<Card> getCard(Long id) throws TarjetasException;
+    Optional<Card> getCard(Long id) throws TarjetasException;
     
-    public List<Card> findCardExpirationDate(Date date, Date date1) throws TarjetasException;
+    List<Card> findCardExpirationDate(Date date, Date date1) throws TarjetasException;
 
 
 }

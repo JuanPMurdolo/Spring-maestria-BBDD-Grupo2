@@ -1,7 +1,6 @@
 package unlp.basededatos.tarjetas.controllers;
 
 import unlp.basededatos.tarjetas.services.ITarjetasService;
-import unlp.basededatos.tarjetas.utils.Response;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 import unlp.basededatos.tarjetas.model.Promotion;
 import unlp.basededatos.tarjetas.services.PromotionsService;
@@ -16,7 +15,7 @@ import java.util.*;
 @RestController
 @RequestMapping(value = "/promotion")
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
-public class PromotionController extends BaseController {
+public class PromotionController {
 
     @Autowired
     private PromotionsService service;
@@ -123,8 +122,7 @@ public class PromotionController extends BaseController {
     }
     
     @DeleteMapping("/delete/{code}")
-    public ResponseEntity<Response> deletePromotion(@PathVariable("code") String code) throws TarjetasException{
-        Response response = this.service.deletePromotion(code);
-        return new ResponseEntity(response, responseStatus(response));
+    public void deletePromotion(@PathVariable("code") String code) throws TarjetasException{
+         this.service.deletePromotion(code);
     }
 }

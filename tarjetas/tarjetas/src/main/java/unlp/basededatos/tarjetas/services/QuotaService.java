@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface QuotaService {
 
-    public void createQuota(Quota quota) throws TarjetasException;
-    public Optional<Quota> getQuota(Long id) throws TarjetasException;
+    void createQuota(Quota quota) throws TarjetasException;
+    Optional<Quota> getQuota(Long id) throws TarjetasException;
 
 }

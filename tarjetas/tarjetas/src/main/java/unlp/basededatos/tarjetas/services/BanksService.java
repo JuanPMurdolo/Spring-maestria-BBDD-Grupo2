@@ -10,8 +10,8 @@ import unlp.basededatos.tarjetas.model.Promotion;
 
 public interface BanksService {
 
-	    public void createBank(Bank bank) throws TarjetasException;
+	    void createBank(Bank bank) throws TarjetasException;
 
-	    public Optional<Bank> getBank(Long id) throws TarjetasException;
+	    Optional<Bank> getBank(Long id) throws TarjetasException;
 
 }

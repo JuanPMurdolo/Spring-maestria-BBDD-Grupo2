@@ -5,11 +5,11 @@ import unlp.basededatos.tarjetas.model.Purchase;
 
 public interface PurchaseService {
 
-	    public Purchase createPurchase(Purchase purchase) throws TarjetasException;
+	    Purchase createPurchase(Purchase purchase) throws TarjetasException;
 
-	    public Purchase getPurchase(Long id) throws TarjetasException;
+	    Purchase getPurchase(Long id) throws TarjetasException;
 
-	    public Purchase updatePurchase(Purchase purchase,Long id) throws TarjetasException;
+	    Purchase updatePurchase(Purchase purchase,Long id) throws TarjetasException;
 	    
 
 }
