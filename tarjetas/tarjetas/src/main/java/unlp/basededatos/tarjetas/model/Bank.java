@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "Bank")
 public class Bank {
@@ -35,6 +37,7 @@ public class Bank {
     //Un Banco puede tener muchos clientes (CardHolders)
     //Pero los clientes pueden pertenecer a uno o mas bancos
     //la relacion parece muchos a muchos
+    @JsonIgnore 
     @ManyToMany( cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(
         name = "banks_cardholders",

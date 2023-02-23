@@ -55,7 +55,7 @@ public class ApplicationInitializer implements CommandLineRunner {
 		//crearPurchases();
 		crearBancos2();
 		crearTitulares();
-		crearCards();
+		//crearCards();
 		//crearCashyPromos(); 
 
 	}
@@ -155,9 +155,15 @@ public class ApplicationInitializer implements CommandLineRunner {
 		bank2.setCuit("20-1245454-2");
 		bank2.setTelephone("98765412");
         bank2.setCardHolders(cardHoldersList2);
-
         bankService.createBank(bank2);
 
+		Bank bank3 = new Bank();
+		bank3.setName("Banco Patagonia");
+		bank3.setAddress("Maipu 1234");
+		bank3.setCuit("20-33344454-2");
+		bank3.setTelephone("1634134");
+		bank3.setCardHolders(cardHoldersList2);
+        bankService.createBank(bank3);
 
         //creo tarjetas y le seteo el banco
         Card card3 = new Card();
@@ -193,7 +199,7 @@ public class ApplicationInitializer implements CommandLineRunner {
         System.out.println("Bancos creados exitosamente!");
 
         card3.setBank(bank2);
-        card4.setBank(bank2);
+        card4.setBank(bank3);
         
 		cardService.createCard(card3);
 		cardService.createCard(card4);
@@ -405,6 +411,65 @@ public class ApplicationInitializer implements CommandLineRunner {
 		payment4.setTotalPrice(8645);
 		payment4.setQuotas(lista2);
 		paymentService.createPayment(payment4);
+		
+		Quota quota4 = new Quota();
+		quota4.setPrice(1234);
+		quota4.setMonth(payment1.getMonth());
+		quota4.setYear(payment1.getYear());
+		quota4.setNumber(1);
+
+		Quota quota5 = new Quota();
+		quota5.setPrice(5431);
+		quota5.setMonth(payment1.getMonth());
+		quota5.setYear(payment1.getYear());
+		quota5.setNumber(2);
+
+		Quota quota6 = new Quota();
+		quota6.setPrice(1124);
+		quota6.setMonth(payment1.getMonth());
+		quota6.setYear(payment1.getYear());
+		quota6.setNumber(3);
+
+		List<Quota> lista4 = new ArrayList<>();
+		lista4.add(quota4);
+		lista4.add(quota5);
+		lista4.add(quota6);
+		
+		//compras mensuales
+		MonthlyPayments mes3 = new MonthlyPayments();
+		mes3.setCuitStore("34551344");
+		mes3.setAmount(2500);
+		mes3.setFinalAmount(2200);
+		mes3.setPaymentVoucher("Difcor");
+		mes3.setStore("Difcor");
+		mes3.setPromotions(listDiscount2);
+		mes3.setCard(card4);
+		mes3.setQuotas(lista4);
+		purchaseService.createPurchase(mes3);	
+		
+		List<MonthlyPayments> listaCash5 = new ArrayList<>();
+		listaCash5.add(mes3);
+
+		MonthlyPayments mes4 = new MonthlyPayments();
+		mes4.setCuitStore("4156143");
+		mes4.setAmount(1234);
+		mes4.setFinalAmount(1009);
+		mes4.setPaymentVoucher("La Mendocina");
+		mes4.setStore("La Mendocina");
+		mes4.setPromotions(listDiscount2);
+		mes4.setCard(card4);
+		purchaseService.createPurchase(mes4);
+	
+		Payment payment6 = new Payment();
+		payment6.setCode("222");
+		payment6.setFirstExpiration(fecha);
+		payment6.setSecondExpiration(fecha);
+		payment6.setMonth("January");
+		payment6.setYear("2023");
+		payment6.setPurchase(2345);
+		payment6.setTotalPrice(7345);
+		payment6.setQuotas(lista4);
+		paymentService.createPayment(payment6);
 		
 		System.out.println("Pagos creados exitosamente!");
 

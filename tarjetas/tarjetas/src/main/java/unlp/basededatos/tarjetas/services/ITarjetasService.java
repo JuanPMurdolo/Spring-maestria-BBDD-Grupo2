@@ -43,6 +43,6 @@ public interface ITarjetasService {
     public String getInfoFromBusiness(String month, String type) throws TarjetasException;
 
     // 12-Obtener el banco que registre la mayor sumatoria de los importes en pagos con su tarjeta.
-	public Bank getBankMostImportByCard(String month) throws TarjetasException;
+	public Bank getBankMostImportByCard() throws TarjetasException;
 
 }

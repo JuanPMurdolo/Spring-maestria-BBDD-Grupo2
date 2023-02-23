@@ -92,5 +92,16 @@ public class BanksController {
 		}
     }
 	
+    @GetMapping(path = "/getBankMostImportByCard")
+    public Bank getBankMostImportByCard() throws TarjetasException {
+    	try { 
+
+    		return this.serviceTarjetas.getBankMostImportByCard();
+    	}
+    	catch (Exception e) {
+    		throw new TarjetasException(e.getMessage());
+    	}
+    }
+    
 	
 }

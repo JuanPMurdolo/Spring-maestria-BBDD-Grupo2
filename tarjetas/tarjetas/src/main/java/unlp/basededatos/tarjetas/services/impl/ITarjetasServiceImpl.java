@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import unlp.basededatos.tarjetas.model.*;
 import unlp.basededatos.tarjetas.repositories.*;
+import unlp.basededatos.tarjetas.repositories.interfaces.IBankRepository;
 import unlp.basededatos.tarjetas.repositories.interfaces.IPaymentRepository;
 import unlp.basededatos.tarjetas.services.BanksService;
 import unlp.basededatos.tarjetas.services.ITarjetasService;
@@ -31,7 +32,7 @@ public class ITarjetasServiceImpl implements ITarjetasService{
 	private BanksService bankService;
 	
     @Autowired
-    private BankRepository repository;
+    private IBankRepository bankRepository;
 
 	@Autowired
 	private CardRepository cardRepository;
@@ -74,13 +75,13 @@ public class ITarjetasServiceImpl implements ITarjetasService{
 	public Promotion addNewPromotion(Promotion promotion, Long id) throws TarjetasException {
 
 		// Obtengo el Banco
-		Optional<Bank> bank1 = repository.findById(id);
+		Optional<Bank> bank1 = bankRepository.findById(id);
 		
-		Bank bank = repository.findById(id)
+		Bank bank = bankRepository.findById(id)
                 .orElseThrow(()-> new EntityNotFoundException("Can't find bank by id: "+id));
         
 		bank.addPromotion(promotion);
-		repository.save(bank);
+		bankRepository.save(bank);
 
 		return bank.getPromotions().get( bank.getPromotions().size() -1 );
 	}
@@ -159,9 +160,9 @@ public class ITarjetasServiceImpl implements ITarjetasService{
 	}
 	
 	@Override
-	public Bank getBankMostImportByCard(String month) throws TarjetasException {
-		// TODO Auto-generated method stub
-		return null;
+	public Bank getBankMostImportByCard() throws TarjetasException {
+		return this.bankRepository.getBankMostImportByCard();
+
 	}
 
 
