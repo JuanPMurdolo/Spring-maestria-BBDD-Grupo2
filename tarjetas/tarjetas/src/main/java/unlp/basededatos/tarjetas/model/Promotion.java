@@ -12,7 +12,7 @@ import java.util.List;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME,
 		include = JsonTypeInfo.As.EXISTING_PROPERTY,
-		property = "promo_type",
+		property = "promoType",
 		visible = true)
 @JsonSubTypes({
 		@JsonSubTypes.Type(value = Discount.class, name = "discount"),
@@ -49,7 +49,7 @@ public abstract class Promotion {
     @Column(name = "comments")
     private String comments;
     
-    @Column(name = "promoType")
+    @Column(name = "promo_type")
     private PromotionType promoType;
     
     @Column(name = "borrado")
