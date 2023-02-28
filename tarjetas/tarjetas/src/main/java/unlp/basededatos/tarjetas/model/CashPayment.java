@@ -6,7 +6,7 @@ import javax.persistence.*;
 @DiscriminatorValue("Cash")
 public class CashPayment extends Purchase{
 
-    @Column(name = "storeDiscount")
+    @Column(name = "store_discount")
     private float storeDiscount;
   
     public CashPayment(String paymentVoucher, String store, String cuitStore, float amount, float finalAmount, float storeDiscount) {

@@ -14,7 +14,7 @@ public class CardHolder {
     private Long id;
 
 
-    @Column(name = "completeName")
+    @Column(name = "complete_name")
     private String completeName;
 
     @Column(name = "dni")
@@ -33,7 +33,7 @@ public class CardHolder {
     private Date entry;
 
     //La relacion parece ser muchos a muchos
-    @ManyToMany(mappedBy = "cardHolders")
+    @ManyToMany(mappedBy = "card_holders")
     private List<Bank> banks;
 //    
 //    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)

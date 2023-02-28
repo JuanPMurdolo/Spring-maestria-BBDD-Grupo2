@@ -12,7 +12,7 @@ import java.util.List;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME,
 		include = JsonTypeInfo.As.EXISTING_PROPERTY,
-		property = "promoType",
+		property = "promo_type",
 		visible = true)
 @JsonSubTypes({
 		@JsonSubTypes.Type(value = Discount.class, name = "discount"),
@@ -31,19 +31,19 @@ public abstract class Promotion {
     @Column(name = "code")
     private String code;
 
-    @Column(name = "promotionTitle")
+    @Column(name = "promotion_title")
     private String promotionTitle;
 
-    @Column(name = "nameStore")
+    @Column(name = "name_store")
     private String nameStore;
 
-    @Column(name = "cuitStore")
+    @Column(name = "cuit_store")
     private String cuitStore;
 
-    @Column(name = "validityStartDate")
+    @Column(name = "validity_start_date")
     private Date validityStartDate;
 
-    @Column(name = "validityEndDate")
+    @Column(name = "validity_end_date")
     private Date validityEndDate;
 
     @Column(name = "comments")

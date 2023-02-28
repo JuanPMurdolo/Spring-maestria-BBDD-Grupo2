@@ -24,16 +24,16 @@ public class Payment {
     @Column(name = "year")
     private String year;
 
-    @Column(name = "firstExpiration")
+    @Column(name = "first_expiration")
     private Date firstExpiration;
 
-    @Column(name = "secondExpiration")
+    @Column(name = "second_expiration")
     private Date secondExpiration;
 
     @Column(name = "purchase")
     private float purchase;
 
-    @Column(name = "totalPrice")
+    @Column(name = "total_price")
     private float totalPrice;
 
     //falta la relacion e/Quota y Payment

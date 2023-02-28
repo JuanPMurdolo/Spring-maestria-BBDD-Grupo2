@@ -7,13 +7,13 @@ import java.util.Date;
 @DiscriminatorValue("Discount")
 public class Discount extends Promotion{
 
-    @Column(name = "discountPercentage")
+    @Column(name = "discount_percentage")
     private float discountPercentage;
 
-    @Column(name = "priceCap")
+    @Column(name = "price_cap")
     private float priceCap;
 
-    @Column(name = "onlyCash")
+    @Column(name = "only_cash")
     private boolean onlyCash;
 
     public Discount(String code, String promotionTitle, String nameStore, String cuitStore, Date validityStartDate, Date validityEndDate, String comments, float discountPercentage, float priceCap, boolean onlyCash) {

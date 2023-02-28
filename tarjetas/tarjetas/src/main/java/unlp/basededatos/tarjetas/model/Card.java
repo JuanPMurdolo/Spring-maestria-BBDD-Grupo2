@@ -20,7 +20,7 @@ public class Card {
     @Column(name ="ccv")
     private String ccv;
 
-    @Column(name ="cardholder")
+    @Column(name ="card_holder")
     private String cardholderNameInCard;
 
     @Column(name ="since")

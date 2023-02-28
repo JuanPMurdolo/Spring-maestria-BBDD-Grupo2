@@ -28,19 +28,19 @@ public abstract class Purchase {
     @Column(name ="id_purchase")
     private Long id;
 
-    @Column(name = "paymentVoucher")
+    @Column(name = "payment_voucher")
     private String paymentVoucher;
 
     @Column(name = "store")
     private String store;
 
-    @Column(name = "cuitStore")
+    @Column(name = "cuit_store")
     private String cuitStore;
 
     @Column(name = "amount")
     private float amount;
 
-    @Column(name = "finalAmount")
+    @Column(name = "final_amount")
     private float finalAmount;
 
     //@ManyToOne(fetch = FetchType.EAGER, cascade = {})

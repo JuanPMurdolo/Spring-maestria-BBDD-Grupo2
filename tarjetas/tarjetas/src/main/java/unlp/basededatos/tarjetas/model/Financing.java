@@ -7,7 +7,7 @@ import java.util.Date;
 @DiscriminatorValue("Financing")
 public class Financing extends Promotion{
 
-    @Column(name = "numberOfQuotas")
+    @Column(name = "number_of_quotas")
     private int numberOfQuotas;
 
     @Column(name = "interes")

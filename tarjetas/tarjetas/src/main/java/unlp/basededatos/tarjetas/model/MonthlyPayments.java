@@ -13,7 +13,7 @@ public class MonthlyPayments extends Purchase {
     @Column(name = "intereset")
     private float interest;
 
-    @Column(name = "numberOfQuotas")
+    @Column(name = "number_of_quotas")
     private int numberOfQuotas;
 
   //bi-directional many-to-one association to Quota
