@@ -1,6 +1,7 @@
 package unlp.basededatos.tarjetas.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -123,7 +124,7 @@ public class ITarjetasServiceImpl implements ITarjetasService{
 	@Override
 	@Transactional
 	public List<CardHolder> get10CardHolersWithMorePurchases() throws TarjetasException {
-		return this.cardHolderRepository.get10CardHolersWithMorePurchases();
+		return this.cardHolderRepository.get10CardHolersWithMorePurchases(PageRequest.of(0, 10));
 	}
 
 	@Override

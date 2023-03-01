@@ -1,6 +1,7 @@
 package unlp.basededatos.tarjetas.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
 import unlp.basededatos.tarjetas.model.CardHolder;
@@ -43,7 +44,7 @@ public class CardHolderController {
     // 9-Obtener los titulares de las 10 tarjetas con más compras.
     @GetMapping("/10-titulares-con-mas-compras")
     public List<CardHolder> getTop10SupplierConMasOrdenesDespachadas() throws TarjetasException { 
-    	List<CardHolder> cardHolders = this.service.get10CardHolersWithMorePurchases();
+    	List<CardHolder> cardHolders = this.service.get10CardHolersWithMorePurchases(PageRequest.of(0, 10));
     	return cardHolders;
     }
 

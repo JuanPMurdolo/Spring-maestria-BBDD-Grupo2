@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,8 +27,8 @@ public class CardHolderServiceImpl implements CardHolderService {
     }
 
     @Override
-    public List<CardHolder> get10CardHolersWithMorePurchases() throws TarjetasException {
-       return this.repository.get10CardHolersWithMorePurchases();
+    public List<CardHolder> get10CardHolersWithMorePurchases(Pageable pageable) throws TarjetasException {
+       return this.repository.get10CardHolersWithMorePurchases(pageable);
     }
 
 	@Override
