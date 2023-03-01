@@ -3,6 +3,7 @@ package unlp.basededatos.tarjetas.model;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "cashpayment")
 @DiscriminatorValue("Cash")
 public class CashPayment extends Purchase{
 

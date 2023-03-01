@@ -7,6 +7,7 @@ import javax.persistence.*;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
+@Table(name = "monthlypayments")
 @DiscriminatorValue("Monthly")
 public class MonthlyPayments extends Purchase {
 
@@ -22,7 +23,7 @@ public class MonthlyPayments extends Purchase {
   	
     @JsonIgnore
     @OneToMany( cascade = CascadeType.ALL )
-    private List<Quota> quotas;
+    private List<Quota> quota;
   	
     public MonthlyPayments(String paymentVoucher, String store, String cuitStore, float amount, float finalAmount, float interest, int numberOfQuotas) {
         super(paymentVoucher, store, cuitStore, amount, finalAmount);
@@ -49,11 +50,11 @@ public class MonthlyPayments extends Purchase {
     }
 
 	public List<Quota> getQuotas() {
-		return quotas;
+		return quota;
 	}
 
 	public void setQuotas(List<Quota> quotas) {
-		this.quotas = quotas;
+		this.quota = quotas;
 	}
 	
 }

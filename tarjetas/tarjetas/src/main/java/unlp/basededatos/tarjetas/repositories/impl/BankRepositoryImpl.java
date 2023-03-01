@@ -1,5 +1,6 @@
 package unlp.basededatos.tarjetas.repositories.impl;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -7,9 +8,14 @@ import javax.persistence.EntityNotFoundException;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+
 import unlp.basededatos.tarjetas.model.Bank;
 import unlp.basededatos.tarjetas.repositories.BankRepository;
 import unlp.basededatos.tarjetas.repositories.interfaces.IBankRepository;
+import unlp.basededatos.tarjetas.utils.BankDTO;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 
 public class BankRepositoryImpl implements IBankRepository {
@@ -23,20 +29,31 @@ public class BankRepositoryImpl implements IBankRepository {
 		try {
 
 			Long id_bank_most = null;
+	        Pageable paging = PageRequest.of(0, 1);
 
-			Map<String, Object> totalMonthly = getBankMostImportCashByCard();
-			Map<String, Object> totalCash = getBankMostImportMonthlyByCard();
+			List<BankDTO> totalMonthly = getBankMostImportCashByCard(paging);
+			List<BankDTO> totalCash = getBankMostImportMonthlyByCard(paging);
 
-			totalMonthly.forEach((key, value) -> System.out.println(key + ":" + value));
-			System.out.println("The id_card mensual is: " + totalMonthly.get("id_card"));
-			System.out.println("The id_card cash is: " + totalCash.get("id_card"));
+			for(int i=0; i < totalMonthly.size(); i++){
+			    System.out.println("total: " +  totalMonthly.get(i).getTotal().toString() );
+			    System.out.println( totalMonthly.get(i).getBank().toString() );
+			    System.out.println( totalMonthly.get(i).getCard().toString() );
+			}
+			
+			for(int i=0; i < totalCash.size(); i++){
+			    System.out.println( totalCash.get(i).getTotal() );
+			    System.out.println( totalCash.get(i).getBank() );
+			    System.out.println( totalCash.get(i).getCard() );
+			}
+			
+			System.out.println(totalMonthly.toString()); 
+			System.out.println(totalCash); 
+					
 
-			float totalCardMonthly = Float.parseFloat(totalMonthly.get("total_importe").toString());
-			float totalCardCash = Float.parseFloat(totalCash.get("total_importe").toString());
+			float totalCardMonthly = Float.parseFloat(totalMonthly.get(0).getTotal().toString());
+			float totalCardCash = Float.parseFloat(totalCash.get(0).getTotal().toString());
 			System.out.printf("%.2f", totalCardMonthly);
 			System.out.printf("%.2f", totalCardCash);
-
-			totalCash.forEach((key, value) -> System.out.println(key + ":" + value));
 
 			if (Float.compare(totalCardMonthly, totalCardCash) == 0) {
 
@@ -44,11 +61,11 @@ public class BankRepositoryImpl implements IBankRepository {
 			} else if (Float.compare(totalCardMonthly, totalCardCash) < 0) {
 
 				System.out.println("totalCardMonthly<totalCardCash");
-				id_bank_most = Long.parseLong(totalCash.get("id_bank").toString());
+				id_bank_most = Long.parseLong(totalCash.get(0).getBank().toString());
 			} else {
 
 				System.out.println("ftotalCardMonthly>totalCardCash");
-				id_bank_most = Long.parseLong(totalMonthly.get("id_bank").toString());
+				id_bank_most = Long.parseLong(totalMonthly.get(0).getBank().toString());
 
 			}
 
@@ -62,13 +79,13 @@ public class BankRepositoryImpl implements IBankRepository {
 	}
 
 	@Override
-	public Map<String, Object> getBankMostImportCashByCard() {
-        return repository.findBankMostImportCashByCard();
+	public List<BankDTO> getBankMostImportCashByCard(Pageable pageable) {
+        return repository.findBankMostImportCashByCard(pageable);
 	}
 
 	@Override
-	public Map<String, Object> getBankMostImportMonthlyByCard() {
-        return repository.findBankMostImportMonthlyByCard();
+	public List<BankDTO> getBankMostImportMonthlyByCard(Pageable pageable) {
+        return repository.findBankMostImportMonthlyByCard(pageable);
 
 	}
 

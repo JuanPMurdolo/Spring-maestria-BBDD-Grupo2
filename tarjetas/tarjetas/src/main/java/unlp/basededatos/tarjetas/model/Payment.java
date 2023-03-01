@@ -8,20 +8,17 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "Payment")
+@Table(name = "payment")
 public class Payment {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name ="id_payment")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "code")
     private String code;
 
-    @Column(name = "month")
     private String month;
 
-    @Column(name = "year")
     private String year;
 
     @Column(name = "first_expiration")
@@ -30,7 +27,6 @@ public class Payment {
     @Column(name = "second_expiration")
     private Date secondExpiration;
 
-    @Column(name = "purchase")
     private float purchase;
 
     @Column(name = "total_price")
@@ -39,11 +35,11 @@ public class Payment {
     //falta la relacion e/Quota y Payment
     @JsonIgnore
     @OneToMany( cascade = CascadeType.MERGE, fetch = FetchType.EAGER )
-    private List<Quota> quotasPaid;
+    private List<Quota> quota;
 
     //Falta la relacion /CashPayment y Payment
 	@OneToMany
-	private List<CashPayment> cashpayments;
+	private List<CashPayment> cashpayment;
 	
 	public Payment(String code, String month, String year, Date firstExpiration, Date secondExpiration, float purchase, float totalPrice) {
         this.code = code;
@@ -64,11 +60,11 @@ public class Payment {
 	}
 
 	public List<CashPayment> getCashpayments() {
-		return cashpayments;
+		return cashpayment;
 	}
 
 	public void setCashpayments(List<CashPayment> cashpayments) {
-		this.cashpayments = cashpayments;
+		this.cashpayment = cashpayments;
 	}
 
     public Payment(){}
@@ -130,10 +126,10 @@ public class Payment {
     }
 
     public List<Quota> getQuotas() {
-        return quotasPaid;
+        return quota;
     }
 
     public void setQuotas(List<Quota> quotas) {
-        this.quotasPaid = quotas;
+        this.quota = quotas;
     }
 }

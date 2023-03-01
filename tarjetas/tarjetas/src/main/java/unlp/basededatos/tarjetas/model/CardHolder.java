@@ -6,7 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "CardHolder")
+@Table(name = "cardholder")
 public class CardHolder {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

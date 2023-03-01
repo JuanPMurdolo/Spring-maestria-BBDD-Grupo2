@@ -20,12 +20,11 @@ import unlp.basededatos.tarjetas.enums.PurchaseType;
 })
 
 @Entity
-@Table(name = "Purchase")
+@Table(name = "purchase")
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Purchase {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name ="id_purchase")
     private Long id;
 
     @Column(name = "payment_voucher")
@@ -57,7 +56,7 @@ public abstract class Purchase {
     @JoinColumn(name="id_card")
     private Card card;
     
-    @Column(name = "purchaseType")
+    @Column(name = "purchase_type")
     private PurchaseType purchaseType;
 
     public Purchase(String paymentVoucher, String store, String cuitStore, float amount, float finalAmount) {

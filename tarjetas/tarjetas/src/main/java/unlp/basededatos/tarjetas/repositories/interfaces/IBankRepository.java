@@ -4,14 +4,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import unlp.basededatos.tarjetas.model.Bank;
+import unlp.basededatos.tarjetas.utils.BankDTO;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 
 public interface IBankRepository {
 
-	Map<String, Object> getBankMostImportCashByCard();
+	List<BankDTO> getBankMostImportCashByCard(Pageable pageable);
 
-	Map<String, Object> getBankMostImportMonthlyByCard();
+	List<BankDTO> getBankMostImportMonthlyByCard(Pageable pageable);
 
 	void save(Bank bank);
 
