@@ -11,7 +11,9 @@ import unlp.basededatos.tarjetas.model.*;
 import unlp.basededatos.tarjetas.repositories.*;
 import unlp.basededatos.tarjetas.repositories.interfaces.IBankRepository;
 import unlp.basededatos.tarjetas.repositories.interfaces.IPaymentRepository;
+import unlp.basededatos.tarjetas.repositories.interfaces.IPurchaseRepository;
 import unlp.basededatos.tarjetas.services.ITarjetasService;
+import unlp.basededatos.tarjetas.utils.PurchaseDTO;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 
 import java.time.LocalDate;
@@ -33,10 +35,10 @@ public class ITarjetasServiceImpl implements ITarjetasService{
     private IBankRepository bankRepository;
 
 	@Autowired
-	private CardRepository cardRepository;
+	private IPurchaseRepository purchaseRepository;
 
 	@Autowired
-	private PurchaseRepository purchaseRepository;
+	private CardRepository cardRepository;
 
 	@Autowired
 	private MonthlyPaymentRepository monthlyPaymentRepository;
@@ -46,7 +48,7 @@ public class ITarjetasServiceImpl implements ITarjetasService{
 	
 	@Autowired
 	private CardHolderRepository cardHolderRepository;
-    
+	
     @Override
 	@Transactional
     public List<Payment> updatePaymentsExpiration(String code, Date first, Date second) throws TarjetasException {
@@ -92,8 +94,8 @@ public class ITarjetasServiceImpl implements ITarjetasService{
 	}
 
 	@Override
-	public String getPurchaseInfo(Long id) throws TarjetasException {
-		return this.purchaseRepository.getPurchaseInfo(id);
+	public Optional<Purchase> getPurchaseInfo(Long id) throws TarjetasException {
+		return this.purchaseRepository.findById(id);
 	}
 
 	@Override
@@ -133,12 +135,12 @@ public class ITarjetasServiceImpl implements ITarjetasService{
 		
         Pageable paging = PageRequest.of(0, 1);
 
-		int cash = this.promotionRepository.getOccurences(paging);
-		int monthly = this.promotionRepository.getOccurencesMonthly(paging);
+		int cash = Integer.parseInt(this.promotionRepository.getOccurences(paging).get(0));
+		int monthly = Integer.parseInt(this.promotionRepository.getOccurencesMonthly(paging).get(0));
 		if (cash > monthly) {
-		return this.promotionRepository.findById(this.promotionRepository.getMostUsed(paging));
+		return this.promotionRepository.findById(this.promotionRepository.getMostUsed(paging).get(0));
 		} else {
-			return this.promotionRepository.findById(this.promotionRepository.getMostUsedMonthly(paging));
+			return this.promotionRepository.findById(this.promotionRepository.getMostUsedMonthly(paging).get(0));
 		}
 	}
 
@@ -149,15 +151,9 @@ public class ITarjetasServiceImpl implements ITarjetasService{
 	}
 
 	@Override
-	public String getInfoFromBusiness(String month, String type) throws TarjetasException{
-
-		Pageable paging = PageRequest.of(0, 1);
-
-		if (type == "cash") {
-			return this.purchaseRepository.getStoreWithMoreSalesCash(month, paging);
-		} else {
-			return this.purchaseRepository.getStoreWithMoreSalesMonthly(month);
-		}
+	@Transactional
+	public PurchaseDTO getInfoFromBusiness(String month) throws TarjetasException{
+		return this.purchaseRepository.getStoreWithMoreSales(month);
 	}
 	
 	@Override

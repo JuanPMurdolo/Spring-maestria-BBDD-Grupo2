@@ -35,7 +35,7 @@ public interface PromotionRepository extends JpaRepository<Promotion, Long> {
     		+ "FROM CashPayment c   "
     		+ "GROUP BY id "
     		+ "ORDER BY COUNT(*) DESC  ")
-    Long getMostUsed(Pageable pageable);
+    List<Long> getMostUsed(Pageable pageable);
     
 	/*
 	 * @Query(value = "SELECT COUNT(id_promotion) " + "FROM cash_payment " +
@@ -47,7 +47,7 @@ public interface PromotionRepository extends JpaRepository<Promotion, Long> {
     		+ "FROM CashPayment c   "
     		+ "GROUP BY id "
     		+ "ORDER BY COUNT(*)  ")
-    int getOccurences(Pageable pageable);
+    List<String> getOccurences(Pageable pageable);
     
 	/*
 	 * @Query(value = "SELECT id_promotion " + "FROM monthly_payments " +
@@ -59,7 +59,7 @@ public interface PromotionRepository extends JpaRepository<Promotion, Long> {
     		+ "FROM MonthlyPayments m   "
     		+ "GROUP BY id "
     		+ "ORDER BY COUNT(*) DESC  ")
-    Long getMostUsedMonthly(Pageable pageable);
+    List<Long> getMostUsedMonthly(Pageable pageable);
     
 	/*
 	 * @Query(value = "SELECT COUNT(id_promotion) " + "FROM monthly_payments " +
@@ -71,7 +71,7 @@ public interface PromotionRepository extends JpaRepository<Promotion, Long> {
     		+ "FROM MonthlyPayments m   "
     		+ "GROUP BY id "
     		+ "ORDER BY COUNT(*)  ")
-    int getOccurencesMonthly(Pageable pageable);
+    List<String> getOccurencesMonthly(Pageable pageable);
     
     
     @Modifying
