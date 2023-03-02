@@ -1,5 +1,6 @@
 package unlp.basededatos.tarjetas.repositories;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -7,16 +8,29 @@ import unlp.basededatos.tarjetas.model.Purchase;
 
 public interface PurchaseRepository extends JpaRepository<Purchase, Long> {
 
-    @Query(value = "SELECT cash_payment.cuit_store, cash_payment.amount, cash_payment.store " +
-            "FROM cash_payment " +
-            "INNER JOIN payment_cashpayments ON cash_payment.id_purchase = payment_cashpayments.cashpayments_id_purchase " +
-            "INNER JOIN payment ON payment_cashpayments.payment_id_payment = payment.id_payment " +
-            "WHERE payment.`month` = :month " +
-            "GROUP BY cash_payment.store " +
-            "ORDER BY cash_payment.amount DESC " +
-            "LIMIT 1", nativeQuery = true)
-    String getStoreWithMoreSalesCash(@Param("month") String month);
+	/*
+	 * @Query(value =
+	 * "SELECT cashpayment.cuit_store, cashpayment.amount, cashpayment.store   " +
+	 * "            FROM cashpayment   " +
+	 * "            INNER JOIN payment_cashpayment ON cashpayment.id = payment_cashpayment.cashpayment_id   "
+	 * +
+	 * "            INNER JOIN payment ON payment_cashpayment.payment_id = payment.id   "
+	 * + "            WHERE payment.`month` = :month  " +
+	 * "            GROUP BY cashpayment.cuit_store, cashpayment.amount, cashpayment.store   "
+	 * + "            ORDER BY cashpayment.amount DESC   " + "            LIMIT 1",
+	 * nativeQuery = true) String getStoreWithMoreSalesCash(@Param("month") String
+	 * month);
+	 */
 
+    //la SQL de arriba pasada a HQL
+    @Query(value = "SELECT c.cuitStore, c.amount ,c.store "
+	    		+ " FROM Payment p "
+	    		+ " INNER JOIN p.cashpayment c   "
+	    		+ " WHERE p.month   = :month    "
+	    		+ " GROUP BY c.cuitStore, c.amount ,c.store "
+	    		+ " ORDER BY c.amount DESC   ")
+    String getStoreWithMoreSalesCash(@Param("month") String month, Pageable pageable);
+    
     @Query(value = "SELECT monthly_payments.store,monthly_payments.cuit_store,monthly_payments.amount " +
             "FROM monthly_payments " +
             "INNER JOIN payment " +

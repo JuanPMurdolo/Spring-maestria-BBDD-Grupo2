@@ -2,6 +2,7 @@ package unlp.basededatos.tarjetas.services.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import org.springframework.transaction.annotation.Transactional;
@@ -129,12 +130,15 @@ public class ITarjetasServiceImpl implements ITarjetasService{
 
 	@Override
 	public Optional<Promotion> getPromotionMostUsed() throws TarjetasException{
-		int cash = this.promotionRepository.getOccurences();
-		int monthly = this.promotionRepository.getOccurencesMonthly();
+		
+        Pageable paging = PageRequest.of(0, 1);
+
+		int cash = this.promotionRepository.getOccurences(paging);
+		int monthly = this.promotionRepository.getOccurencesMonthly(paging);
 		if (cash > monthly) {
-		return this.promotionRepository.findById(this.promotionRepository.getMostUsed());
+		return this.promotionRepository.findById(this.promotionRepository.getMostUsed(paging));
 		} else {
-			return this.promotionRepository.findById(this.promotionRepository.getMostUsedMonthly());
+			return this.promotionRepository.findById(this.promotionRepository.getMostUsedMonthly(paging));
 		}
 	}
 
@@ -146,8 +150,11 @@ public class ITarjetasServiceImpl implements ITarjetasService{
 
 	@Override
 	public String getInfoFromBusiness(String month, String type) throws TarjetasException{
+
+		Pageable paging = PageRequest.of(0, 1);
+
 		if (type == "cash") {
-			return this.purchaseRepository.getStoreWithMoreSalesCash(month);
+			return this.purchaseRepository.getStoreWithMoreSalesCash(month, paging);
 		} else {
 			return this.purchaseRepository.getStoreWithMoreSalesMonthly(month);
 		}
