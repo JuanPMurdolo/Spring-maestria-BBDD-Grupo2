@@ -5,26 +5,19 @@ import java.util.List;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
-@Table(name = "Bank")
+@Document
 public class Bank {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name ="id_bank")
     private Long id;
 
-    @Column(name = "name", length = 100)
+
     private String name;
-
-    @Column(name = "cuit")
     private String cuit;
-
-    @Column(name = "address")
     private String address;
 
-    @Column(name = "telephone")
     private String telephone;
 
 	// bi-directional many-to-one association to Card
@@ -37,18 +30,10 @@ public class Bank {
     //Un Banco puede tener muchos clientes (CardHolders)
     //Pero los clientes pueden pertenecer a uno o mas bancos
     //la relacion parece muchos a muchos
-    @JsonIgnore 
-    @ManyToMany( cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(
-        name = "banks_cardholders",
-        joinColumns = @JoinColumn(name = "id_bank"),
-        inverseJoinColumns = @JoinColumn(name = "id_cardholder")
-    )
     private List<CardHolder> cardHolders;
 
 
     //Y los bancos pueden tener 0 o muchas promociones
-    @OneToMany( cascade = CascadeType.ALL, fetch = FetchType.LAZY )
     private List<Promotion> promotions;
 	
     public Bank(String name, String cuit, String address, String telephone) {

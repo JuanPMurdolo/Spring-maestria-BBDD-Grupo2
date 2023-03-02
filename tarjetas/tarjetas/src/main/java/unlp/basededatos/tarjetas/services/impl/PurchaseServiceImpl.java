@@ -7,10 +7,8 @@ import unlp.basededatos.tarjetas.services.PurchaseService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.Transient;
-import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PurchaseServiceImpl implements PurchaseService{
@@ -24,13 +22,13 @@ public class PurchaseServiceImpl implements PurchaseService{
     }
 
     @Override
-    public Purchase getPurchase(Long id) throws TarjetasException {
-        return this.repository.getReferenceById(id);
+    public Optional<Purchase> getPurchase(Long id) throws TarjetasException {
+        return this.repository.findById(id);
     }
 
     @Override
     public Purchase updatePurchase(Purchase purchase, Long id) throws TarjetasException  {
-        Purchase purchase1 =  this.repository.getReferenceById(id);
+        Purchase purchase1 = this.repository.findById(id).orElse(null);
         purchase1.setStore(purchase.getStore());
         purchase1.setPaymentVoucher(purchase.getPaymentVoucher());
         this.repository.save(purchase1);

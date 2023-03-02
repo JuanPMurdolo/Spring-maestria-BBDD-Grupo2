@@ -12,7 +12,6 @@ import java.util.List;
 public class Payment {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String code;
@@ -21,15 +20,11 @@ public class Payment {
 
     private String year;
 
-    @Column(name = "first_expiration")
     private Date firstExpiration;
 
-    @Column(name = "second_expiration")
     private Date secondExpiration;
 
     private float purchase;
-
-    @Column(name = "total_price")
     private float totalPrice;
 
     //falta la relacion e/Quota y Payment

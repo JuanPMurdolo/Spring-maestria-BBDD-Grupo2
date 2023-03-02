@@ -1,13 +1,13 @@
 package unlp.basededatos.tarjetas.model;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import javax.persistence.*;
 
-@Entity
-@Table(name = "quota")
+@Document
 public class Quota {
 	
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private  int number;

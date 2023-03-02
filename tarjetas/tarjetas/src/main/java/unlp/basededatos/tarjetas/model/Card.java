@@ -3,44 +3,31 @@ package unlp.basededatos.tarjetas.model;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 
-@Entity
-@Table(name = "Card")
+@Document
 public class Card {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name ="id_card")
     private Long id;
-
-    @Column(name ="number")
     private String number;
 
-    @Column(name ="ccv")
     private String ccv;
 
-    @Column(name ="cardholder")
     private String cardholderNameInCard;
 
-    @Column(name ="since")
     private Date since;
 
-    @Column(name ="expiration")
     private Date expirationDate;
 
 	//bi-directional many-to-one association to Bank
     // muchas tarjetas solo puede pertenecer a un Banco (bank)
     // MUCHOS a uno
-    @JsonIgnore
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {})
-	@JoinColumn(name="id_bank")
-	private Bank bank;
+    private Bank bank;
 
     //Una tarjeta puede tener solo un owner(CardHolder)
     //Muchos a uno
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {})
-    @JoinColumn(name="id_owner")
     private CardHolder owner;
     
     public Card(String number, String ccv, String cardholderNameInCard, Date since, Date expirationDate) {

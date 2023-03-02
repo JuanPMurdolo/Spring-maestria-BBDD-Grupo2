@@ -24,13 +24,13 @@ public class PromotionsServiceImpl implements PromotionsService{
     @Override
     @Transactional
     public Promotion getPromotion(Long id) throws TarjetasException {
-        return this.repository.getReferenceById(id);
+        return this.repository.findById(id).orElse(null);
     }
 
     @Override
     @Transactional
     public Promotion updatePromotion(Promotion promotion, Long id) throws TarjetasException  {
-        Promotion promotion1 =  this.repository.getReferenceById(id);
+        Promotion promotion1 =  this.repository.findById(id).orElse(null);
         promotion1.setCode(promotion.getCode());
         promotion1.setComments(promotion.getComments());
         this.repository.save(promotion1);

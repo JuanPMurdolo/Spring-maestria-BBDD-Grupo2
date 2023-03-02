@@ -1,5 +1,6 @@
 package unlp.basededatos.tarjetas.repositories;
 
+import org.springframework.data.mongodb.repository.MongoRepository;
 import unlp.basededatos.tarjetas.model.Bank;
 import unlp.basededatos.tarjetas.utils.BankDTO;
 
@@ -10,7 +11,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 import java.util.Map;
 
-public interface BankRepository extends JpaRepository<Bank, Long>{
+public interface BankRepository extends MongoRepository<Bank, Long> {
 
 	/*
 	 * @Query(value =

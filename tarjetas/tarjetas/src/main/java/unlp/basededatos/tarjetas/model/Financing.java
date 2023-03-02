@@ -1,16 +1,15 @@
 package unlp.basededatos.tarjetas.model;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity
+@Document
 @DiscriminatorValue("Financing")
 public class Financing extends Promotion{
 
-    @Column(name = "number_of_quotas")
     private int numberOfQuotas;
-
-    @Column(name = "interes")
     private float interes;
 
     public Financing(String code, String promotionTitle, String nameStore, String cuitStore, Date validityStartDate, Date validityEndDate, String comments, int numberOfQuotas, float interes) {

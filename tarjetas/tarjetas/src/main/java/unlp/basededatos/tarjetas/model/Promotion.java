@@ -5,6 +5,8 @@ import javax.persistence.*;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import unlp.basededatos.tarjetas.enums.PromotionType;
 
 import java.util.Date;
@@ -19,40 +21,24 @@ import java.util.List;
 		@JsonSubTypes.Type(value = Financing.class, name = "financing"),
 })
 
-@Entity
-@Table(name = "Promotion")
+@Document
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Promotion {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name ="id_promotion")
     private Long id;
 
-    @Column(name = "code")
     private String code;
 
-    @Column(name = "promotion_title")
     private String promotionTitle;
 
-    @Column(name = "name_store")
     private String nameStore;
 
-    @Column(name = "cuit_store")
     private String cuitStore;
 
-    @Column(name = "validity_start_date")
     private Date validityStartDate;
-
-    @Column(name = "validity_end_date")
     private Date validityEndDate;
-
-    @Column(name = "comments")
     private String comments;
-    
-    @Column(name = "promo_type")
     private PromotionType promoType;
-    
-    @Column(name = "borrado")
     private Boolean borrado = false;
 
     //Una promocion puede pertenecer a muchos bancos
@@ -64,8 +50,7 @@ public abstract class Promotion {
 	 * "bankID"), inverseJoinColumns = @JoinColumn(name = "promotionID") ) private
 	 * List<Bank> banks;
 	 */
-    
-    @OneToMany( cascade = CascadeType.ALL, fetch = FetchType.LAZY )
+    @DocumentReference(lazy = true)
     private List<Purchase> purchase;
 
 

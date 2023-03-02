@@ -1,13 +1,12 @@
 package unlp.basededatos.tarjetas.model;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import javax.persistence.*;
 
-@Entity
-@Table(name = "cashpayment")
+@Document
 @DiscriminatorValue("Cash")
 public class CashPayment extends Purchase{
-
-    @Column(name = "store_discount")
     private float storeDiscount;
   
     public CashPayment(String paymentVoucher, String store, String cuitStore, float amount, float finalAmount, float storeDiscount) {

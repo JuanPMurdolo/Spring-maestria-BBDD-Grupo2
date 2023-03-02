@@ -1,11 +1,11 @@
 package unlp.basededatos.tarjetas.repositories;
 
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.repository.query.Param;
 import unlp.basededatos.tarjetas.model.Purchase;
 
-public interface PurchaseRepository extends JpaRepository<Purchase, Long> {
+public interface PurchaseRepository extends MongoRepository<Purchase, Long> {
 
     @Query(value = "SELECT cash_payment.cuit_store, cash_payment.amount, cash_payment.store " +
             "FROM cash_payment " +

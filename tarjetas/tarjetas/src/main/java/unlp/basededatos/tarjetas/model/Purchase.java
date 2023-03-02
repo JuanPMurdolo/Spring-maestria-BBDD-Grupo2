@@ -8,6 +8,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import unlp.basededatos.tarjetas.enums.PurchaseType;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME,
@@ -19,44 +21,35 @@ import unlp.basededatos.tarjetas.enums.PurchaseType;
 		@JsonSubTypes.Type(value = CashPayment.class, name = "cash"),
 })
 
-@Entity
-@Table(name = "purchase")
+@Document
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Purchase {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    @Column(name = "payment_voucher")
     private String paymentVoucher;
 
-    @Column(name = "store")
     private String store;
 
-    @Column(name = "cuit_store")
     private String cuitStore;
 
-    @Column(name = "amount")
     private float amount;
 
-    @Column(name = "final_amount")
     private float finalAmount;
 
     //@ManyToOne(fetch = FetchType.EAGER, cascade = {})
-    @ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.MERGE })
+    /*@ManyToMany(fetch = FetchType.EAGER, cascade = { CascadeType.MERGE })
     @JoinTable(
             name = "purchase_promotion",
             joinColumns = { @JoinColumn(name = "id_purchase") },
             inverseJoinColumns = { @JoinColumn(name = "id_promotion") })
-    @JsonIgnore
+    @JsonIgnore*/
+    @DocumentReference(lazy = false)
     private List<Promotion> promotions;
     
     //Una compra tiene asociada una sola tarjeta
-    @ManyToOne(fetch = FetchType.EAGER, cascade = {})
-    @JoinColumn(name="id_card")
+    @DocumentReference()
     private Card card;
-    
-    @Column(name = "purchase_type")
+
     private PurchaseType purchaseType;
 
     public Purchase(String paymentVoucher, String store, String cuitStore, float amount, float finalAmount) {

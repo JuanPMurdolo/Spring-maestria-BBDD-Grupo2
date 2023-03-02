@@ -1,19 +1,16 @@
 package unlp.basededatos.tarjetas.model;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity
+@Document
 @DiscriminatorValue("Discount")
 public class Discount extends Promotion{
-
-    @Column(name = "discount_percentage")
     private float discountPercentage;
-
-    @Column(name = "price_cap")
     private float priceCap;
 
-    @Column(name = "only_cash")
     private boolean onlyCash;
 
     public Discount(String code, String promotionTitle, String nameStore, String cuitStore, Date validityStartDate, Date validityEndDate, String comments, float discountPercentage, float priceCap, boolean onlyCash) {

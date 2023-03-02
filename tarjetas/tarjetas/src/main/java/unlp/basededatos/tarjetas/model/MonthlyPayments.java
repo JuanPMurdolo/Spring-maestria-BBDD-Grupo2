@@ -5,16 +5,12 @@ import java.util.List;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
-@Table(name = "monthlypayments")
+@Document
 @DiscriminatorValue("Monthly")
 public class MonthlyPayments extends Purchase {
-
-    @Column(name = "intereset")
     private float interest;
-
-    @Column(name = "number_of_quotas")
     private int numberOfQuotas;
 
   //bi-directional many-to-one association to Quota

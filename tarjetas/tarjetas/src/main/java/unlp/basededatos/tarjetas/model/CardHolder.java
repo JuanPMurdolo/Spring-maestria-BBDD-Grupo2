@@ -1,39 +1,30 @@
 package unlp.basededatos.tarjetas.model;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import javax.persistence.*;
 
 import java.util.Date;
 import java.util.List;
 
-@Entity
-@Table(name = "cardholder")
+@Document
 public class CardHolder {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name ="id_cardholder")
     private Long id;
 
-
-    @Column(name = "complete_name")
     private String completeName;
 
-    @Column(name = "dni")
     private String dni;
 
-    @Column(name = "cuil")
     private String cuil;
 
-    @Column(name = "address")
     private String address;
 
-    @Column(name = "telephone")
     private String telephone;
 
-    @Column(name = "entry")
     private Date entry;
 
     //La relacion parece ser muchos a muchos
-    @ManyToMany(mappedBy = "cardHolders")
     private List<Bank> banks;
 //    
 //    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
