@@ -2,11 +2,10 @@ package unlp.basededatos.tarjetas.model;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.persistence.*;
 import java.util.Date;
 
+
 @Document
-@DiscriminatorValue("Financing")
 public class Financing extends Promotion{
 
     private int numberOfQuotas;

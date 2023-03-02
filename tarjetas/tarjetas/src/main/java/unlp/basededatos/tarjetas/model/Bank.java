@@ -2,15 +2,15 @@ package unlp.basededatos.tarjetas.model;
 
 import java.util.List;
 
-import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 
 @Document
 public class Bank {
 
-    @Id
+    @MongoId
     private Long id;
 
 

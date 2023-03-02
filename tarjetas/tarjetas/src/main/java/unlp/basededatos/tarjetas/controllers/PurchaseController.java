@@ -76,7 +76,7 @@ public class PurchaseController {
      */
     @GetMapping(path = "/id/{id}")
     public Purchase getPurchase(@PathVariable Long id) throws TarjetasException {
-        return this.service.getPurchase(id);
+        return this.service.getPurchase(id).orElse(null);
     }
 
     /*

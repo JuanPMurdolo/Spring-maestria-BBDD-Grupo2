@@ -3,10 +3,6 @@ package unlp.basededatos.tarjetas.repositories.impl;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-
-import javax.persistence.EntityNotFoundException;
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -24,7 +20,6 @@ public class BankRepositoryImpl implements IBankRepository {
 	private BankRepository repository;
 
 	@Override
-	@Transactional
 	public Bank getBankMostImportByCard() throws TarjetasException {
 		try {
 
@@ -70,7 +65,7 @@ public class BankRepositoryImpl implements IBankRepository {
 			}
 
 			Bank bank1 = this.repository.findById(id_bank_most)
-					.orElseThrow(() -> new EntityNotFoundException("Can't find bank by id: 1"));
+					.orElseThrow(() -> new TarjetasException("Can't find bank by id: 1"));
 
 			return bank1;
 		} catch (Exception e) {

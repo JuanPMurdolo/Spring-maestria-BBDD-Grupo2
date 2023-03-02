@@ -1,13 +1,11 @@
 package unlp.basededatos.tarjetas.model;
 
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import javax.persistence.*;
-
+import org.springframework.data.mongodb.core.mapping.MongoId;
 @Document
 public class Quota {
 	
-    @Id
+    @MongoId
     private Long id;
 
     private  int number;

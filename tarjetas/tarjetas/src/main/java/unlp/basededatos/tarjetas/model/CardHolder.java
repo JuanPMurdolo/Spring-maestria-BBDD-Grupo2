@@ -1,15 +1,16 @@
 package unlp.basededatos.tarjetas.model;
 
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 
-import javax.persistence.*;
 
 import java.util.Date;
 import java.util.List;
 
+
 @Document
 public class CardHolder {
-    @Id
+    @MongoId
     private Long id;
 
     private String completeName;

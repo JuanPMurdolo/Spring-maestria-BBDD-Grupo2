@@ -4,9 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -22,7 +19,6 @@ public class PaymentRepositoryImpl implements IPaymentRepository {
 	private PaymentRepository repository;
 
 	@Override
-	@Transactional
 	public String findTotalByMonth(String month) throws TarjetasException{
 		try {
 			float totalMonthly = getTotalCashByMonth(month);

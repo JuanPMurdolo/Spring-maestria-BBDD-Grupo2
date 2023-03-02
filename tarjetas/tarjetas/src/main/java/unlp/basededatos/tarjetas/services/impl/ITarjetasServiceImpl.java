@@ -20,8 +20,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-import javax.persistence.EntityNotFoundException;
-
 @Service
 public class ITarjetasServiceImpl implements ITarjetasService{
     
@@ -71,7 +69,7 @@ public class ITarjetasServiceImpl implements ITarjetasService{
 		bankRepository.findById(id);
 		
 		Bank bank = bankRepository.findById(id)
-                .orElseThrow(()-> new EntityNotFoundException("Can't find bank by id: "+id));
+                .orElseThrow(()-> new TarjetasException("Can't find bank by id: "+id));
         
 		bank.addPromotion(promotion);
 		bankRepository.save(bank);
@@ -107,7 +105,7 @@ public class ITarjetasServiceImpl implements ITarjetasService{
 	public float totalQuota(Long id) throws TarjetasException {
 		Float totalPayment = (float) 0;
 		MonthlyPayments monthlyPayments = this.monthlyPaymentRepository.findById(id)
-                .orElseThrow(()-> new EntityNotFoundException("Can't find MonthlyPayment by id: "+id));
+                .orElseThrow(()-> new TarjetasException("Can't find MonthlyPayment by id: "+id));
 		List<Quota> quotas = monthlyPayments.getQuotas();
 		for (int i = 0; i < quotas.size(); i++){
 			totalPayment = totalPayment + quotas.get(i).getPrice();

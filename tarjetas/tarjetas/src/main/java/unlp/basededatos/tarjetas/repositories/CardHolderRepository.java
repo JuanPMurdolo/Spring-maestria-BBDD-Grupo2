@@ -5,8 +5,7 @@ import unlp.basededatos.tarjetas.model.CardHolder;
 import unlp.basededatos.tarjetas.utils.BankDTO;
 
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.mongodb.repository.Query;
 import java.util.List;
 
 public interface CardHolderRepository extends MongoRepository<CardHolder, Long> {

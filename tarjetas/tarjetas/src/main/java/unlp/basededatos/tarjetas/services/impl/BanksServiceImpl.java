@@ -2,19 +2,12 @@ package unlp.basededatos.tarjetas.services.impl;
 
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 import unlp.basededatos.tarjetas.model.Bank;
-import unlp.basededatos.tarjetas.model.Bank;
-import unlp.basededatos.tarjetas.model.Discount;
-import unlp.basededatos.tarjetas.model.Promotion;
-import unlp.basededatos.tarjetas.repositories.BankRepository;
 import unlp.basededatos.tarjetas.repositories.BankRepository;
 import unlp.basededatos.tarjetas.services.BanksService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.Transient;
-import java.util.List;
 import java.util.Optional;
 
 @Service

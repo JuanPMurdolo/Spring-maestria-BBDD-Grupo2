@@ -1,15 +1,15 @@
 package unlp.basededatos.tarjetas.model;
 
-import javax.persistence.*;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 
 import java.util.Date;
 
+
 @Document
 public class Card {
-    @Id
+    @MongoId
     private Long id;
     private String number;
 

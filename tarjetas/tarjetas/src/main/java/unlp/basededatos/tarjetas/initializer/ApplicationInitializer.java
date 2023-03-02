@@ -49,12 +49,12 @@ public class ApplicationInitializer implements CommandLineRunner {
 
 	public void run(String... args) throws Exception {
 
-		crearBancos();
+		//crearBancos();
 		//crearPagos();
 		//crearPunto1();
 		//crearPurchases();
-		crearBancos2();
-		crearTitulares();
+		//crearBancos2();
+		//crearTitulares();
 		//crearCards();
 		//crearCashyPromos(); 
 

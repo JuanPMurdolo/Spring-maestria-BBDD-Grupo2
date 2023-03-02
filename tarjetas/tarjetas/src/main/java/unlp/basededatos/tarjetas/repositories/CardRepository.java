@@ -1,6 +1,6 @@
 package unlp.basededatos.tarjetas.repositories;
 
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.repository.query.Param;
 

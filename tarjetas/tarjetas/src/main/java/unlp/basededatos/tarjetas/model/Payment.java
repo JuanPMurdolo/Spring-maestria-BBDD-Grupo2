@@ -1,17 +1,18 @@
 package unlp.basededatos.tarjetas.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import javax.persistence.*;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 
 import java.util.Date;
 import java.util.List;
 
-@Entity
-@Table(name = "payment")
+
+@Document
 public class Payment {
 
-    @Id
+    @MongoId
     private Long id;
 
     private String code;
@@ -29,11 +30,10 @@ public class Payment {
 
     //falta la relacion e/Quota y Payment
     @JsonIgnore
-    @OneToMany( cascade = CascadeType.MERGE, fetch = FetchType.EAGER )
+    @DocumentReference
     private List<Quota> quota;
 
     //Falta la relacion /CashPayment y Payment
-	@OneToMany
 	private List<CashPayment> cashpayment;
 	
 	public Payment(String code, String month, String year, Date firstExpiration, Date secondExpiration, float purchase, float totalPrice) {

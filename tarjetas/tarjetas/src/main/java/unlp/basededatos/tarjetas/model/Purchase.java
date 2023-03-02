@@ -2,14 +2,12 @@ package unlp.basededatos.tarjetas.model;
 
 import java.util.List;
 
-import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 import unlp.basededatos.tarjetas.enums.PurchaseType;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME,
@@ -22,9 +20,8 @@ import unlp.basededatos.tarjetas.enums.PurchaseType;
 })
 
 @Document
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Purchase {
-    @Id
+    @MongoId
     private Long id;
     private String paymentVoucher;
 

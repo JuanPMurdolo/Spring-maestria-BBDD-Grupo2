@@ -1,12 +1,12 @@
 package unlp.basededatos.tarjetas.model;
 
-import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
+import org.springframework.data.mongodb.core.mapping.MongoId;
 import unlp.basededatos.tarjetas.enums.PromotionType;
 
 import java.util.Date;
@@ -22,9 +22,8 @@ import java.util.List;
 })
 
 @Document
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Promotion {
-    @Id
+    @MongoId
     private Long id;
 
     private String code;
