@@ -69,14 +69,14 @@ public class ApplicationInitializer implements CommandLineRunner {
 		cardHolder1.setDni("123456");
 		cardHolder1.setTelephone("654321");
 		cardHolder1.setCuil("11-4681561-8");
-		//cardHolderService.createCardHolder(cardHolder1);
+		cardHolderService.createCardHolder(cardHolder1);
 		
         CardHolder cardHolder2 = new CardHolder();
 		cardHolder2.setCompleteName("Pablito");
 		cardHolder2.setDni("345673546");
 		cardHolder2.setTelephone("34561234");
 		cardHolder2.setCuil("11-1213454-8");
-		//cardHolderService.createCardHolder(cardHolder2);
+		cardHolderService.createCardHolder(cardHolder2);
 
         List<CardHolder> cardHoldersList = new ArrayList<CardHolder>();
         cardHoldersList.add(cardHolder1);
