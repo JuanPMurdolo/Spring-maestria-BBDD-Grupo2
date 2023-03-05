@@ -23,7 +23,7 @@ public interface IPaymentRepository {
 
 	void save(Payment payment);
 
-	Optional<Payment> findById(Long id); 
+	Optional<Payment> findById(String id);
 
 
 }

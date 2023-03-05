@@ -23,13 +23,13 @@ public class PromotionsServiceImpl implements PromotionsService{
 
     @Override
     @Transactional
-    public Promotion getPromotion(Long id) throws TarjetasException {
+    public Promotion getPromotion(String id) throws TarjetasException {
         return this.repository.findById(id).orElse(null);
     }
 
     @Override
     @Transactional
-    public Promotion updatePromotion(Promotion promotion, Long id) throws TarjetasException  {
+    public Promotion updatePromotion(Promotion promotion, String id) throws TarjetasException  {
         Promotion promotion1 =  this.repository.findById(id).orElse(null);
         promotion1.setCode(promotion.getCode());
         promotion1.setComments(promotion.getComments());

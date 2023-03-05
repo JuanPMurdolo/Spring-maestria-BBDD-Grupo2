@@ -76,7 +76,7 @@ public class PromotionController {
     
      */
     @GetMapping(path = "/id/{id}")
-    public Promotion getPromotion(@PathVariable Long id) throws TarjetasException {
+    public Promotion getPromotion(@PathVariable String id) throws TarjetasException {
         return this.service.getPromotion(id);
     }
 
@@ -93,7 +93,7 @@ public class PromotionController {
     }
      */
     @PutMapping(path = "/update/{id}")
-    public Promotion updatePromotion(@RequestBody Promotion promotion, @PathVariable Long id) throws TarjetasException{
+    public Promotion updatePromotion(@RequestBody Promotion promotion, @PathVariable String id) throws TarjetasException{
         return this.service.updatePromotion(promotion,id);
     }
 

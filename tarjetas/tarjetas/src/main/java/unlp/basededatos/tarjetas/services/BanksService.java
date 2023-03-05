@@ -12,6 +12,6 @@ public interface BanksService {
 
 	    void createBank(Bank bank) throws TarjetasException;
 
-	    Optional<Bank> getBank(Long id) throws TarjetasException;
+	    Optional<Bank> getBank(String id) throws TarjetasException;
 
 }

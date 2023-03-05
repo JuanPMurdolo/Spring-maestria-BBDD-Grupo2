@@ -64,7 +64,7 @@ public class ITarjetasServiceImpl implements ITarjetasService{
     }
     
 	@Transactional
-	public Promotion addNewPromotion(Promotion promotion, Long id) throws TarjetasException {
+	public Promotion addNewPromotion(Promotion promotion, String id) throws TarjetasException {
 
 		bankRepository.findById(id);
 		
@@ -89,7 +89,7 @@ public class ITarjetasServiceImpl implements ITarjetasService{
 	}
 
 	@Override
-	public String getPurchaseInfo(Long id) throws TarjetasException {
+	public String getPurchaseInfo(String id) throws TarjetasException {
 		return this.purchaseRepository.getPurchaseInfo(id);
 	}
 
@@ -102,7 +102,7 @@ public class ITarjetasServiceImpl implements ITarjetasService{
 
 	@Override
 	@Transactional
-	public float totalQuota(Long id) throws TarjetasException {
+	public float totalQuota(String id) throws TarjetasException {
 		Float totalPayment = (float) 0;
 		MonthlyPayments monthlyPayments = this.monthlyPaymentRepository.findById(id)
                 .orElseThrow(()-> new TarjetasException("Can't find MonthlyPayment by id: "+id));

@@ -22,7 +22,7 @@ public class CardHolderServiceImpl implements CardHolderService {
 
 
     @Override
-    public Optional<CardHolder> getCardHolder(Long id) throws TarjetasException {
+    public Optional<CardHolder> getCardHolder(String id) throws TarjetasException {
         return this.repository.findById(id);
     }
 

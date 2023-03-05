@@ -37,7 +37,7 @@ public class CardHolderController {
 
 	 */
 	@GetMapping(path = "/id/{id}")
-	public Optional<CardHolder> getCardHolder(@PathVariable Long id) throws TarjetasException {
+	public Optional<CardHolder> getCardHolder(@PathVariable String id) throws TarjetasException {
 		return this.service.getCardHolder(id);
 	}
 

@@ -12,7 +12,7 @@ import unlp.basededatos.tarjetas.utils.TarjetasException;
 
 public interface PaymentService {
 
-    Optional<Payment> getPayment(Long id) throws TarjetasException;
+    Optional<Payment> getPayment(String id) throws TarjetasException;
 
     List<Payment> getPaymentsByCode(String code) throws TarjetasException;
 

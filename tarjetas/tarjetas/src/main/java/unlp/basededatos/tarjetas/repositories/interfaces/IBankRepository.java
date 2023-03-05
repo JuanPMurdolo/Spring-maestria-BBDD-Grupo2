@@ -19,7 +19,7 @@ public interface IBankRepository {
 
 	void save(Bank bank);
 
-	Optional<Bank> findById(Long id);
+	Optional<Bank> findById(String id);
 
 	Bank getBankMostImportByCard() throws TarjetasException;
 

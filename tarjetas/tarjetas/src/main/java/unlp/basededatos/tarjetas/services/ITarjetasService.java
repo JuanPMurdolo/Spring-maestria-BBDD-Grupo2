@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface ITarjetasService {
 
     // 1- Agregar una nueva promoción de tipo descuento a un banco dado
-	public Promotion addNewPromotion(Promotion promotion, Long id) throws TarjetasException;
+	public Promotion addNewPromotion(Promotion promotion, String id) throws TarjetasException;
     
     // 2- Editar las fecha de vencimiento de un pago con cierto código.
     public List<Payment> updatePaymentsExpiration(String code, Date first, Date second) throws TarjetasException;
@@ -22,13 +22,13 @@ public interface ITarjetasService {
     public List<Card> getCardSoonExpiration() throws TarjetasException;
 
     // 5-Obtener la información de una compra, incluyendo el listado de cuotas si esta posee.
-    public String getPurchaseInfo(Long id) throws TarjetasException;
+    public String getPurchaseInfo(String id) throws TarjetasException;
 
     // 6-Eliminar una promoción a traves de su código (tener en cuenta que esta puede haber sido aplicada alguna compra)
 	public void deletePromotion(String code) throws TarjetasException;
 
     // 7-Obtener el precio total a pagar de una compra en cuotas (tener en cuenta que pueden existir promociones aplicadas)
-    public float totalQuota(Long id) throws TarjetasException;
+    public float totalQuota(String id) throws TarjetasException;
     
     // 8-Obtener el listado de las promociones disponibles de un local entre dos fechas
     public List<Promotion> promotionListBetweenDates(String cuit, Date date, Date date1) throws TarjetasException;

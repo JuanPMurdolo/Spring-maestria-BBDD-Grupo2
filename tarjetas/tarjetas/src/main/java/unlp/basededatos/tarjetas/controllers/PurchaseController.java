@@ -75,7 +75,7 @@ public class PurchaseController {
     
      */
     @GetMapping(path = "/id/{id}")
-    public Purchase getPurchase(@PathVariable Long id) throws TarjetasException {
+    public Purchase getPurchase(@PathVariable String id) throws TarjetasException {
         return this.service.getPurchase(id).orElse(null);
     }
 
@@ -92,12 +92,12 @@ public class PurchaseController {
     }
      */
     @PutMapping(path = "/update/{id}")
-    public Purchase updatePurchase(@RequestBody Purchase purchase, @PathVariable Long id) throws TarjetasException{
+    public Purchase updatePurchase(@RequestBody Purchase purchase, @PathVariable String id) throws TarjetasException{
         return this.service.updatePurchase(purchase,id);
     }
 
     @GetMapping(path = "/purchaseFullInfo/{id}")
-    public String purchaseFullInfo(@PathVariable Long id) throws TarjetasException{
+    public String purchaseFullInfo(@PathVariable String id) throws TarjetasException{
         try {
             return this.iTarjetasService.getPurchaseInfo(id);
         } catch (Exception e) {
@@ -118,7 +118,7 @@ public class PurchaseController {
     }
 
     @GetMapping(path = "/getQuotasTotal/{id}")
-    public float getQuotasTotal(@PathVariable Long id) throws TarjetasException {
+    public float getQuotasTotal(@PathVariable String id) throws TarjetasException {
         try {
             return this.iTarjetasService.totalQuota(id);
         }

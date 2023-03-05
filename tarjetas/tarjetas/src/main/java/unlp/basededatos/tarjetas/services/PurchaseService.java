@@ -9,9 +9,9 @@ public interface PurchaseService {
 
 	    Purchase createPurchase(Purchase purchase) throws TarjetasException;
 
-	    Optional<Purchase> getPurchase(Long id) throws TarjetasException;
+	    Optional<Purchase> getPurchase(String id) throws TarjetasException;
 
-	    Purchase updatePurchase(Purchase purchase,Long id) throws TarjetasException;
+	    Purchase updatePurchase(Purchase purchase,String id) throws TarjetasException;
 	    
 
 }

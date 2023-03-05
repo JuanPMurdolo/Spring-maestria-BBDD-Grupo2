@@ -64,7 +64,7 @@ public class PaymentRepositoryImpl implements IPaymentRepository {
 	}
 
 	@Override
-	public Optional<Payment> findById(Long id) {
+	public Optional<Payment> findById(String id) {
         return this.repository.findById(id);
 	}
 

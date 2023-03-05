@@ -11,7 +11,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-public interface PromotionRepository extends MongoRepository<Promotion, Long> {
+public interface PromotionRepository extends MongoRepository<Promotion, String> {
 
     @Query(value = "SELECT p FROM Promotion p WHERE p.cuitStore = :cuit AND validityStartDate BETWEEN :date AND :date1 OR validityEndDate BETWEEN :date AND :date1")
     List<Promotion> findPromotionByCuitByDate(@Param("cuit") String cuit, @Param("date") Date date, @Param("date1") Date date1);
@@ -20,13 +20,13 @@ public interface PromotionRepository extends MongoRepository<Promotion, Long> {
     List<Promotion> findPromotionByCode(@Param("code") String code, Pageable pageable);
 
     @Query(value = "db.collection.find()")
-    Long getMostUsed();
+    String getMostUsed();
 
     @Query(value = "db.collection.find()")
     int getOccurences();
 
     @Query(value = "db.collection.find()")
-    Long getMostUsedMonthly();
+    String getMostUsedMonthly();
 
     @Query(value = "db.collection.find()")
     int getOccurencesMonthly();

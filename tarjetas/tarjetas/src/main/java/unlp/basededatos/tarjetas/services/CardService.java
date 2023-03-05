@@ -13,7 +13,7 @@ public interface CardService {
 
     void createCard(Card card) throws TarjetasException;
 
-    Optional<Card> getCard(Long id) throws TarjetasException;
+    Optional<Card> getCard(String id) throws TarjetasException;
     
     List<Card> findCardExpirationDate(Date date, Date date1) throws TarjetasException;
 

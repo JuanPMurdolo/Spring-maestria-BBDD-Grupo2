@@ -28,7 +28,7 @@ public class QuotaServiceImpl implements QuotaService{
     }
 */
     @Override
-    public Optional<Quota> getQuota(Long id) throws TarjetasException {
+    public Optional<Quota> getQuota(String id) throws TarjetasException {
         return this.repository.findById(id);
     }
 /*

@@ -22,7 +22,7 @@ import unlp.basededatos.tarjetas.enums.PurchaseType;
 @Document
 public abstract class Purchase {
     @MongoId
-    private Long id;
+    private String id;
     private String paymentVoucher;
 
     private String store;
@@ -99,11 +99,11 @@ public abstract class Purchase {
         this.finalAmount = finalAmount;
     }
     
-    public Long getId() {
+    public String getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

@@ -5,7 +5,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.repository.query.Param;
 import unlp.basededatos.tarjetas.model.Purchase;
 
-public interface PurchaseRepository extends MongoRepository<Purchase, Long> {
+public interface PurchaseRepository extends MongoRepository<Purchase, String> {
 
     @Query(value = "db.collection.find()")
     String getStoreWithMoreSalesCash(@Param("month") String month);
@@ -14,5 +14,5 @@ public interface PurchaseRepository extends MongoRepository<Purchase, Long> {
     String getStoreWithMoreSalesMonthly(@Param("month") String month);
 
     @Query(value = "db.collection.find()")
-    String getPurchaseInfo(@Param("id") Long id);
+    String getPurchaseInfo(@Param("id") String id);
 }

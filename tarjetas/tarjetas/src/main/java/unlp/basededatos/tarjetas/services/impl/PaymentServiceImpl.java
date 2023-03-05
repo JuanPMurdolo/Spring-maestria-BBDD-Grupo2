@@ -23,7 +23,7 @@ public class PaymentServiceImpl implements PaymentService {
 	}
 
 	@Override
-	public Optional<Payment> getPayment(Long id) throws TarjetasException {
+	public Optional<Payment> getPayment(String id) throws TarjetasException {
 		return this.repository.findById(id);
 	}
 

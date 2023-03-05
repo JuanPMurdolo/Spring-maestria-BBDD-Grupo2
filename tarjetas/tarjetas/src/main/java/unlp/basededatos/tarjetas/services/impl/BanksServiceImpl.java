@@ -18,7 +18,7 @@ public class BanksServiceImpl implements BanksService{
 
 
     @Override
-    public Optional<Bank> getBank(Long id) throws TarjetasException {
+    public Optional<Bank> getBank(String id) throws TarjetasException {
         return this.repository.findById(id);
     }
 

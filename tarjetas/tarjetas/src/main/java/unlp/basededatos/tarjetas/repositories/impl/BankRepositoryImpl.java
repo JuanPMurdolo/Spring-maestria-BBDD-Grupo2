@@ -23,7 +23,7 @@ public class BankRepositoryImpl implements IBankRepository {
 	public Bank getBankMostImportByCard() throws TarjetasException {
 		try {
 
-			Long id_bank_most = null;
+			String id_bank_most = null;
 	        Pageable paging = PageRequest.of(0, 1);
 
 			List<BankDTO> totalMonthly = getBankMostImportCashByCard(paging);
@@ -56,11 +56,11 @@ public class BankRepositoryImpl implements IBankRepository {
 			} else if (Float.compare(totalCardMonthly, totalCardCash) < 0) {
 
 				System.out.println("totalCardMonthly<totalCardCash");
-				id_bank_most = Long.parseLong(totalCash.get(0).getBank().toString());
+				id_bank_most = totalCash.get(0).getBank().toString();
 			} else {
 
 				System.out.println("ftotalCardMonthly>totalCardCash");
-				id_bank_most = Long.parseLong(totalMonthly.get(0).getBank().toString());
+				id_bank_most = totalMonthly.get(0).getBank().toString();
 
 			}
 
@@ -88,7 +88,7 @@ public class BankRepositoryImpl implements IBankRepository {
 		this.repository.save(bank);
 	}
 
-	public Optional<Bank> findById(Long id) {
+	public Optional<Bank> findById(String id) {
         return this.repository.findById(id);
 	}
 }

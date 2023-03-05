@@ -8,7 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.repository.Query;
 import java.util.List;
 
-public interface CardHolderRepository extends MongoRepository<CardHolder, Long> {
+public interface CardHolderRepository extends MongoRepository<CardHolder, String> {
 
 	/*
 	 * @Query(nativeQuery = true, value

@@ -11,7 +11,7 @@ import org.springframework.data.mongodb.core.mapping.MongoId;
 public class Bank {
 
     @MongoId
-    private Long id;
+    private String id;
 
 
     private String name;
@@ -71,11 +71,11 @@ public class Bank {
         this.telephone = telephone;
     }
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

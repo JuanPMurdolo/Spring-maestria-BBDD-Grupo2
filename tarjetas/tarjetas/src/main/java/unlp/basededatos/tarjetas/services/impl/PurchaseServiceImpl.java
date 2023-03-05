@@ -22,12 +22,12 @@ public class PurchaseServiceImpl implements PurchaseService{
     }
 
     @Override
-    public Optional<Purchase> getPurchase(Long id) throws TarjetasException {
+    public Optional<Purchase> getPurchase(String id) throws TarjetasException {
         return this.repository.findById(id);
     }
 
     @Override
-    public Purchase updatePurchase(Purchase purchase, Long id) throws TarjetasException  {
+    public Purchase updatePurchase(Purchase purchase, String id) throws TarjetasException  {
         Purchase purchase1 = this.repository.findById(id).orElse(null);
         purchase1.setStore(purchase.getStore());
         purchase1.setPaymentVoucher(purchase.getPaymentVoucher());

@@ -7,7 +7,7 @@ import org.springframework.data.repository.query.Param;
 import unlp.basededatos.tarjetas.model.Payment;
 import java.util.List;
 
-public interface PaymentRepository extends MongoRepository<Payment, Long> {
+public interface PaymentRepository extends MongoRepository<Payment, String> {
 
 	@Query("from Payment where code = :code")
     List<Payment> findPaymentsByCode(@Param("code") String code);

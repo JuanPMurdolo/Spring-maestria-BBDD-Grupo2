@@ -10,7 +10,7 @@ import java.util.Date;
 @Document
 public class Card {
     @MongoId
-    private Long id;
+    private String id;
     private String number;
 
     private String ccv;
@@ -41,9 +41,9 @@ public class Card {
 	public Card() {
 
     }
-    public Long getId() { return id; }
+    public String getId() { return id; }
 
-    public void setId(Long id) { this.id = id; }
+    public void setId(String id) { this.id = id; }
 
     public String getNumber() {
         return number;

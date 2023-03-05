@@ -24,7 +24,7 @@ import java.util.List;
 @Document
 public abstract class Promotion {
     @MongoId
-    private Long id;
+    private String id;
 
     private String code;
 
@@ -53,11 +53,11 @@ public abstract class Promotion {
     private List<Purchase> purchase;
 
 
-    public Long getId() {
+    public String getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

@@ -45,8 +45,6 @@ public class BanksController {
     public String create(String name, String mesage) throws TarjetasException {
     	Bank bank = new Bank();
     	Random r = new Random();
-    	int randomId = r.nextInt(Integer.MAX_VALUE);
-    	bank.setId((long) randomId);
     	bank.setAddress(mesage);
     	bank.setName(name);
     	bank.setCuit(mesage);
@@ -63,7 +61,7 @@ public class BanksController {
     
      */
     @GetMapping(path = "/id/{id}")
-    public Optional<Bank> getBank(@PathVariable Long id) throws TarjetasException {
+    public Optional<Bank> getBank(@PathVariable String id) throws TarjetasException {
         return this.service.getBank(id);
     }
 
@@ -81,14 +79,14 @@ public class BanksController {
 	 */
 	
 	@PostMapping("/addPromotion/{id}")
-	public long addNewDiscount( @RequestBody Promotion promotion, @PathVariable Long id ) {
+	public String addNewDiscount( @RequestBody Promotion promotion, @PathVariable String id ) {
     	try {
     		promotion = serviceTarjetas.addNewPromotion(promotion,id);
-    		return (promotion != null) ? promotion.getId() : -1;
+    		return (promotion != null) ? promotion.getId() : null;
 		}
     	catch (Exception e) {
 			e.printStackTrace();
-			return -1;
+			return null;
 		}
     }
 	

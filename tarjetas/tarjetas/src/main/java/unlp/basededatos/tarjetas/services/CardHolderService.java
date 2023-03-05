@@ -10,7 +10,7 @@ import unlp.basededatos.tarjetas.utils.TarjetasException;
 
 public interface CardHolderService {
 
-    Optional<CardHolder> getCardHolder(Long id) throws TarjetasException;
+    Optional<CardHolder> getCardHolder(String id) throws TarjetasException;
 
     List<CardHolder> get10CardHolersWithMorePurchases(Pageable pageable) throws TarjetasException;
 

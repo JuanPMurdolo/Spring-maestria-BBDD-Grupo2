@@ -19,7 +19,7 @@ public class CardServiceImpl implements CardService{
     private CardRepository repository;
 
     @Override
-    public Optional<Card> getCard(Long id) throws TarjetasException {
+    public Optional<Card> getCard(String id) throws TarjetasException {
         return this.repository.findById(id);
     }
 
