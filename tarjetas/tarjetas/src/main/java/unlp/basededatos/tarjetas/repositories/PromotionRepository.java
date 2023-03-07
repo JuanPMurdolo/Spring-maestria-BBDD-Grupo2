@@ -19,17 +19,29 @@ public interface PromotionRepository extends MongoRepository<Promotion, String> 
     @Query(value ="SELECT p FROM Promotion p WHERE p.code = :code")
     List<Promotion> findPromotionByCode(@Param("code") String code, Pageable pageable);
 
-    @Query(value = "db.collection.find()")
-    String getMostUsed();
+    @Query(value = "SELECT id "
+    		+ "FROM CashPayment c   "
+    		+ "GROUP BY id "
+    		+ "ORDER BY COUNT(*) DESC  ")
+    List<Long> getMostUsed(Pageable pageable);
+    
+    @Query(value = "SELECT count(id) "
+    		+ "FROM CashPayment c   "
+    		+ "GROUP BY id "
+    		+ "ORDER BY COUNT(*)  ")    
+    List<String> getOccurences(Pageable pageable);
 
-    @Query(value = "db.collection.find()")
-    int getOccurences();
+    @Query(value = "SELECT id "
+    		+ "FROM MonthlyPayments m   "
+    		+ "GROUP BY id "
+    		+ "ORDER BY COUNT(*) DESC  ")
+    List<Long> getMostUsedMonthly(Pageable pageable);
 
-    @Query(value = "db.collection.find()")
-    String getMostUsedMonthly();
-
-    @Query(value = "db.collection.find()")
-    int getOccurencesMonthly();
+    @Query(value = "SELECT count(id) "
+    		+ "FROM MonthlyPayments m   "
+    		+ "GROUP BY id "
+    		+ "ORDER BY COUNT(*)  ")
+    List<String> getOccurencesMonthly(Pageable pageable);
 
     @Query("UPDATE Promotion p "
     	+ " SET p.borrado = true "

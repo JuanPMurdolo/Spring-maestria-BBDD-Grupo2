@@ -49,8 +49,7 @@ public class PaymentRepositoryImpl implements IPaymentRepository {
 
 	@Override
 	public float getTotalQuotasByMonth(String month) {
-        return repository.totalCashByMonth(month);
-
+        return repository.totalQuotasByMonth(month);
 	}
 
 	@Override

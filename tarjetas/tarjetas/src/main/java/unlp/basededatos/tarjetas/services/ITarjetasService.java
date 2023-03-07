@@ -1,6 +1,7 @@
 package unlp.basededatos.tarjetas.services;
 
 import unlp.basededatos.tarjetas.model.*;
+import unlp.basededatos.tarjetas.utils.PurchaseDTO;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 
 import java.util.Date;
@@ -22,8 +23,8 @@ public interface ITarjetasService {
     public List<Card> getCardSoonExpiration() throws TarjetasException;
 
     // 5-Obtener la información de una compra, incluyendo el listado de cuotas si esta posee.
-    public String getPurchaseInfo(String id) throws TarjetasException;
-
+    public Optional<Purchase> getPurchaseInfo(String id) throws TarjetasException;
+    
     // 6-Eliminar una promoción a traves de su código (tener en cuenta que esta puede haber sido aplicada alguna compra)
 	public void deletePromotion(String code) throws TarjetasException;
 
@@ -40,7 +41,7 @@ public interface ITarjetasService {
     public Optional<Promotion> getPromotionMostUsed() throws TarjetasException;
 
     // 11-Obtener el nombre y cuit del local, que mas facturo en cierto mes
-    public String getInfoFromBusiness(String month, String type) throws TarjetasException;
+    public PurchaseDTO getInfoFromBusiness(String month) throws TarjetasException;
 
     // 12-Obtener el banco que registre la mayor sumatoria de los importes en pagos con su tarjeta.
 	public Bank getBankMostImportByCard() throws TarjetasException;

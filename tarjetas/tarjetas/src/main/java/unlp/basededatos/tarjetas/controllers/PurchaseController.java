@@ -1,6 +1,7 @@
 package unlp.basededatos.tarjetas.controllers;
 
 import unlp.basededatos.tarjetas.services.ITarjetasService;
+import unlp.basededatos.tarjetas.utils.PurchaseDTO;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 import unlp.basededatos.tarjetas.model.Purchase;
 import unlp.basededatos.tarjetas.services.PurchaseService;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Random;
 
 @RestController
@@ -97,7 +99,7 @@ public class PurchaseController {
     }
 
     @GetMapping(path = "/purchaseFullInfo/{id}")
-    public String purchaseFullInfo(@PathVariable String id) throws TarjetasException{
+    public Optional<Purchase> purchaseFullInfo(@PathVariable String id) throws TarjetasException{
         try {
             return this.iTarjetasService.getPurchaseInfo(id);
         } catch (Exception e) {
@@ -105,13 +107,11 @@ public class PurchaseController {
         }
     }
 
-    @GetMapping(path = "/getStoreWithMostSales/")
-    public String getStoreWithMostSales(@RequestBody Map<String, String> json)throws TarjetasException{
-        String month = json.get("month").toString();
-        String type = json.get("type").toString();
+    @GetMapping(path = "/getStoreWithMostSales/{month}")
+    public PurchaseDTO getStoreWithMostSales(@PathVariable String month)throws TarjetasException{
         try {
-            return this.iTarjetasService.getInfoFromBusiness(month, type);
-        }
+            return this.iTarjetasService.getInfoFromBusiness(month);
+            }
         catch (Exception e) {
             throw new TarjetasException(e.getMessage());
         }
