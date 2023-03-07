@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
-@Document
+@Document(collection = "monthlypayments")
 public class MonthlyPayments extends Purchase {
     private float interest;
     private int numberOfQuotas;

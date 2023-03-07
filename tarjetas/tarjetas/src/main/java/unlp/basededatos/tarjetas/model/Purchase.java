@@ -19,7 +19,6 @@ import unlp.basededatos.tarjetas.enums.PurchaseType;
 		@JsonSubTypes.Type(value = CashPayment.class, name = "cash"),
 })
 
-@Document
 public abstract class Purchase {
     @MongoId
     private String id;

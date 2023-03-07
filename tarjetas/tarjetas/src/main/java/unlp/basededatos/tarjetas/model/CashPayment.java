@@ -3,7 +3,7 @@ package unlp.basededatos.tarjetas.model;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
-@Document
+@Document(collection = "cashpayment")
 public class CashPayment extends Purchase{
     private float storeDiscount;
   
