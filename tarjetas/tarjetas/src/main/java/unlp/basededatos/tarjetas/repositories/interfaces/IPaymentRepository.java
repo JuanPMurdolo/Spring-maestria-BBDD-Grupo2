@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import unlp.basededatos.tarjetas.model.Payment;
+import unlp.basededatos.tarjetas.utils.PaymentDTO;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 
 public interface IPaymentRepository {
@@ -24,6 +25,8 @@ public interface IPaymentRepository {
 	void save(Payment payment);
 
 	Optional<Payment> findById(String id);
+
+	List<PaymentDTO> getTotalCashByMonth2(String month);
 
 
 }

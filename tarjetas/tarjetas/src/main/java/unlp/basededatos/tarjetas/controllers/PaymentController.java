@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import unlp.basededatos.tarjetas.model.Payment;
 import unlp.basededatos.tarjetas.services.ITarjetasService;
 import unlp.basededatos.tarjetas.services.PaymentService;
+import unlp.basededatos.tarjetas.utils.PaymentDTO;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 
 import java.text.DateFormat;
@@ -47,6 +48,18 @@ public class PaymentController {
         }
 
     }
+    
+    @GetMapping(path = "/getTotalCashByMonth2/{month}")
+    public List<PaymentDTO> getTotalCashByMonth2(@PathVariable String month) throws TarjetasException {
+        try {
+            return this.paymentService.getTotalCashByMonth2(month);
+        }
+        catch (Exception e) {
+            throw new TarjetasException(e.getMessage());
+        }
+
+    }
+    
     
     @GetMapping(path = "/getTotalQuotasByMonth/{month}")
     public float getTotalQuotasByMonth(@PathVariable String month) throws TarjetasException {

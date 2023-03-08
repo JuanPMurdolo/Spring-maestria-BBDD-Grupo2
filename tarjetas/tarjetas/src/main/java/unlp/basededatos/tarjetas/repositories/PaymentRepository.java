@@ -5,6 +5,8 @@ import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.repository.query.Param;
 import unlp.basededatos.tarjetas.model.Payment;
+import unlp.basededatos.tarjetas.utils.PaymentDTO;
+
 import java.util.List;
 
 public interface PaymentRepository extends MongoRepository<Payment, String> {
@@ -23,11 +25,18 @@ public interface PaymentRepository extends MongoRepository<Payment, String> {
 	 */
 
 	//la SQL de arriba pasada a HQL
-    @Query(value = "SELECT sum(p.purchase) "
+	
+    @Query(value = "SELECT sum(p.purchase) as total"
     		+ " FROM Payment p  "
     		+ " INNER JOIN p.cashpayment   "
     		+ " WHERE p.month  = :month ")
     float totalCashByMonth(@Param("month") String month);
+    
+    @Query(value = "SELECT sum(p.purchase) as total"
+    		+ " FROM Payment p  "
+    		+ " INNER JOIN p.cashpayment   "
+    		+ " WHERE p.month  = :month ")
+    List<PaymentDTO> totalCashByMonth2(@Param("month") String month);
 
 	/*
 	 * @Query(value = "SELECT sum(payment.purchase) " + "FROM payment " +

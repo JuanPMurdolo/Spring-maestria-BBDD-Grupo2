@@ -1,6 +1,8 @@
 package unlp.basededatos.tarjetas.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import org.springframework.data.mongodb.core.mapping.MongoId;
@@ -24,7 +26,7 @@ public class Payment {
     private Date firstExpiration;
 
     private Date secondExpiration;
-
+    private float total;
     private float purchase;
     private float totalPrice;
 
@@ -34,6 +36,7 @@ public class Payment {
     private List<Quota> quota;
 
     //Falta la relacion /CashPayment y Payment
+    @DBRef
 	private List<CashPayment> cashpayment;
 	
 	public Payment(String code, String month, String year, Date firstExpiration, Date secondExpiration, float purchase, float totalPrice) {
@@ -127,4 +130,12 @@ public class Payment {
     public void setQuotas(List<Quota> quotas) {
         this.quota = quotas;
     }
+
+	public float getTotal() {
+		return total;
+	}
+
+	public void setTotal(float total) {
+		this.total = total;
+	}
 }

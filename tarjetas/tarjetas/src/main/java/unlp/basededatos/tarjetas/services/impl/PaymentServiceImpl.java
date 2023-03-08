@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import unlp.basededatos.tarjetas.model.Payment;
 import unlp.basededatos.tarjetas.repositories.interfaces.IPaymentRepository;
 import unlp.basededatos.tarjetas.services.PaymentService;
+import unlp.basededatos.tarjetas.utils.PaymentDTO;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 
 import java.util.List;
@@ -45,6 +46,11 @@ public class PaymentServiceImpl implements PaymentService {
 	@Override
 	public String getTotalByMonth(String month) throws TarjetasException {
 		return this.repository.findTotalByMonth(month);
+	}
+
+	@Override
+	public List<PaymentDTO> getTotalCashByMonth2(String month) {
+		return this.repository.getTotalCashByMonth2(month);
 	}
 
 }

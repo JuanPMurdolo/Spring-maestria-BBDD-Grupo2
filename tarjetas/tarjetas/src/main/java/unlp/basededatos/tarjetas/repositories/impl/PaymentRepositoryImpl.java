@@ -11,6 +11,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import unlp.basededatos.tarjetas.model.Payment;
 import unlp.basededatos.tarjetas.repositories.PaymentRepository;
 import unlp.basededatos.tarjetas.repositories.interfaces.IPaymentRepository;
+import unlp.basededatos.tarjetas.utils.PaymentDTO;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 
 public class PaymentRepositoryImpl implements IPaymentRepository {
@@ -47,6 +48,11 @@ public class PaymentRepositoryImpl implements IPaymentRepository {
         return repository.totalCashByMonth(month);
 	}
 
+	@Override
+	public List<PaymentDTO> getTotalCashByMonth2(String month) {
+        return repository.totalCashByMonth2(month);
+	}
+	
 	@Override
 	public float getTotalQuotasByMonth(String month) {
         return repository.totalQuotasByMonth(month);

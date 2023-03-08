@@ -19,7 +19,8 @@ public class Bank {
     private String name;
     private String cuit;
     private String address;
-
+    private float total;
+    private String bank;
     private String telephone;
 
 	// bi-directional many-to-one association to Card
@@ -130,5 +131,21 @@ public class Bank {
 	
 	public boolean hasPromotion(Promotion promotion) {
 		return promotions.contains(promotion);
+	}
+
+	public float getTotal() {
+		return total;
+	}
+
+	public void setTotal(float total) {
+		this.total = total;
+	}
+
+	public String getBank() {
+		return bank;
+	}
+
+	public void setBank(String bank) {
+		this.bank = bank;
 	}
 }

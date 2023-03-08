@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
 import unlp.basededatos.tarjetas.model.Payment;
+import unlp.basededatos.tarjetas.utils.PaymentDTO;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 
 public interface PaymentService {
@@ -23,5 +24,7 @@ public interface PaymentService {
 	float getTotalQuotasByMonth(String month) throws TarjetasException;
 
 	String getTotalByMonth(String month) throws TarjetasException;
+
+	List<PaymentDTO> getTotalCashByMonth2(String month);
 	
 }
