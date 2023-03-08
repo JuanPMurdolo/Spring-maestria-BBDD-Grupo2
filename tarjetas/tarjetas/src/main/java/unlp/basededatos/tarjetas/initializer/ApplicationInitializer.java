@@ -37,15 +37,17 @@ public class ApplicationInitializer implements CommandLineRunner {
 	@Autowired
 	QuotaService quotaService;
 	
+	//@Autowired
+	//PurchaseService purchaseService;
+	
 	@Autowired
-	PurchaseService purchaseService;
+	MonthlyPaymentsService monthlyPaymentService;
+	
+	@Autowired
+	CashPaymentService cashPaymentService;
 	
 	@Autowired
 	ITarjetasService tarjetasService;
-
-	////////
-	// URL Swagger: http://localhost:8081/swagger-ui/index.html
-	////////
 
 	public void run(String... args) throws Exception {
 
@@ -235,7 +237,7 @@ public class ApplicationInitializer implements CommandLineRunner {
 		cash1.setStore("Carrefour");
 		cash1.setPromotions(listDiscount1);
 		cash1.setCard(card1);
-		purchaseService.createPurchase(cash1);
+		cashPaymentService.createCashPayment(cash1);
 		
 		CashPayment cash2 = new CashPayment();
 		cash2.setCuitStore("123456");
@@ -245,7 +247,7 @@ public class ApplicationInitializer implements CommandLineRunner {
 		cash2.setStore("Victoria");
 		cash2.setPromotions(listDiscount1);
 		cash2.setCard(card1);
-		purchaseService.createPurchase(cash2);
+		cashPaymentService.createCashPayment(cash2);
 
 		List<CashPayment> listaCash = new ArrayList<>();
 		listaCash.add(cash1);
@@ -270,7 +272,7 @@ public class ApplicationInitializer implements CommandLineRunner {
         cash3.setStore("Unimark");
         cash3.setPromotions(listDiscount1);
         cash3.setCard(card2);
-		purchaseService.createPurchase(cash3);
+        cashPaymentService.createCashPayment(cash3);
 		
 		CashPayment cash4 = new CashPayment();
 		cash4.setCuitStore("123456");
@@ -280,7 +282,7 @@ public class ApplicationInitializer implements CommandLineRunner {
 		cash4.setStore("Coto");
 		cash4.setPromotions(listDiscount1);
 		cash4.setCard(card3);
-		purchaseService.createPurchase(cash4);
+		cashPaymentService.createCashPayment(cash4);
 		
 		List<CashPayment> listaCash2 = new ArrayList<>();
 		listaCash2.add(cash3);
@@ -305,7 +307,7 @@ public class ApplicationInitializer implements CommandLineRunner {
 		cash5.setStore("Dia");
 		cash5.setPromotions(listDiscount1);
 		cash5.setCard(card3);
-		purchaseService.createPurchase(cash5);
+		cashPaymentService.createCashPayment(cash5);
 		
 		List<CashPayment> listaCash3 = new ArrayList<>();
 		listaCash3.add(cash5);
@@ -381,7 +383,7 @@ public class ApplicationInitializer implements CommandLineRunner {
 		mes1.setPromotions(listDiscount2);
 		mes1.setCard(card3);
 		mes1.setQuotas(lista);
-		purchaseService.createPurchase(mes1);	
+		monthlyPaymentService.createMonthlyPayments(mes1);	
 		
 		List<MonthlyPayments> listaCash4 = new ArrayList<>();
 		listaCash4.add(mes1);
@@ -394,7 +396,7 @@ public class ApplicationInitializer implements CommandLineRunner {
 		mes2.setStore("La anonima");
 		mes2.setPromotions(listDiscount2);
 		mes2.setCard(card3);
-		purchaseService.createPurchase(mes2);
+		monthlyPaymentService.createMonthlyPayments(mes2);
 		
 		List<Quota> lista2 = new ArrayList<>();
 		lista2.add(quota1);
@@ -445,7 +447,7 @@ public class ApplicationInitializer implements CommandLineRunner {
 		mes3.setPromotions(listDiscount2);
 		mes3.setCard(card4);
 		mes3.setQuotas(lista4);
-		purchaseService.createPurchase(mes3);	
+		monthlyPaymentService.createMonthlyPayments(mes3);	
 		
 		List<MonthlyPayments> listaCash5 = new ArrayList<>();
 		listaCash5.add(mes3);
@@ -458,7 +460,7 @@ public class ApplicationInitializer implements CommandLineRunner {
 		mes4.setStore("La Mendocina");
 		mes4.setPromotions(listDiscount2);
 		mes4.setCard(card4);
-		purchaseService.createPurchase(mes4);
+		monthlyPaymentService.createMonthlyPayments(mes4);
 	
 		Payment payment6 = new Payment();
 		payment6.setCode("222");
@@ -624,7 +626,7 @@ public class ApplicationInitializer implements CommandLineRunner {
 		monthly1.setInterest(18);
 		monthly1.setNumberOfQuotas(12);
 		monthly1.setQuotas(listaQuotas);
-		purchaseService.createPurchase(monthly1);
+		monthlyPaymentService.createMonthlyPayments(monthly1);
 		
 //		quota1.setMontlypayment(monthly1);
 //		quota2.setMontlypayment(monthly1);
