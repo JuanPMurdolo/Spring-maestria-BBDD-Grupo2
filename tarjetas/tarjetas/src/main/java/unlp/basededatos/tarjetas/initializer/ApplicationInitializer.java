@@ -90,7 +90,6 @@ public class ApplicationInitializer implements CommandLineRunner {
 		bank1.setCuit("20-1245454-2");
 		bank1.setTelephone("98765412");
         bank1.setCardHolders(cardHoldersList);
-        
 		bankService.createBank(bank1);
 		
         //creo tarjetas y le seteo el banco
@@ -109,14 +108,14 @@ public class ApplicationInitializer implements CommandLineRunner {
 		{
 			throw new TarjetasException(e.getMessage());
 		}
-		
+        card1.setBank(bank1);
+		cardService.createCard(card1);
+
         Card card2 = new Card();
         card2.setCardholderNameInCard("Pablito");
         card2.setCcv("456");
         card2.setNumber("681254");
         card2.setOwner(cardHolder2);
-
-		//DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
 		try{
 		Date dateFormated1 = sdf.parse("2023-02-02");
@@ -126,11 +125,7 @@ public class ApplicationInitializer implements CommandLineRunner {
 		{
 			throw new TarjetasException(e.getMessage());
 		}
-
-        card1.setBank(bank1);
         card2.setBank(bank1);
-        
-		cardService.createCard(card1);
 		cardService.createCard(card2);
 
 		CardHolder cardHolder3 = new CardHolder();
@@ -182,6 +177,8 @@ public class ApplicationInitializer implements CommandLineRunner {
         {
         	throw new TarjetasException(e.getMessage());
         }
+        card3.setBank(bank2);
+		cardService.createCard(card3);
 
         Card card4 = new Card();
         card4.setCardholderNameInCard("Estelita");
@@ -200,10 +197,7 @@ public class ApplicationInitializer implements CommandLineRunner {
         
         System.out.println("Bancos creados exitosamente!");
 
-        card3.setBank(bank2);
         card4.setBank(bank3);
-        
-		cardService.createCard(card3);
 		cardService.createCard(card4);
 		
 		Discount discount1 = new Discount();
@@ -352,21 +346,21 @@ public class ApplicationInitializer implements CommandLineRunner {
 		quota1.setMonth(payment1.getMonth());
 		quota1.setYear(payment1.getYear());
 		quota1.setNumber(1);
-		//quotaService.createQuota(quota1);
+		quotaService.createQuota(quota1);
 
 		Quota quota2 = new Quota();
 		quota2.setPrice(2345);
 		quota2.setMonth(payment1.getMonth());
 		quota2.setYear(payment1.getYear());
 		quota2.setNumber(2);
-		//quotaService.createQuota(quota2);
+		quotaService.createQuota(quota2);
 
 		Quota quota3 = new Quota();
 		quota3.setPrice(3121);
 		quota3.setMonth(payment1.getMonth());
 		quota3.setYear(payment1.getYear());
 		quota3.setNumber(3);
-		//quotaService.createQuota(quota3);
+		quotaService.createQuota(quota3);
 
 		List<Quota> lista = new ArrayList<>();
 		lista.add(quota1);
@@ -419,18 +413,21 @@ public class ApplicationInitializer implements CommandLineRunner {
 		quota4.setMonth(payment1.getMonth());
 		quota4.setYear(payment1.getYear());
 		quota4.setNumber(1);
+		quotaService.createQuota(quota4);
 
 		Quota quota5 = new Quota();
 		quota5.setPrice(5431);
 		quota5.setMonth(payment1.getMonth());
 		quota5.setYear(payment1.getYear());
 		quota5.setNumber(2);
+		quotaService.createQuota(quota5);
 
 		Quota quota6 = new Quota();
 		quota6.setPrice(1124);
 		quota6.setMonth(payment1.getMonth());
 		quota6.setYear(payment1.getYear());
 		quota6.setNumber(3);
+		quotaService.createQuota(quota6);
 
 		List<Quota> lista4 = new ArrayList<>();
 		lista4.add(quota4);
@@ -491,17 +488,19 @@ public class ApplicationInitializer implements CommandLineRunner {
 		payment1.setTotalPrice(12000);
 		
 		Quota quota1 = new Quota();
-		quota1.setPrice(1230);
+		quota1.setPrice(2222);
 		quota1.setMonth(payment1.getMonth());
 		quota1.setYear(payment1.getYear());
 		quota1.setNumber(1);
+		quotaService.createQuota(quota1);
 
 		Quota quota2 = new Quota();
-		quota2.setPrice(1230);
+		quota2.setPrice(1111);
 		quota2.setMonth(payment1.getMonth());
 		quota2.setYear(payment1.getYear());
 		quota2.setNumber(2);
-		
+		quotaService.createQuota(quota2);
+
 		List<Quota> lista = new ArrayList<>();
 		lista.add(quota1);
 		lista.add(quota2);
@@ -511,7 +510,7 @@ public class ApplicationInitializer implements CommandLineRunner {
 		//quotaService.createQuota(quota1);
 
 		Payment payment2 = new Payment();
-		payment2.setCode("212");
+		payment2.setCode("1122");
 		payment2.setFirstExpiration(fecha);
 		payment2.setSecondExpiration(fecha);
 		payment2.setMonth("January");
@@ -536,7 +535,8 @@ public class ApplicationInitializer implements CommandLineRunner {
 		discount1.setValidityStartDate(date23);
 		//no es necesario persistir porq ya persiste cuando crea el BANCO
 		//promotionsService.createPromotion(discount1);
-		
+		promotionsService.createPromotion(discount1);
+
         List<Promotion> promotionsList = new ArrayList<Promotion>();
         promotionsList.add(discount1);
         
@@ -573,13 +573,14 @@ public class ApplicationInitializer implements CommandLineRunner {
 		quota1.setMonth(payment1.getMonth());
 		quota1.setYear(payment1.getYear());
 		quota1.setNumber(1);
+		quotaService.createQuota(quota1);
 
 		Quota quota2 = new Quota();
 		quota2.setPrice(2323);
 		quota2.setMonth(payment1.getMonth());
 		quota2.setYear(payment1.getYear());
 		quota2.setNumber(2);
-
+		quotaService.createQuota(quota2);
 		
 		List<Quota> listaQuotas = new ArrayList<>();
 		listaQuotas.add(quota1);
@@ -603,14 +604,15 @@ public class ApplicationInitializer implements CommandLineRunner {
 		quota3.setMonth(payment1.getMonth());
 		quota3.setYear(payment1.getYear());
 		quota3.setNumber(1);
+		quotaService.createQuota(quota3);
 
 		Quota quota4 = new Quota();
 		quota4.setPrice(1124);
 		quota4.setMonth(payment1.getMonth());
 		quota4.setYear(payment1.getYear());
 		quota4.setNumber(2);
+		quotaService.createQuota(quota4);
 
-		
 		List<Quota> listaQuotas1 = new ArrayList<>();
 		listaQuotas1.add(quota3);
 		listaQuotas1.add(quota4);
@@ -630,8 +632,6 @@ public class ApplicationInitializer implements CommandLineRunner {
 		
 //		quota1.setMontlypayment(monthly1);
 //		quota2.setMontlypayment(monthly1);
-		quotaService.createQuota(quota2);
-		quotaService.createQuota(quota1);
 
 		System.out.println("Purchases creadas exitosamente!");
 
@@ -665,12 +665,10 @@ public class ApplicationInitializer implements CommandLineRunner {
 		Date date23 = new Date();
 		discount1.setValidityEndDate(date23);
 		discount1.setValidityStartDate(date23);
-		//no es necesario persistir porq ya persiste cuando crea el BANCO
-		//promotionsService.createPromotion(discount1);
+		promotionsService.createPromotion(discount1);
 
 		List<Promotion> promotionsList = new ArrayList<Promotion>();
 		promotionsList.add(discount1);
-		//promotionsService.createPromotion(discount1);
 
 		Bank bank1 = new Bank();
 		bank1.setName("Banco Frances");
@@ -711,6 +709,8 @@ public class ApplicationInitializer implements CommandLineRunner {
 		{
 			throw new TarjetasException(e.getMessage());
 		}
+		cardService.createCard(card1);
+
 		
         Card card2 = new Card();
         card2.setCardholderNameInCard("Pablito");
@@ -726,8 +726,6 @@ public class ApplicationInitializer implements CommandLineRunner {
 		{
 			throw new TarjetasException(e.getMessage());
 		}
-
-		cardService.createCard(card1);
 
 		cardService.createCard(card2);
 

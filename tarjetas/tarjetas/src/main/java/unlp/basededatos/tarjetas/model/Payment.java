@@ -31,12 +31,11 @@ public class Payment {
     private float totalPrice;
 
     //falta la relacion e/Quota y Payment
-    @JsonIgnore
     @DocumentReference
     private List<Quota> quota;
 
     //Falta la relacion /CashPayment y Payment
-    @DBRef
+    @DocumentReference
 	private List<CashPayment> cashpayment;
 	
 	public Payment(String code, String month, String year, Date firstExpiration, Date secondExpiration, float purchase, float totalPrice) {

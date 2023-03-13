@@ -39,7 +39,7 @@ public abstract class Purchase {
             joinColumns = { @JoinColumn(name = "id_purchase") },
             inverseJoinColumns = { @JoinColumn(name = "id_promotion") })
     @JsonIgnore*/
-    @DocumentReference(lazy = false)
+    @DocumentReference
     private List<Promotion> promotions;
     
     //Una compra tiene asociada una sola tarjeta

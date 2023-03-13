@@ -1,6 +1,7 @@
 package unlp.basededatos.tarjetas.model;
 
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
 
@@ -8,7 +9,7 @@ import java.util.Date;
 import java.util.List;
 
 
-@Document
+@Document(collection = "cardholder")
 public class CardHolder {
     @MongoId
     private String id;
@@ -26,6 +27,7 @@ public class CardHolder {
     private Date entry;
 
     //La relacion parece ser muchos a muchos
+    @DocumentReference
     private List<Bank> banks;
 //    
 //    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
