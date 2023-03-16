@@ -5,6 +5,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import org.springframework.data.mongodb.core.mapping.MongoId;
@@ -39,11 +40,11 @@ public abstract class Purchase {
             joinColumns = { @JoinColumn(name = "id_purchase") },
             inverseJoinColumns = { @JoinColumn(name = "id_promotion") })
     @JsonIgnore*/
-    @DocumentReference
+    @DBRef
     private List<Promotion> promotions;
     
     //Una compra tiene asociada una sola tarjeta
-    @DocumentReference()
+    @DBRef
     private Card card;
 
     private PurchaseType purchaseType;

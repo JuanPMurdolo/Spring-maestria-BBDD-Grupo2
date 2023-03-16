@@ -88,7 +88,8 @@ public class ITarjetasServiceImpl implements ITarjetasService{
 		LocalDate localDate = LocalDate.now().plusDays(30);
 		Date date1 = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
 
-		return this.cardRepository.findCardExpirationDate(date,date1);
+		//return this.cardRepository.findCardExpirationDate(date,date1);
+		return this.cardRepository.findByExpirationDateBetween(date,date1);
 	}
 
 	@Override

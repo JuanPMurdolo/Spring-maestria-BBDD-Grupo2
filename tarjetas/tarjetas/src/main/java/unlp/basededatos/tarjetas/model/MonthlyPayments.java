@@ -2,6 +2,8 @@ package unlp.basededatos.tarjetas.model;
 
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
 
@@ -15,7 +17,7 @@ public class MonthlyPayments extends Purchase {
 //  	@OneToMany(mappedBy="montlypayment")
 //  	private List<Quota> quotas;
   	
-    @DocumentReference
+    @DBRef
     private List<Quota> quota;
   	
     public MonthlyPayments(String paymentVoucher, String store, String cuitStore, float amount, float finalAmount, float interest, int numberOfQuotas) {

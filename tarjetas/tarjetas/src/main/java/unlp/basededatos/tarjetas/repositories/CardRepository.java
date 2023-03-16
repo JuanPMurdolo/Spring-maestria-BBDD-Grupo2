@@ -10,9 +10,12 @@ import java.util.List;
 
 public interface CardRepository  extends MongoRepository<Card, String> {
 
+	//con HQL
     @Query("FROM Card as c WHERE c.expirationDate >= :date or c.expirationDate <= :date1")
     List<Card> findCardExpirationDate(@Param("date") Date date, @Param("date1") Date date1);
     
-    
+    //con keywords for query methods
+    List<Card> findByExpirationDateBetween(Date from, Date to);
+
     
 }

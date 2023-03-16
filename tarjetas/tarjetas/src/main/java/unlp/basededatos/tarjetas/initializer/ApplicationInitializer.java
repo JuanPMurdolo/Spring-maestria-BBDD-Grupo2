@@ -101,7 +101,7 @@ public class ApplicationInitializer implements CommandLineRunner {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 		try{
-		Date dateFormated1 = sdf.parse("2023-02-05");
+		Date dateFormated1 = sdf.parse("2023-03-20");
 		card1.setExpirationDate(dateFormated1);
 		}
 		catch (Exception e)
@@ -118,7 +118,7 @@ public class ApplicationInitializer implements CommandLineRunner {
         card2.setOwner(cardHolder2);
 
 		try{
-		Date dateFormated1 = sdf.parse("2023-02-02");
+		Date dateFormated1 = sdf.parse("2023-03-25");
 		card2.setExpirationDate(dateFormated1);
 		}
 		catch (Exception e)
@@ -170,7 +170,7 @@ public class ApplicationInitializer implements CommandLineRunner {
         card3.setOwner(cardHolder3);
 
         try{
-        	Date dateFormated1 = sdf.parse("2023-02-05");
+        	Date dateFormated1 = sdf.parse("2023-03-20");
         	card3.setExpirationDate(dateFormated1);
         }
         catch (Exception e)
@@ -187,7 +187,7 @@ public class ApplicationInitializer implements CommandLineRunner {
         card4.setOwner(cardHolder4);
 
         try{
-        	Date dateFormated1 = sdf.parse("2023-02-05");
+        	Date dateFormated1 = sdf.parse("2023-03-20");
         	card4.setExpirationDate(dateFormated1);
         }
         catch (Exception e)
@@ -702,7 +702,7 @@ public class ApplicationInitializer implements CommandLineRunner {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
 		try{
-		Date dateFormated1 = sdf.parse("2023-02-05");
+		Date dateFormated1 = sdf.parse("2023-03-20");
 		card1.setExpirationDate(dateFormated1);
 		}
 		catch (Exception e)
@@ -719,7 +719,7 @@ public class ApplicationInitializer implements CommandLineRunner {
 		//DateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
 		try{
-		Date dateFormated1 = sdf.parse("2023-02-02");
+		Date dateFormated1 = sdf.parse("2023-03-25");
 		card2.setExpirationDate(dateFormated1);
 		}
 		catch (Exception e)

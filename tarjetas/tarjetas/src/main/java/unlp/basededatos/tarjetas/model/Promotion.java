@@ -4,6 +4,7 @@ package unlp.basededatos.tarjetas.model;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import org.springframework.data.mongodb.core.mapping.MongoId;
@@ -49,7 +50,7 @@ public abstract class Promotion {
 	 * "bankID"), inverseJoinColumns = @JoinColumn(name = "promotionID") ) private
 	 * List<Bank> banks;
 	 */
-    @DocumentReference(lazy = true)
+    @DBRef(lazy = true)
     private List<Purchase> purchase;
 
 

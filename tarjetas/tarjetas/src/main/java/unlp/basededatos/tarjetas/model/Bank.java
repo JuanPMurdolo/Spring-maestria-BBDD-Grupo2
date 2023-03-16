@@ -33,11 +33,11 @@ public class Bank {
     //Un Banco puede tener muchos clientes (CardHolders)
     //Pero los clientes pueden pertenecer a uno o mas bancos
     //la relacion parece muchos a muchos
-    @DocumentReference(lazy=true)
+    @DBRef
     private List<CardHolder> cardHolders;
 
     //Y los bancos pueden tener 0 o muchas promociones
-    @DocumentReference()
+    @DBRef
     private List<Promotion> promotions;
 	
     public Bank(String name, String cuit, String address, String telephone) {
