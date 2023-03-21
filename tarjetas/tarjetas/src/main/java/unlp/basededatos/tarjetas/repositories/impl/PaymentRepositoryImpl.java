@@ -1,10 +1,13 @@
 package unlp.basededatos.tarjetas.repositories.impl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -12,12 +15,15 @@ import unlp.basededatos.tarjetas.model.Payment;
 import unlp.basededatos.tarjetas.repositories.PaymentRepository;
 import unlp.basededatos.tarjetas.repositories.interfaces.IPaymentRepository;
 import unlp.basededatos.tarjetas.utils.PaymentDTO;
+import unlp.basededatos.tarjetas.utils.PurchaseDTO;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 
 public class PaymentRepositoryImpl implements IPaymentRepository {
 	
 	@Autowired
 	private PaymentRepository repository;
+
+    private Pageable paging = PageRequest.of(0, 1);
 
 	@Override
 	public String findTotalByMonth(String month) throws TarjetasException{
@@ -71,6 +77,11 @@ public class PaymentRepositoryImpl implements IPaymentRepository {
 	@Override
 	public Optional<Payment> findById(String id) {
         return this.repository.findById(id);
+	}
+
+	@Override
+	public List<ArrayList> getStoreWithMoreSalesCash(String month) {
+        return repository.findStoreWithMoreSalesCash(month, paging);
 	}
 
     

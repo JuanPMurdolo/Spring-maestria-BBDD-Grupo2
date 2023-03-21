@@ -7,10 +7,12 @@ import unlp.basededatos.tarjetas.model.Payment;
 import unlp.basededatos.tarjetas.services.ITarjetasService;
 import unlp.basededatos.tarjetas.services.PaymentService;
 import unlp.basededatos.tarjetas.utils.PaymentDTO;
+import unlp.basededatos.tarjetas.utils.PurchaseDTO;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -82,4 +84,16 @@ public class PaymentController {
     		throw new TarjetasException(e.getMessage());
     	}
     }
+    
+
+    @GetMapping(path = "/getStoreWithMostSales/{month}")
+    public List<ArrayList> getStoreWithMostSales(@PathVariable String month)throws TarjetasException{
+        try {
+            return this.paymentService.getStoreWithMoreSalesCash(month);
+            }
+        catch (Exception e) {
+            throw new TarjetasException(e.getMessage());
+        }
+    }
+
 }

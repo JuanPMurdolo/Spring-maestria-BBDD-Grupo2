@@ -2,7 +2,7 @@ package unlp.basededatos.tarjetas.utils;
 
 public interface PurchaseDTO {
 
-	String getCiut();
+	String getCuit();
     String getAmount();
 	String getStore();
 }

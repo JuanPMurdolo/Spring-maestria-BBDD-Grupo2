@@ -1,5 +1,6 @@
 package unlp.basededatos.tarjetas.repositories.interfaces;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -10,6 +11,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 
 import unlp.basededatos.tarjetas.model.Payment;
 import unlp.basededatos.tarjetas.utils.PaymentDTO;
+import unlp.basededatos.tarjetas.utils.PurchaseDTO;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 
 public interface IPaymentRepository {
@@ -27,6 +29,8 @@ public interface IPaymentRepository {
 	Optional<Payment> findById(String id);
 
 	List<PaymentDTO> getTotalCashByMonth2(String month);
+
+	List<ArrayList> getStoreWithMoreSalesCash(String month);
 
 
 }

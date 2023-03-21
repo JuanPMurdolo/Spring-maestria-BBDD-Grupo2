@@ -27,11 +27,8 @@ public interface PurchaseRepository extends MongoRepository<Purchase, String> {
             "{'$lookup' : {'from' : 'order','localField' :'_id' ,'foreignField' : 'supplier.$id', 'as' : 'order'}}",
             "{'$unwind' : { path: '$order' } }",
             "{'$addFields' : { score: '$order.qualification.score' } }",
-            "{'$match':{'score':{'$lte': ?0}}}",
-            "{'$group' :{ _id : '$_id', 'cantidad' : { '$sum' : 1 }}}",
-            "{'$project' :{ 'result' : [ '$_id', '$cantidad' ] }}"
-    })
-    List<ArrayList>  findByScoreLessThanEqual(@Param("score") Float score);	
+            "{'$match':{'month':{'$lte': ?0}}}"    })
+    List<ArrayList>  findByScoreLessThanEqual(@Param("score") String month);	
     
     @Query(value = "SELECT m.cuitStore as ciut, m.amount as amount, m.store  as store "
     		+ "FROM Payment p, MonthlyPayments m "

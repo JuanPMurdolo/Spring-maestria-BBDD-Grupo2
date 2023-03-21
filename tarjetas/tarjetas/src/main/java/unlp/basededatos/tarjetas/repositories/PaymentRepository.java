@@ -2,11 +2,15 @@ package unlp.basededatos.tarjetas.repositories;
 
 
 import org.springframework.data.mongodb.repository.Query;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.mongodb.repository.Aggregation;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.repository.query.Param;
 import unlp.basededatos.tarjetas.model.Payment;
 import unlp.basededatos.tarjetas.utils.PaymentDTO;
+import unlp.basededatos.tarjetas.utils.PurchaseDTO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface PaymentRepository extends MongoRepository<Payment, String> {
@@ -53,5 +57,27 @@ public interface PaymentRepository extends MongoRepository<Payment, String> {
     		+ " INNER JOIN p.quota "
     		+ " WHERE p.month  = :month ")
     float totalQuotasByMonth(@Param("month") String month);
+    
+	/*
+	 * @Query(value =
+	 * "SELECT c.cuitStore as cuit, c.amount  as amount, c.store as store " +
+	 * " FROM Payment p " + " INNER JOIN p.cashpayment c   " +
+	 * " WHERE p.month   = :month    " + " GROUP BY c.cuitStore, c.amount ,c.store "
+	 * + " ORDER BY c.amount DESC   ") List<PurchaseDTO>
+	 * findStoreWithMoreSalesCash(@Param("month") String month, Pageable pageable);
+	 */
+
+	//la HQL devuelve campos null no sabemos porque
+    //la pase a query MongoDB y anda
+
+	@Aggregation(pipeline = {
+			"{$match: { month: ?0}}",
+			"{$lookup: {from : 'cashpayment',localField :'cashpayment.$id' ,foreignField : '_id', as : 'reporter'}}",
+			"{$unwind: '$reporter'}",
+			"{$sort: { 'reporter.amount': -1 }}",
+	        "{$project: {  'result': ['$reporter.cuitStore','$reporter.amount', '$reporter.store']}}"
+		})
+    List<ArrayList>  findStoreWithMoreSalesCash(@Param("month") String month, Pageable pageable);
+
 
 }

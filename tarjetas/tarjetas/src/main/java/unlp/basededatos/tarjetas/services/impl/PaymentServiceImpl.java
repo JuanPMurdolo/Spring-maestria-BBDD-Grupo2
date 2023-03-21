@@ -7,8 +7,10 @@ import unlp.basededatos.tarjetas.model.Payment;
 import unlp.basededatos.tarjetas.repositories.interfaces.IPaymentRepository;
 import unlp.basededatos.tarjetas.services.PaymentService;
 import unlp.basededatos.tarjetas.utils.PaymentDTO;
+import unlp.basededatos.tarjetas.utils.PurchaseDTO;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -51,6 +53,11 @@ public class PaymentServiceImpl implements PaymentService {
 	@Override
 	public List<PaymentDTO> getTotalCashByMonth2(String month) {
 		return this.repository.getTotalCashByMonth2(month);
+	}
+
+	public List<ArrayList> getStoreWithMoreSalesCash(String month) {
+		return this.repository.getStoreWithMoreSalesCash(month);
+
 	}
 
 }
