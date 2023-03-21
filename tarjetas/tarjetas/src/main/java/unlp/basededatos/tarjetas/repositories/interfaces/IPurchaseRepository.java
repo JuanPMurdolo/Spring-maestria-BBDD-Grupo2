@@ -1,5 +1,6 @@
 package unlp.basededatos.tarjetas.repositories.interfaces;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -9,11 +10,11 @@ import unlp.basededatos.tarjetas.utils.TarjetasException;
 
 public interface IPurchaseRepository {
 	
-	PurchaseDTO getStoreWithMoreSales(String month) throws TarjetasException;
+	ArrayList getStoreWithMoreSales(String month) throws TarjetasException;
 
-	List<PurchaseDTO> getStoreWithMoreSalesCash(String month);
+	List<ArrayList> getStoreWithMoreSalesCash(String month);
 
-	List<PurchaseDTO> getStoreWithMoreSalesMonthly(String month);
+	List<ArrayList> getStoreWithMoreSalesMonthly(String month);
 
 	Optional<Purchase> findById(String id);
 }

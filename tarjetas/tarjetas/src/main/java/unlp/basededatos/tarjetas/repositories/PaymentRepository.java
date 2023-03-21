@@ -30,17 +30,26 @@ public interface PaymentRepository extends MongoRepository<Payment, String> {
 
 	//la SQL de arriba pasada a HQL
 	
-    @Query(value = "SELECT sum(p.purchase) as total"
-    		+ " FROM Payment p  "
-    		+ " INNER JOIN p.cashpayment   "
-    		+ " WHERE p.month  = :month ")
-    float totalCashByMonth(@Param("month") String month);
-    
-    @Query(value = "SELECT sum(p.purchase) as total"
-    		+ " FROM Payment p  "
-    		+ " INNER JOIN p.cashpayment   "
-    		+ " WHERE p.month  = :month ")
-    List<PaymentDTO> totalCashByMonth2(@Param("month") String month);
+	/*
+	 * @Query(value = "SELECT sum(p.purchase) as total" + " FROM Payment p  " +
+	 * " INNER JOIN p.cashpayment   " + " WHERE p.month  = :month ") float
+	 * totalCashByMonth(@Param("month") String month);
+	 */
+	/*
+	 * @Query(value = "SELECT sum(p.purchase) as total" + " FROM Payment p  " +
+	 * " INNER JOIN p.cashpayment   " + " WHERE p.month  = :month ") List<ArrayList>
+	 * totalCashByMonth2(@Param("month") String month);
+	 */
+
+	@Aggregation(pipeline = {
+			"{$match: { month: ?0}}",
+			"{$lookup: {from : 'cashpayment',localField :'cashpayment.$id' ,foreignField : '_id', as : 'reporter'}}",
+			"{$unwind: '$reporter'}",
+			"{$group: { _id: '', total: {$sum: '$purchase'}}}"
+		})
+    List<ArrayList>  totalCashByMonth(@Param("month") String month);
+	
+
 
 	/*
 	 * @Query(value = "SELECT sum(payment.purchase) " + "FROM payment " +
@@ -52,12 +61,28 @@ public interface PaymentRepository extends MongoRepository<Payment, String> {
 	 */
 
 	//la SQL de arriba pasada a HQL
-    @Query(value = "SELECT sum(p.purchase) "
-    		+ " FROM Payment p  "
-    		+ " INNER JOIN p.quota "
-    		+ " WHERE p.month  = :month ")
-    float totalQuotasByMonth(@Param("month") String month);
+	/*
+	 * @Query(value = "SELECT sum(p.purchase) " + " FROM Payment p  " +
+	 * " INNER JOIN p.quota " + " WHERE p.month  = :month ") float
+	 * totalQuotasByMonth(@Param("month") String month);
+	 */
     
+	@Aggregation(pipeline = {
+			"{$match: { month: ?0}}",
+			"{$lookup: {from : 'monthlypayments',localField :'monthlypayments.quota.id' ,foreignField : 'quota', as : 'reporter'}}",
+			"{$unwind: '$reporter'}",
+			"{$group: { _id: '', total: {$sum: '$purchase'}}}"
+		})
+	List<ArrayList> totalQuotasByMonth(String month);
+	
+	@Aggregation(pipeline = {
+			"{$match: { month: ?0}}",
+			"{$lookup: {from : 'monthlypayments',localField :'monthlypayments.quota.id' ,foreignField : 'quota', as : 'reporter'}}",
+			"{$unwind: '$reporter'}",
+			"{$group: { _id: '', total: {$sum: '$purchase'}}}"
+		})
+	List<ArrayList> totalCashByMonth2(String month);
+	
 	/*
 	 * @Query(value =
 	 * "SELECT c.cuitStore as cuit, c.amount  as amount, c.store as store " +
@@ -79,5 +104,27 @@ public interface PaymentRepository extends MongoRepository<Payment, String> {
 		})
     List<ArrayList>  findStoreWithMoreSalesCash(@Param("month") String month, Pageable pageable);
 
+	/*
+	 * @Query(value =
+	 * "SELECT m.cuitStore as ciut, m.amount as amount, m.store  as store " +
+	 * "FROM Payment p, MonthlyPayments m " + "INNER JOIN p.quota " +
+	 * " WHERE p.month   = :month   " + "GROUP BY m.cuitStore, m.amount ,m.store " +
+	 * "ORDER BY m.amount DESC  ") List<PurchaseDTO>
+	 * findStoreWithMoreSalesMonthly(@Param("month") String month, Pageable
+	 * pageable);
+	 */
+    
+	@Aggregation(pipeline = {
+			"{$match: { month: ?0}}",
+			"{$lookup: {from : 'quota',localField :'quota.$id' ,foreignField : '_id', as : 'reporter'}}",
+			"{$unwind: '$reporter'}",
+			"{$unwind: '$reporter.quota'}",
+			"{$lookup: {from : 'monthlypayments',localField :'monthlypayments.quota.id' ,foreignField : 'quota', as : 'mensuales'}}",
+			"{$unwind: '$mensuales'}",
+			"{$sort: { 'mensuales.amount': -1 }}",
+	        "{$project: {  'result': ['$mensuales.cuitStore','$mensuales.amount', '$mensuales.store']}}"
+		})
+    List<ArrayList>  findStoreWithMoreSalesMonthly(@Param("month") String month, Pageable pageable);
 
+    
 }

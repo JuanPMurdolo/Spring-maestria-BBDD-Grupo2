@@ -107,16 +107,6 @@ public class PurchaseController {
         }
     }
 
-    @GetMapping(path = "/getStoreWithMostSales/{month}")
-    public PurchaseDTO getStoreWithMostSales(@PathVariable String month)throws TarjetasException{
-        try {
-            return this.iTarjetasService.getInfoFromBusiness(month);
-            }
-        catch (Exception e) {
-            throw new TarjetasException(e.getMessage());
-        }
-    }
-
     @GetMapping(path = "/getQuotasTotal/{id}")
     public float getQuotasTotal(@PathVariable String id) throws TarjetasException {
         try {

@@ -21,14 +21,14 @@ public interface PaymentService {
 
 	void createPayment(Payment payment) throws TarjetasException;
 	
-	float getTotalCashByMonth(String month) throws TarjetasException;
+	List<ArrayList> getTotalCashByMonth(String month) throws TarjetasException;
 
-	float getTotalQuotasByMonth(String month) throws TarjetasException;
+	List<ArrayList> getTotalQuotasByMonth(String month) throws TarjetasException;
 
 	String getTotalByMonth(String month) throws TarjetasException;
 
-	List<PaymentDTO> getTotalCashByMonth2(String month);
+	List<ArrayList> getTotalCashByMonth2(String month);
 
 	List<ArrayList> getStoreWithMoreSalesCash(String month);
-	
+
 }

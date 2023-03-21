@@ -150,7 +150,7 @@ public class ITarjetasServiceImpl implements ITarjetasService{
 
 	@Override
 	@Transactional
-	public PurchaseDTO getInfoFromBusiness(String month) throws TarjetasException{
+	public ArrayList getInfoFromBusiness(String month) throws TarjetasException{
 		return this.purchaseRepository.getStoreWithMoreSales(month);
 	}
 	

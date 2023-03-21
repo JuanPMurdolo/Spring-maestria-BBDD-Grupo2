@@ -1,6 +1,7 @@
 package unlp.basededatos.tarjetas.repositories.impl;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,15 +29,23 @@ public class PaymentRepositoryImpl implements IPaymentRepository {
 	@Override
 	public String findTotalByMonth(String month) throws TarjetasException{
 		try {
-			float totalMonthly = getTotalCashByMonth(month);
-			float totalCash = getTotalQuotasByMonth(month);
 
-			Float total = Float.sum(totalMonthly, totalCash);
+			List<ArrayList> totalMonthly = getTotalCashByMonth(month);
+			List<ArrayList> totalCash = getTotalQuotasByMonth(month);
+
+
+			float totalCardMonthly = Float.parseFloat(totalMonthly.toArray()[0].toString().replace("[","").replace("]", ""));
+			float totalCardCash = Float.parseFloat(totalCash.toArray()[0].toString().replace("[","").replace("]", ""));
+			
+			System.out.println(totalMonthly.toArray()[0].toString().replace("[","").replace("]", ""));
+
+			
+			Float total = Float.sum(totalCardMonthly, totalCardCash);
 
 			Map<String, Float> elements = new HashMap<String, Float>();
 			elements.put("TOTAL        :", total);
-			elements.put("Total Cash   : ", totalCash);
-			elements.put("Total Monthly:", totalMonthly);
+			elements.put("Total Cash   : ", totalCardCash);
+			elements.put("Total Monthly:", totalCardMonthly);
 
 			ObjectMapper objectMapper = new ObjectMapper();
 
@@ -50,17 +59,17 @@ public class PaymentRepositoryImpl implements IPaymentRepository {
 	}
 	
 	@Override
-	public float getTotalCashByMonth(String month) {
+	public List<ArrayList> getTotalCashByMonth(String month) {
         return repository.totalCashByMonth(month);
 	}
 
 	@Override
-	public List<PaymentDTO> getTotalCashByMonth2(String month) {
+	public List<ArrayList> getTotalCashByMonth2(String month) {
         return repository.totalCashByMonth2(month);
 	}
 	
 	@Override
-	public float getTotalQuotasByMonth(String month) {
+	public List<ArrayList> getTotalQuotasByMonth(String month) {
         return repository.totalQuotasByMonth(month);
 	}
 

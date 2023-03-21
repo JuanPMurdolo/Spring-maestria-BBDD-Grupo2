@@ -4,6 +4,7 @@ import unlp.basededatos.tarjetas.model.*;
 import unlp.basededatos.tarjetas.utils.PurchaseDTO;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -41,7 +42,7 @@ public interface ITarjetasService {
     public Optional<Promotion> getPromotionMostUsed() throws TarjetasException;
 
     // 11-Obtener el nombre y cuit del local, que mas facturo en cierto mes
-    public PurchaseDTO getInfoFromBusiness(String month) throws TarjetasException;
+    public ArrayList getInfoFromBusiness(String month) throws TarjetasException;
 
     // 12-Obtener el banco que registre la mayor sumatoria de los importes en pagos con su tarjeta.
 	public Bank getBankMostImportByCard() throws TarjetasException;

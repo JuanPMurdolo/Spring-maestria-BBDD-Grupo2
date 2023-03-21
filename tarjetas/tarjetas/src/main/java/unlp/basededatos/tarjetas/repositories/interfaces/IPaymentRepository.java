@@ -18,9 +18,9 @@ public interface IPaymentRepository {
 
 	String findTotalByMonth(String month) throws TarjetasException;
 	
-    float getTotalCashByMonth(String month) throws TarjetasException; 
+    List<ArrayList> getTotalCashByMonth(String month) throws TarjetasException; 
     
-    float getTotalQuotasByMonth(String month) throws TarjetasException;
+    List<ArrayList> getTotalQuotasByMonth(String month) throws TarjetasException;
 
 	List<Payment> findPaymentsByCode(String code);
 
@@ -28,7 +28,7 @@ public interface IPaymentRepository {
 
 	Optional<Payment> findById(String id);
 
-	List<PaymentDTO> getTotalCashByMonth2(String month);
+	List<ArrayList> getTotalCashByMonth2(String month);
 
 	List<ArrayList> getStoreWithMoreSalesCash(String month);
 

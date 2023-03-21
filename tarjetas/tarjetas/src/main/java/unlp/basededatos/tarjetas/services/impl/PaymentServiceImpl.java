@@ -36,12 +36,12 @@ public class PaymentServiceImpl implements PaymentService {
 	}
 
 	@Override
-	public float getTotalCashByMonth(String month) throws TarjetasException {
+	public List<ArrayList> getTotalCashByMonth(String month) throws TarjetasException {
 		return this.repository.getTotalCashByMonth(month);
 	}
 
 	@Override
-	public float getTotalQuotasByMonth(String month) throws TarjetasException {
+	public List<ArrayList> getTotalQuotasByMonth(String month) throws TarjetasException {
 		return this.repository.getTotalQuotasByMonth(month);
 	}
 
@@ -51,7 +51,7 @@ public class PaymentServiceImpl implements PaymentService {
 	}
 
 	@Override
-	public List<PaymentDTO> getTotalCashByMonth2(String month) {
+	public List<ArrayList> getTotalCashByMonth2(String month) {
 		return this.repository.getTotalCashByMonth2(month);
 	}
 
