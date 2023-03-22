@@ -28,10 +28,6 @@ public class Card {
     // MUCHOS a uno
     @DBRef
     private Bank bank;
-
-    //Una tarjeta puede tener solo un owner(CardHolder)
-    //Muchos a uno
-    @DBRef
     private CardHolder owner;
     
     public Card(String number, String ccv, String cardholderNameInCard, Date since, Date expirationDate) {

@@ -16,8 +16,6 @@ public class MonthlyPayments extends Purchase {
   //bi-directional many-to-one association to Quota
 //  	@OneToMany(mappedBy="montlypayment")
 //  	private List<Quota> quotas;
-  	
-    @DBRef
     private List<Quota> quota;
   	
     public MonthlyPayments(String paymentVoucher, String store, String cuitStore, float amount, float finalAmount, float interest, int numberOfQuotas) {

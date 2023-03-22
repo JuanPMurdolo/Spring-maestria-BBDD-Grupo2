@@ -23,7 +23,8 @@ public class MonthlyPaymentServiceImpl implements MonthlyPaymentsService{
 
     @Override
     public Optional<MonthlyPayments> getMonthlyPayments(String id) throws TarjetasException {
-        return this.repository.findById(id);
+        Optional <MonthlyPayments> optional = Optional.ofNullable(this.repository.findById(id).orElse(null));
+        return optional;
     }
 
     @Override

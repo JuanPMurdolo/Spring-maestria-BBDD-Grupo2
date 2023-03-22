@@ -5,10 +5,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.DocumentReference;
-import org.springframework.data.mongodb.core.mapping.MongoId;
+import org.springframework.data.mongodb.core.mapping.*;
 import unlp.basededatos.tarjetas.enums.PurchaseType;
 
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME,
@@ -44,7 +41,7 @@ public abstract class Purchase {
     private List<Promotion> promotions;
     
     //Una compra tiene asociada una sola tarjeta
-    @DBRef
+    @Field
     private Card card;
 
     private PurchaseType purchaseType;
