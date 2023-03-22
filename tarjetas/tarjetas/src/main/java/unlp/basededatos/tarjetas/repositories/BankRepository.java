@@ -24,14 +24,14 @@ public interface BankRepository extends MongoRepository<Bank, String> {
 	 */
 	
 	//la SQL de arriba pasada a HQL
-	@Query(value = "SELECT sum(p.purchase) as total, b.id as bank, c.id as card "
-			+ "FROM Payment p  "
-			+ "INNER JOIN p.cashpayment t "
-			+ "INNER JOIN t.card c "
-			+ "INNER JOIN c.bank b "
-			+ "GROUP BY b.id, c.id "
-			+ "ORDER BY sum(p.purchase) DESC ")
-    public List<BankDTO> findBankMostImportCashByCard(Pageable pageable);
+//	@Query(value = "SELECT sum(p.purchase) as total, b.id as bank, c.id as card "
+//			+ "FROM Payment p  "
+//			+ "INNER JOIN p.cashpayment t "
+//			+ "INNER JOIN t.card c "
+//			+ "INNER JOIN c.bank b "
+//			+ "GROUP BY b.id, c.id "
+//			+ "ORDER BY sum(p.purchase) DESC ")
+//    public List<BankDTO> findBankMostImportCashByCard(Pageable pageable);
 	
 	/*
 	 * @Query(value =
@@ -50,13 +50,13 @@ public interface BankRepository extends MongoRepository<Bank, String> {
 	 */
 	
 	//la SQL de arriba pasada a HQL
-	@Query(value = "SELECT sum(p.purchase) as total, b.id as bank, c.id as card  "
-			+ "FROM Payment p, MonthlyPayments m, Quota q "
-			+ "INNER JOIN p.quota j "
-			+ "INNER JOIN m.card c "
-			+ "INNER JOIN c.bank b "
-			+ "WHERE j.id = q.id  "
-			+ "GROUP BY b.id, c.id "
-			+ "ORDER BY sum(p.purchase) DESC  ")
-    public List<BankDTO> findBankMostImportMonthlyByCard(Pageable pageable);
+//	@Query(value = "SELECT sum(p.purchase) as total, b.id as bank, c.id as card  "
+//			+ "FROM Payment p, MonthlyPayments m, Quota q "
+//			+ "INNER JOIN p.quota j "
+//			+ "INNER JOIN m.card c "
+//			+ "INNER JOIN c.bank b "
+//			+ "WHERE j.id = q.id  "
+//			+ "GROUP BY b.id, c.id "
+//			+ "ORDER BY sum(p.purchase) DESC  ")
+//    public List<BankDTO> findBankMostImportMonthlyByCard(Pageable pageable);
 }

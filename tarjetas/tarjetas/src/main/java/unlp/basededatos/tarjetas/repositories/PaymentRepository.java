@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.repository.Aggregation;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.repository.query.Param;
 import unlp.basededatos.tarjetas.model.Payment;
+import unlp.basededatos.tarjetas.utils.BankDTO;
 import unlp.basededatos.tarjetas.utils.PaymentDTO;
 import unlp.basededatos.tarjetas.utils.PurchaseDTO;
 
@@ -126,5 +127,48 @@ public interface PaymentRepository extends MongoRepository<Payment, String> {
 		})
     List<ArrayList>  findStoreWithMoreSalesMonthly(@Param("month") String month, Pageable pageable);
 
+	
+//	@Query(value = "SELECT sum(p.purchase) as total, b.id as bank, c.id as card "
+//			+ "FROM Payment p  "
+//			+ "INNER JOIN p.cashpayment t "
+//			+ "INNER JOIN t.card c "
+//			+ "INNER JOIN c.bank b "
+//			+ "GROUP BY b.id, c.id "
+//			+ "ORDER BY sum(p.purchase) DESC ")
+//    public List<BankDTO> findBankMostImportCashByCard(Pageable pageable);
+//	
+	@Aggregation(pipeline = {
+			"{$lookup: {from : 'cashpayment',localField :'cashpayment.$id' ,foreignField : '_id', as : 'reporter'}}",
+			"{$unwind: '$reporter'}",
+			"{$lookup: {from : 'card',localField :'card.id' ,foreignField : 'reporter.card', as : 'nivel2'}}",
+			"{$unwind: '$nivel2'}",
+			"{$lookup: {from : 'bank',localField :'bank.id' ,foreignField : 'nivel2.bank', as : 'nivel3'}}",
+			"{$unwind: '$nivel3'}",
+			"{$sort: { 'purchase': -1 }}",
+	        "{$project: {  'result': ['$purchase', '$nivel3._id']}}"
+		})
+    public List<ArrayList> findBankMostImportCashByCard(Pageable pageable);
+	
+//	
+//	@Query(value = "SELECT sum(p.purchase) as total, b.id as bank, c.id as card  "
+//			+ "FROM Payment p, MonthlyPayments m, Quota q "
+//			+ "INNER JOIN p.quota j "
+//			+ "INNER JOIN m.card c "
+//			+ "INNER JOIN c.bank b "
+//			+ "WHERE j.id = q.id  "
+//			+ "GROUP BY b.id, c.id "
+//			+ "ORDER BY sum(p.purchase) DESC  ")
+//    public List<BankDTO> findBankMostImportMonthlyByCard(Pageable pageable);
+	
+	@Aggregation(pipeline = {
+			"{$lookup: {from : 'quota',localField :'quota.$id' ,foreignField : '_id', as : 'reporter'}}",
+			"{$unwind: '$reporter'}",
+			"{$unwind: '$reporter.quota'}",
+			"{$lookup: {from : 'monthlypayments',localField :'monthlypayments.quota.id' ,foreignField : 'quota', as : 'mensuales'}}",
+			"{$unwind: '$mensuales'}",
+			"{$sort: { 'mensuales.amount': -1 }}",
+	        "{$project: {  'result': ['$mensuales.cuitStore','$mensuales.amount', '$mensuales.store']}}"
+		})
+    public List<ArrayList> findBankMostImportMonthlyByCard(Pageable pageable);
     
 }

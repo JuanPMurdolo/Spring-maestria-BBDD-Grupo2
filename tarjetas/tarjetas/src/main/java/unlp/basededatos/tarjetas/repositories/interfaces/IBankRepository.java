@@ -1,5 +1,6 @@
 package unlp.basededatos.tarjetas.repositories.interfaces;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -13,9 +14,9 @@ import unlp.basededatos.tarjetas.utils.TarjetasException;
 
 public interface IBankRepository {
 
-	List<BankDTO> getBankMostImportCashByCard(Pageable pageable);
+	List<ArrayList> getBankMostImportCashByCard(Pageable pageable);
 
-	List<BankDTO> getBankMostImportMonthlyByCard(Pageable pageable);
+	List<ArrayList> getBankMostImportMonthlyByCard(Pageable pageable);
 
 	void save(Bank bank);
 

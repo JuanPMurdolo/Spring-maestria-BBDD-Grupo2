@@ -1,6 +1,7 @@
 package unlp.basededatos.tarjetas.model;
 
 
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DocumentReference;
 import org.springframework.data.mongodb.core.mapping.MongoId;
@@ -25,12 +26,12 @@ public class Card {
 	//bi-directional many-to-one association to Bank
     // muchas tarjetas solo puede pertenecer a un Banco (bank)
     // MUCHOS a uno
-    @DocumentReference
+    @DBRef
     private Bank bank;
 
     //Una tarjeta puede tener solo un owner(CardHolder)
     //Muchos a uno
-    @DocumentReference
+    @DBRef
     private CardHolder owner;
     
     public Card(String number, String ccv, String cardholderNameInCard, Date since, Date expirationDate) {

@@ -4,7 +4,6 @@ public interface  BankDTO {
 
 	String getTotal();
     String getBank();
-	String getCard();
       
 }
 
