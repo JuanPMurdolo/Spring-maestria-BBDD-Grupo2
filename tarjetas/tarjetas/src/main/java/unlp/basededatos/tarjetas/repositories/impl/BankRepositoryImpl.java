@@ -51,12 +51,12 @@ public class BankRepositoryImpl implements IBankRepository {
 			System.out.printf("%.2f", totalCardMonthly);
 			System.out.printf("%.2f", totalCardCash);
 			
-			String idCardMonthly = (arrMont[1].replace("]",""));
-			String idCardCash = (arrCash[1].replace("]",""));
+			String idCardMonthly = (arrMont[1].replace("]","").replace(" ", ""));
+			String idCardCash = (arrCash[1].replace("]","").replace(" ", ""));
 			
 			System.out.println(idCardMonthly);
 			System.out.println(idCardCash);
-
+			
 			if (Float.compare(totalCardMonthly, totalCardCash) == 0) {
 
 				System.out.println("f1=f2");
@@ -72,8 +72,11 @@ public class BankRepositoryImpl implements IBankRepository {
 				id_bank_most = idCardMonthly;
 			}
 
+			System.out.println( id_bank_most);
+
+			
 			Bank bank1 = this.repository.findById(id_bank_most)
-					.orElseThrow(() -> new TarjetasException("Can't find bank by id: 1"));
+					.orElseThrow(() -> new TarjetasException("Can't find bank by id"));
 
 			return bank1;
 		} catch (Exception e) {
