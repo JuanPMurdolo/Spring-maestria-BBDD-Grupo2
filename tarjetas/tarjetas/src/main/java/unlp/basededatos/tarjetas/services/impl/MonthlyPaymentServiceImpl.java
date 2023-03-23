@@ -36,4 +36,10 @@ public class MonthlyPaymentServiceImpl implements MonthlyPaymentsService{
         return monthlyPayment1;
     }
 
+	@Override
+	public boolean exists(String id) {
+		return repository.existsById(id);
+
+	}
+
 }

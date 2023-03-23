@@ -14,21 +14,29 @@ import unlp.basededatos.tarjetas.utils.PurchaseDTO;
 
 public interface CashPaymentRepository extends MongoRepository<CashPayment, String> {
 
-    @Query(value = "SELECT c.cuitStore as ciut, c.amount  as amount, c.store as store "
-    		+ " FROM Payment p "
-    		+ " INNER JOIN p.cashpayment c   "
-    		+ " WHERE p.month   = :month    "
-    		+ " GROUP BY c.cuitStore, c.amount ,c.store "
-    		+ " ORDER BY c.amount DESC   ")
-    List<PurchaseDTO> findStoreWithMoreSalesCash(@Param("month") String month, Pageable pageable);
+    @Query(value = "SELECT id "
+    		+ "FROM CashPayment c   "
+    		+ "GROUP BY id "
+    		+ "ORDER BY COUNT(*) DESC  ")
+    List<Long> getMostUsed(Pageable pageable);
+    
+    @Query(value = "SELECT c "
+    		+ "FROM CashPayment c   "
+    		+ "GROUP BY id "
+    		+ "ORDER BY COUNT(*)  ")    
+    List<String> getOccurences(Pageable pageable);
 
-    @Query(value = "SELECT m.cuitStore as ciut, m.amount as amount, m.store  as store "
-    		+ "FROM Payment p, MonthlyPayments m "
-    		+ "INNER JOIN p.quota "
-    		+ " WHERE p.month   = :month   "
-    		+ "GROUP BY m.cuitStore, m.amount ,m.store "
-    		+ "ORDER BY m.amount DESC  ")
-    List<PurchaseDTO> findStoreWithMoreSalesMonthly(@Param("month") String month, Pageable pageable);
+    @Query(value = "SELECT id "
+    		+ "FROM MonthlyPayments m   "
+    		+ "GROUP BY id "
+    		+ "ORDER BY COUNT(*) DESC  ")
+    List<Long> getMostUsedMonthly(Pageable pageable);
+
+    @Query(value = "SELECT count(id) "
+    		+ "FROM MonthlyPayments m   "
+    		+ "GROUP BY id "
+    		+ "ORDER BY COUNT(*)  ")
+    List<String> getOccurencesMonthly(Pageable pageable);
 
 	/*
 	 * @Query(value = "db.collection.find()") String getPurchaseInfo(@Param("id")

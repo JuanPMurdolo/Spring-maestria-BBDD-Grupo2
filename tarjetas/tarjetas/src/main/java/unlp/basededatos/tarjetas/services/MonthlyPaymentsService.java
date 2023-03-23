@@ -13,6 +13,7 @@ public interface MonthlyPaymentsService {
 
 	    MonthlyPayments updateMonthlyPayments(MonthlyPayments monthlypayment,String id) throws TarjetasException;
 
-    
+		public boolean exists(String id);
+
 
 }
