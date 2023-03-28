@@ -80,6 +80,10 @@ public abstract class Promotion {
         this.comments = comments;
     }
 
+	public Promotion(String code) {
+        this.code = code;
+    }
+	
     public Promotion(){}
 
     public String getCode() {

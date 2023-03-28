@@ -3,6 +3,7 @@ package unlp.basededatos.tarjetas.services.impl;
 import unlp.basededatos.tarjetas.utils.TarjetasException;
 import unlp.basededatos.tarjetas.model.Promotion;
 import unlp.basededatos.tarjetas.repositories.PromotionRepository;
+import unlp.basededatos.tarjetas.repositories.impl.PromotionRepositoryImpl;
 import unlp.basededatos.tarjetas.services.PromotionsService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,9 @@ public class PromotionsServiceImpl implements PromotionsService{
     @Autowired
     private PromotionRepository repository;
 
+    @Autowired
+    private PromotionRepositoryImpl repository2;
+    
     @Override
     @Transactional
     public Promotion createPromotion(Promotion promotion) throws TarjetasException {
@@ -40,7 +44,7 @@ public class PromotionsServiceImpl implements PromotionsService{
 	@Override
     @Transactional
 	public void deletePromotion(String code) throws TarjetasException {
-		this.repository.deletePromotion(code);
+		this.repository2.deletePromotion(code);
 	}
 
 }
