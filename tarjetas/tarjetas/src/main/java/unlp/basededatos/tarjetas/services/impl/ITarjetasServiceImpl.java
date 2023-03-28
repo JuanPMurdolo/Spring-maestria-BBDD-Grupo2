@@ -152,46 +152,34 @@ public class ITarjetasServiceImpl implements ITarjetasService{
 	}
 
 	@Override
-	public Optional<Promotion> getPromotionMostUsed() throws TarjetasException{
+	public Optional<Object> getPromotionMostUsed() throws TarjetasException{
 		Pageable paging = PageRequest.of(0, 1);
 
-		
-		System.out.println(cashPaymentRepository.getOccurences(paging));
+		String cash = cashPaymentRepository.getOccurences(paging).toString();
+		String monti = cashPaymentRepository.getOccurencesMonthly(paging).toString();
+	    System.out.println("Consulta SQL ===> " + monti);
+
+		System.out.println(cashPaymentRepository.getOccurences(paging).get(0));
 		System.out.println(cashPaymentRepository.getOccurencesMonthly(paging));
 
-		JsonObject jsonObj = new JsonObject();
-	      // array to JsonArray
-		JsonArray jsonArray1 = new Gson().toJsonTree(cashPaymentRepository.getOccurences(paging)).getAsJsonArray();
-		// ArrayList to JsonArray
-		JsonArray jsonArray2 = new Gson().toJsonTree(cashPaymentRepository.getOccurences(paging)).getAsJsonArray();
-		jsonObj.add("jsonArray1", jsonArray1);
-		//jsonObj.add("jsonArray2", jsonArray2);
-		System.out.println(jsonObj.toString());
+	    Gson gson = new GsonBuilder().create();
+	    List<String> cashito = gson.fromJson(cash, List.class);
+	    List<String> mensual = gson.fromJson(monti, List.class);
+	    System.out.println("Array SQL ===> " + mensual);
+	    	    
+	    // array to JsonArray
+		JsonArray cashArray = new Gson().toJsonTree(cashito).getAsJsonArray();
+		JsonArray mensualArray = new Gson().toJsonTree(mensual).getAsJsonArray();
 
-		// Use this builder to construct a Gson instance when you need to set configuration options other than the default.
-        GsonBuilder gsonBuilder = new GsonBuilder();
-        
-        // This is the main class for using Gson. Gson is typically used by first constructing a Gson instance and then invoking toJson(Object) or fromJson(String, Class) methods on it. 
-        // Gson instances are Thread-safe so you can reuse them freely across multiple threads.
-        Gson gson = gsonBuilder.create();
-        String JSONObject = gson.toJson(cashPaymentRepository.getOccurences(paging));
-        System.out.println("\nConverted JSONObject ==> " + JSONObject);
-        
-        
-        Gson prettyGson = new GsonBuilder().setPrettyPrinting().create();
-        String prettyJson = prettyGson.toJson(cashPaymentRepository.getOccurences(paging));
-        
-        System.out.println("\nPretty JSONObject ==> " + prettyJson);
-        
-      //getting values form the JSONObject  
-        
-        
-		int cash = Integer.parseInt(this.cashPaymentRepository.getOccurences(paging).get(0));
-		int monthly = Integer.parseInt(this.cashPaymentRepository.getOccurencesMonthly(paging).get(0));
-		if (cash > monthly) {
-		return this.promotionRepository.findById(this.cashPaymentRepository.getMostUsed(paging).get(0).toString());
+		System.out.println("id: " + cashArray.get(0).getAsJsonObject().get("_id").getAsString());
+
+		double cashMonto = cashArray.get(0).getAsJsonObject().get("amount").getAsDouble();
+		double monthlyMonto = mensualArray.get(0).getAsJsonObject().get("amount").getAsDouble();
+		
+		if (cashMonto > monthlyMonto) {
+			return Optional.ofNullable(this.cashPaymentRepository.findById(cashArray.get(0).getAsJsonObject().get("_id").getAsString().replace(" ","")));
 		} else {
-			return this.promotionRepository.findById(this.cashPaymentRepository.getMostUsedMonthly(paging).get(0).toString());
+			return Optional.ofNullable(this.cashPaymentRepository.findById(mensualArray.get(0).getAsJsonObject().get("_id").getAsString().replace(" ","")));
 		}
 	}
 		

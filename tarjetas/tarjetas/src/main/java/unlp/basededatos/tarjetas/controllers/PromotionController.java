@@ -112,7 +112,7 @@ public class PromotionController {
     }
 
     @GetMapping("/getMostUsed")
-    public Optional<Promotion> getMostUsed() throws TarjetasException{
+    public Optional<Object> getMostUsed() throws TarjetasException{
         try {
             return this.iTarjetasService.getPromotionMostUsed();
         }
