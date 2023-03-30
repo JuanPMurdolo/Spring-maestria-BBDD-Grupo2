@@ -9,10 +9,18 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.aggregation.Aggregation;
+import org.springframework.data.mongodb.core.aggregation.LookupOperation;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
+import org.springframework.data.mongodb.core.query.TextCriteria;
+import org.springframework.data.mongodb.core.query.TextQuery;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import unlp.basededatos.tarjetas.model.Payment;
+import unlp.basededatos.tarjetas.model.Promotion;
 import unlp.basededatos.tarjetas.repositories.PaymentRepository;
 import unlp.basededatos.tarjetas.repositories.interfaces.IPaymentRepository;
 import unlp.basededatos.tarjetas.utils.PaymentDTO;
@@ -21,6 +29,12 @@ import unlp.basededatos.tarjetas.utils.TarjetasException;
 
 public class PaymentRepositoryImpl implements IPaymentRepository {
 	
+    private final MongoTemplate mongoTemplate;
+
+    public PaymentRepositoryImpl(MongoTemplate mongoTemplate) {
+        this.mongoTemplate = mongoTemplate;
+    }
+    
 	@Autowired
 	private PaymentRepository repository;
 
@@ -87,12 +101,20 @@ public class PaymentRepositoryImpl implements IPaymentRepository {
 	public Optional<Payment> findById(String id) {
         return this.repository.findById(id);
 	}
+//
+//	@Override
+//	public List<ArrayList> getStoreWithMoreSalesCash(String month) {
+//        return repository.findStoreWithMoreSalesCash(month, paging);
+//	}
 
-	@Override
-	public List<ArrayList> getStoreWithMoreSalesCash(String month) {
-        return repository.findStoreWithMoreSalesCash(month, paging);
-	}
-
+    @Override
+    public List<Payment> getStoreWithMoreSalesCash(String month) {
+        Query query = new Query().addCriteria(Criteria.where("month").is(month));
+        query.fields()
+        .include("cashpayment.cuitStore")
+        .include("cashpayment.amount")
+        .include("cashpayment.store");
+        return mongoTemplate.find(query, Payment.class);
+    }
     
-
 }

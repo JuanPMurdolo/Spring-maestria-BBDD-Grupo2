@@ -30,7 +30,7 @@ public interface IPaymentRepository {
 
 	List<ArrayList> getTotalCashByMonth2(String month);
 
-	List<ArrayList> getStoreWithMoreSalesCash(String month);
+	List<Payment> getStoreWithMoreSalesCash(String month);
 
 
 }

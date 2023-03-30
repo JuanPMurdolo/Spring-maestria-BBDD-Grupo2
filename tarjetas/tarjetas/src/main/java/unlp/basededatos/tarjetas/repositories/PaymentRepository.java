@@ -103,8 +103,12 @@ public interface PaymentRepository extends MongoRepository<Payment, String> {
 			"{$sort: { 'reporter.amount': -1 }}",
 	        "{$project: {  'result': ['$reporter.cuitStore','$reporter.amount', '$reporter.store']}}"
 		})
-    List<ArrayList>  findStoreWithMoreSalesCash(@Param("month") String month, Pageable pageable);
+    List<ArrayList>  findStoreWithMoreSalesCash2(@Param("month") String month, Pageable pageable);
 
+	
+	@Query("{ {'month': ?0}, {'cashpayment.cuitStore': 1, 'cashpayment.amount': 1,'cashpayment.store': 1 }}")
+    List<ArrayList>  findStoreWithMoreSalesCash(@Param("month") String month, Pageable pageable);
+	
 	/*
 	 * @Query(value =
 	 * "SELECT m.cuitStore as ciut, m.amount as amount, m.store  as store " +

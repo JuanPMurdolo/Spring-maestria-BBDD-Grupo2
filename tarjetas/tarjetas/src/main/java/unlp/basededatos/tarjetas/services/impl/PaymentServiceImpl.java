@@ -55,7 +55,7 @@ public class PaymentServiceImpl implements PaymentService {
 		return this.repository.getTotalCashByMonth2(month);
 	}
 
-	public List<ArrayList> getStoreWithMoreSalesCash(String month) {
+	public List<Payment> getStoreWithMoreSalesCash(String month) {
 		return this.repository.getStoreWithMoreSalesCash(month);
 
 	}
