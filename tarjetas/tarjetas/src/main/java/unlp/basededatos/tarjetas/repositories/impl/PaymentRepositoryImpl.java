@@ -11,6 +11,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.aggregation.Aggregation;
+import org.springframework.data.mongodb.core.aggregation.AggregationOperation;
 import org.springframework.data.mongodb.core.aggregation.LookupOperation;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -117,4 +118,16 @@ public class PaymentRepositoryImpl implements IPaymentRepository {
         return mongoTemplate.find(query, Payment.class);
     }
     
+	public List<String> totalCashByMonth(String month) {
+		AggregationOperation match = Aggregation.match(Criteria.where("month").is(month));
+		AggregationOperation group = Aggregation.group("cashpayment.store").sum("cashpayment.amount").as("total");
+		AggregationOperation project = Aggregation.project("total");
+		
+		Aggregation aggregation = Aggregation.newAggregation(match, group, project);
+
+		List<String> saleInfo = mongoTemplate.aggregate(aggregation, mongoTemplate.getCollectionName(Payment.class), String.class).getMappedResults();
+		
+		return saleInfo;
+	}
+	
 }

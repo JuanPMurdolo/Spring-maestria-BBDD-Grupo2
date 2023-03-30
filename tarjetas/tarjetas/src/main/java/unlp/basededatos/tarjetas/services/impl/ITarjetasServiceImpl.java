@@ -185,8 +185,10 @@ public class ITarjetasServiceImpl implements ITarjetasService{
 		
 	@Override
 	@Transactional
-	public String getTotalByMonth(String month) throws TarjetasException {
-		return this.paymentRepository.findTotalByMonth(month);
+	public List<String> getTotalByMonth(String month) throws TarjetasException {
+		//return this.paymentRepository.findTotalByMonth(month);
+		return this.paymentRepository.totalCashByMonth(month);
+
 	}
 
 	@Override

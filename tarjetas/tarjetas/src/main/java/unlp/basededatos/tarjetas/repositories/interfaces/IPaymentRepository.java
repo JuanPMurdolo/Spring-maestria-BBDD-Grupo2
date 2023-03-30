@@ -32,5 +32,7 @@ public interface IPaymentRepository {
 
 	List<Payment> getStoreWithMoreSalesCash(String month);
 
+	List<String> totalCashByMonth(String month);
+
 
 }

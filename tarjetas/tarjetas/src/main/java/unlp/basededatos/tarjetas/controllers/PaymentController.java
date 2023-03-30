@@ -75,7 +75,7 @@ public class PaymentController {
     }
     
     @GetMapping(path = "/getTotalByMonth/{month}")
-    public String getTotalByMonth(@PathVariable String month) throws TarjetasException {
+    public List<String> getTotalByMonth(@PathVariable String month) throws TarjetasException {
     	try { 
 
     		return this.tarjetaService.getTotalByMonth(month);
