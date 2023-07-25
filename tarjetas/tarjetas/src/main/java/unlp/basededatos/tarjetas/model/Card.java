@@ -26,7 +26,7 @@ public class Card {
 	//bi-directional many-to-one association to Bank
     // muchas tarjetas solo puede pertenecer a un Banco (bank)
     // MUCHOS a uno
-    @DBRef
+    @DocumentReference
     private Bank bank;
     private CardHolder owner;
     
