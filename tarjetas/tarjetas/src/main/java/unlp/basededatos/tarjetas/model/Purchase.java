@@ -42,6 +42,7 @@ public abstract class Purchase {
     
     //Una compra tiene asociada una sola tarjeta
     @Field
+    @DocumentReference
     private Card card;
 
     private PurchaseType purchaseType;
