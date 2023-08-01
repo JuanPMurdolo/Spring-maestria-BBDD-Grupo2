@@ -48,7 +48,7 @@ public class Bank {
 
 
     //Y los bancos pueden tener 0 o muchas promociones
-    @OneToMany( cascade = CascadeType.ALL, fetch = FetchType.LAZY )
+    @OneToMany( cascade = CascadeType.MERGE, fetch = FetchType.LAZY )
     private List<Promotion> promotions;
 	
     public Bank(String name, String cuit, String address, String telephone) {

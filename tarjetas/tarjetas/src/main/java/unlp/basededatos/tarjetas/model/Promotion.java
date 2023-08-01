@@ -65,7 +65,7 @@ public abstract class Promotion {
 	 * List<Bank> banks;
 	 */
     
-    @OneToMany( cascade = CascadeType.ALL, fetch = FetchType.LAZY )
+    @OneToMany( cascade = CascadeType.MERGE, fetch = FetchType.LAZY )
     private List<Purchase> purchase;
 
 
