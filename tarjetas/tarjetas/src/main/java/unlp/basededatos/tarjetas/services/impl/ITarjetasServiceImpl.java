@@ -134,9 +134,7 @@ public class ITarjetasServiceImpl implements ITarjetasService{
 	public Promotion getPromotionMostUsed() throws TarjetasException{
 		
         Pageable paging = PageRequest.of(0, 1);
-
 	    return this.promotionRepository.getPromotionMostUsed(paging).get(0);
-
 		
 	}
 
