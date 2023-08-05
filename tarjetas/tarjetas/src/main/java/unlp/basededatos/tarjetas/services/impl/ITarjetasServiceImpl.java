@@ -131,17 +131,13 @@ public class ITarjetasServiceImpl implements ITarjetasService{
 	}
 
 	@Override
-	public Optional<Promotion> getPromotionMostUsed() throws TarjetasException{
+	public Promotion getPromotionMostUsed() throws TarjetasException{
 		
         Pageable paging = PageRequest.of(0, 1);
 
-		int cash = Integer.parseInt(this.promotionRepository.getOccurences(paging).get(0));
-		int monthly = Integer.parseInt(this.promotionRepository.getOccurencesMonthly(paging).get(0));
-		if (cash > monthly) {
-		return this.promotionRepository.findById(this.promotionRepository.getMostUsed(paging).get(0));
-		} else {
-			return this.promotionRepository.findById(this.promotionRepository.getMostUsedMonthly(paging).get(0));
-		}
+	    return this.promotionRepository.getPromotionMostUsed(paging).get(0);
+
+		
 	}
 
 	@Override

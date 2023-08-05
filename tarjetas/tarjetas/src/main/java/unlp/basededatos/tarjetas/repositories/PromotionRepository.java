@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import unlp.basededatos.tarjetas.model.Promotion;
+import unlp.basededatos.tarjetas.utils.PurchaseDTO;
 
 import java.util.Date;
 import java.util.List;
@@ -79,6 +80,20 @@ public interface PromotionRepository extends JpaRepository<Promotion, Long> {
     	+ " SET p.borrado = true "
     	+ " WHERE p.code = :code ")
 	void deletePromotion(@Param("code") String code);
+    
+    
+	/*
+	 *  Contamos el número de veces que aparece cada promoción en la tabla Purchase,
+	 *  agrupamos los resultados por el campo 'code' de la promoción y 
+	 *  ordenamos los resultados en orden descendente por la columna 'ocurrencias', 
+	 *  lo que nos dará la promoción más utilizada en primer lugar.
+	 */
+    @Query(value = "SELECT pr.code as codigoPromotion, COUNT(pr.code) as ocurrencias"
+    		+ "FROM Purchase p "
+    		+ "LEFT JOIN p.promotions pr "
+    		+ "GROUP BY pr.code "
+    		+ "ORDER BY ocurrencias DESC; ")
+    List<Promotion> getPromotionMostUsed(Pageable pageable);
 
 
 }
