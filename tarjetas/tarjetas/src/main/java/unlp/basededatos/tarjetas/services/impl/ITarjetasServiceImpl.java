@@ -12,6 +12,7 @@ import unlp.basededatos.tarjetas.model.*;
 import unlp.basededatos.tarjetas.repositories.*;
 import unlp.basededatos.tarjetas.repositories.interfaces.IBankRepository;
 import unlp.basededatos.tarjetas.repositories.interfaces.IPaymentRepository;
+import unlp.basededatos.tarjetas.repositories.interfaces.IPromotionRepository;
 import unlp.basededatos.tarjetas.repositories.interfaces.IPurchaseRepository;
 import unlp.basededatos.tarjetas.services.ITarjetasService;
 import unlp.basededatos.tarjetas.utils.PurchaseDTO;
@@ -47,6 +48,9 @@ public class ITarjetasServiceImpl implements ITarjetasService{
 	
 	@Autowired
 	private PromotionRepository promotionRepository;
+	
+	@Autowired
+	private IPromotionRepository promotionRepository2;
 	
 	@Autowired
 	private CardHolderRepository cardHolderRepository;
@@ -152,35 +156,8 @@ public class ITarjetasServiceImpl implements ITarjetasService{
 	}
 
 	@Override
-	public Optional<Object> getPromotionMostUsed() throws TarjetasException{
-		Pageable paging = PageRequest.of(0, 1);
-
-		String cash = cashPaymentRepository.getOccurences(paging).toString();
-		String monti = cashPaymentRepository.getOccurencesMonthly(paging).toString();
-	    System.out.println("Consulta SQL ===> " + monti);
-
-		System.out.println(cashPaymentRepository.getOccurences(paging).get(0));
-		System.out.println(cashPaymentRepository.getOccurencesMonthly(paging));
-
-	    Gson gson = new GsonBuilder().create();
-	    List<String> cashito = gson.fromJson(cash, List.class);
-	    List<String> mensual = gson.fromJson(monti, List.class);
-	    System.out.println("Array SQL ===> " + mensual);
-	    	    
-	    // array to JsonArray
-		JsonArray cashArray = new Gson().toJsonTree(cashito).getAsJsonArray();
-		JsonArray mensualArray = new Gson().toJsonTree(mensual).getAsJsonArray();
-
-		System.out.println("id: " + cashArray.get(0).getAsJsonObject().get("_id").getAsString());
-
-		double cashMonto = cashArray.get(0).getAsJsonObject().get("amount").getAsDouble();
-		double monthlyMonto = mensualArray.get(0).getAsJsonObject().get("amount").getAsDouble();
-		
-		if (cashMonto > monthlyMonto) {
-			return Optional.ofNullable(this.cashPaymentRepository.findById(cashArray.get(0).getAsJsonObject().get("_id").getAsString().replace(" ","")));
-		} else {
-			return Optional.ofNullable(this.cashPaymentRepository.findById(mensualArray.get(0).getAsJsonObject().get("_id").getAsString().replace(" ","")));
-		}
+	public Promotion getPromotionMostUsed() throws TarjetasException{
+        return this.promotionRepository2.getPromotionMostUsed();
 	}
 		
 	@Override
